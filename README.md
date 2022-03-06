@@ -1,4 +1,9 @@
-# ТЗ
+## Содержание
+1. [ТЗ](#ts)
+2. [Куратор](#tutor)
+
+
+# ТЗ <a name="ts">
 
 ## Цели проекта
 
@@ -199,3 +204,9 @@
 ## Макет приложения
 
 Макет интерфейса представлен [здесь](https://www.figma.com/file/jKtv4MuoAcid1sjOUfNcin/%D0%9C%D0%B0%D0%BA%D0%B5%D1%82?node-id=0%3A1)
+  
+## Куратор <a name="tutor">  
+https://github.com/ErmolaevID
+  
+07.03.2022 - тз согласовано
+  
