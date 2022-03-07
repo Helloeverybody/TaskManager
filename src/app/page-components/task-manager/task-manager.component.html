@@ -1,2 +1,11 @@
-<p>task-manager works!</p>
-<router-outlet></router-outlet>
+<div class="app">
+  <div class="sidebar-menu">
+    <p class="menu-header">Task Manager</p>
+    <a routerLink="/app/pull" routerLinkActive="active-button" class="menu-button">Списки</a>
+    <a routerLink="/app/calendar" routerLinkActive="active-button" class="menu-button">Календарь</a>
+    <a routerLink="/app/settings" routerLinkActive="active-button" class="menu-button">Настройки</a>
+  </div>
+  <div class="inner-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

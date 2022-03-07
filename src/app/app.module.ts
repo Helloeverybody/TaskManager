@@ -10,11 +10,16 @@ import { TaskManagerComponent } from './page-components/task-manager/task-manage
 import { CalendarComponent } from './page-components/calendar/calendar.component';
 import { ListsPullComponent } from './page-components/lists-pull/lists-pull.component';
 import { SettingsComponent } from './page-components/settings/settings.component';
+import { ListComponent } from './page-elements/list/list.component';
+
+const listRoutes: Routes =[
+  { path: 'list-id:', component: ListComponent }
+];
 
 const appRoutes: Routes =[
   { path: 'settings', component: SettingsComponent },
   { path: 'calendar', component: CalendarComponent },
-  { path: 'pul', component: ListsPullComponent }
+  { path: 'pull', component: ListsPullComponent, children: listRoutes }
 ];
 
 const globalRoutes: Routes =[
@@ -33,7 +38,8 @@ const globalRoutes: Routes =[
     TaskManagerComponent,
     CalendarComponent,
     ListsPullComponent,
-    SettingsComponent
+    SettingsComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,

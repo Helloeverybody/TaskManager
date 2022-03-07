@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+body, html{
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@font-face {
+  font-family: 'Roboto-Bold';
+  src: url('./assets/fonts/Robotobold.ttf');
+  font-weight: 700;
+  font-style: normal;
+}
+

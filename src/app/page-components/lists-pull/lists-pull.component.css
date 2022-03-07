@@ -1,0 +1,33 @@
+.pull-content{
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: 100%;
+}
+
+.sidebar-pull{
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  box-shadow: 4px 0 4px 0 rgba(0, 0, 0, 0.5);
+  padding-top: 30px;
+}
+
+a.list-button{
+  margin: 0;
+  padding: 10px;
+  padding-left: 60px;
+  font-family: Roboto, serif;
+  font-size: 20px;
+  color: #6B6B6B;
+  text-decoration: none;
+}
+
+a.list-button:hover{
+  box-shadow: inset 14px 0 4px -10px rgba(0, 0, 0, 0.5);
+  background-color: #F2F2F2;
+}
+
+a.list-button:active{
+  background-color: #e8e8e8;
+}
