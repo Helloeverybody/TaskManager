@@ -1,0 +1,19 @@
+<div class="app">
+  <div class="head">
+    <p class="menu-header">Task Manager</p>
+    <div class="buttons">
+      <div routerLink="/app/pull" routerLinkActive="active-button" class="menu-button">
+        <span>Списки</span>
+        <img src="../assets/images/check-mark-icon.png" alt="check-mark">
+      </div>
+      <div routerLink="/app/calendar" routerLinkActive="active-button" class="menu-button">
+        <span>Календарь</span>
+        <img src="../assets/images/calendar-icon.png" alt="calendar">
+      </div>
+    </div>
+  </div>
+  <div class="inner-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

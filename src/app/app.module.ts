@@ -3,28 +3,32 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { CalendarComponent } from './page-components/calendar/calendar.component';
-import { ListsPullComponent } from './page-components/lists-pull/lists-pull.component';
-import { SettingsComponent } from './page-components/settings/settings.component';
-import { ListComponent } from './page-elements/list/list.component';
+import { ListComponent } from './pull-module/components/list-component/list.component';
+import { AuthModule } from "./auth-module/auth.module";
+import { PullModule } from "./pull-module/pull.module";
+import { CalendarModule } from "./calendar-module/calendar.module";
+import { SettingsModule } from "./settings-module/settings.module";
+import { MainPageModule } from "./main-page-module/main-page.module";
 
-const routes: Routes =[
-  { path: 'calendar', component: CalendarComponent },
-  { path: 'pull', component: ListsPullComponent },
-  { path: '**', redirectTo: '/pull', pathMatch: 'full'}
+const routes: Routes = [
+  { path: 'auth', loadChildren: () => import('./auth-module/auth.module').then(m => m.AuthModule) },
+  { path: 'app', loadChildren: () => import('./main-page-module/main-page.module').then(m => m.MainPageModule)},
+  { path: '**', redirectTo: '/app', pathMatch: 'prefix'}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    CalendarComponent,
-    ListsPullComponent,
-    SettingsComponent,
     ListComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    AuthModule,
+    PullModule,
+    CalendarModule,
+    SettingsModule,
+    MainPageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
