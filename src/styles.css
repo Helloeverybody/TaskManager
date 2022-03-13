@@ -11,3 +11,9 @@ body, html{
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Roboto-Light';
+  src: url('./assets/fonts/Roboto-Light.ttf');
+  font-weight: 300;
+  font-style: normal;
+}

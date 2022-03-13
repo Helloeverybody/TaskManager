@@ -1,1 +1,66 @@
 
+.app{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.head{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.35);
+  border-bottom: 2px solid black;
+}
+
+.inner-content{
+  padding: 0;
+  flex-grow: 1;
+}
+
+.menu-header{
+  display:inline-block;
+  text-align: center;
+  font-family: Roboto-Bold, serif;
+  font-size: 25px;
+  margin: 10px 5% 10px 13%;
+  white-space: nowrap;
+}
+
+.buttons{
+  display: flex;
+  margin-right: 40%;
+}
+
+a.menu-button{
+  padding: 13px 25px 13px 25px;
+  font-family: Roboto-Light, serif;
+  font-size: 22px;
+  text-decoration: none;
+  vertical-align: center;
+}
+
+.active-button{
+  color: #303030 !important;
+  background-color: #F9F5F5;
+  box-shadow: 0 -2px 5px 2px rgba(0, 0, 0, 0.2);
+  border-right: solid black 1px;
+  border-left: solid black 1px;
+}
+
+a.menu-button:visited{
+  color: #747474;
+}
+
+a.menu-button:hover{
+  background-color: #F2F2F2;
+}
+
+a.menu-button:link{
+  color: #747474;
+}
+
+a.menu-button:active{
+  background-color: #ececec;
+}

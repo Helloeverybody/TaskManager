@@ -3,39 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { LogInComponent } from './page-components/log-in/log-in.component';
-import { SignUpComponent } from './page-components/sign-up/sign-up.component';
-import { ConfirmationComponent } from './page-components/confirmation/confirmation.component';
-import { TaskManagerComponent } from './page-components/task-manager/task-manager.component';
 import { CalendarComponent } from './page-components/calendar/calendar.component';
 import { ListsPullComponent } from './page-components/lists-pull/lists-pull.component';
 import { SettingsComponent } from './page-components/settings/settings.component';
 import { ListComponent } from './page-elements/list/list.component';
 
-const listRoutes: Routes =[
-  { path: 'list-id:', component: ListComponent }
-];
-
-const appRoutes: Routes =[
-  { path: 'settings', component: SettingsComponent },
+const routes: Routes =[
   { path: 'calendar', component: CalendarComponent },
-  { path: 'pull', component: ListsPullComponent, children: listRoutes }
-];
-
-const globalRoutes: Routes =[
-  { path: '', component: LogInComponent },
-  { path: 'registration', component: SignUpComponent },
-  { path: 'confirm', component: ConfirmationComponent },
-  { path: 'app', component: TaskManagerComponent, children: appRoutes}
+  { path: 'pull', component: ListsPullComponent },
+  { path: '**', redirectTo: '/pull', pathMatch: 'full'}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    LogInComponent,
-    SignUpComponent,
-    ConfirmationComponent,
-    TaskManagerComponent,
     CalendarComponent,
     ListsPullComponent,
     SettingsComponent,
@@ -43,7 +24,7 @@ const globalRoutes: Routes =[
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(globalRoutes)
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
