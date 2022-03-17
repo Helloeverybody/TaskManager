@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Мой день",
+    "color": "#00ca00",
+    "isAuto": false,
+    "tasks": []
+  },
+  {
+    "name": "Входящие",
+    "color": "#0fca00",
+    "isAuto": true,
+    "tasks": []
+  }
+]

@@ -3,12 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { ListComponent } from './pull-module/components/list-component/list.component';
 import { AuthModule } from "./auth-module/auth.module";
 import { PullModule } from "./pull-module/pull.module";
 import { CalendarModule } from "./calendar-module/calendar.module";
 import { SettingsModule } from "./settings-module/settings.module";
 import { MainPageModule } from "./main-page-module/main-page.module";
+import { CoreModule } from "./core.module";
+import { CommonModule } from "@angular/common";
+import { HttpClientModule } from "@angular/common/http";
 
 const routes: Routes = [
   { path: 'auth', loadChildren: () => import('./auth-module/auth.module').then(m => m.AuthModule) },
@@ -18,8 +20,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ListComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +29,10 @@ const routes: Routes = [
     PullModule,
     CalendarModule,
     SettingsModule,
-    MainPageModule
+    MainPageModule,
+    CoreModule.forRoot(),
+    CommonModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

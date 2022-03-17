@@ -1,11 +1,14 @@
 <div class="pull-content">
   <div class="sidebar-pull">
-    <a class="list-button">Мой день</a>
-    <a class="list-button">Входящие</a>
+    <div class="buttons">
+      <a class="list-button" *ngFor="let list of data.pullOfLists"> {{ list.name }} </a>
+    </div>
+    <button class="list-creation-button" (click)="createNewList()">
+      <img src="assets/images/list-creation-button.svg" alt="list-creation-button" class="plus">
+    </button>
   </div>
   <div class="list-details">
+    <list></list>
   </div>
-  <div class="task-details">
-
-  </div>
+  <div class="task-details"></div>
 </div>

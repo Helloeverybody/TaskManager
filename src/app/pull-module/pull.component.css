@@ -2,12 +2,14 @@
   display: flex;
   flex-direction: row;
   align-items: stretch;
+  justify-content: space-between;
   height: 100%;
 }
 
 .sidebar-pull{
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 250px;
   box-shadow: 4px 0 4px 0 rgba(0, 0, 0, 0.25);
   padding-top: 30px;
@@ -21,6 +23,7 @@ a.list-button{
   font-size: 20px;
   color: #6B6B6B;
   text-decoration: none;
+  user-select: none;
 }
 
 a.list-button:hover{
@@ -29,4 +32,44 @@ a.list-button:hover{
 
 a.list-button:active{
   background-color: #ececec;
+}
+
+.list-creation-button{
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 10px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  width: 30px;
+  height: 30px;
+  margin-left: 200px;
+  margin-bottom: 20px;
+  padding: 0;
+}
+
+.list-creation-button:hover{
+  background-color: #F2F2F2;
+}
+
+.list-creation-button:active{
+  background-color: #ececec;
+}
+
+.plus{
+  margin-left: 1px;
+  margin-top: 2px;
+  user-select: none;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: column;
+}
+
+.task-details{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: -4px 0 4px 0 rgba(0, 0, 0, 0.25);
+  width: 450px;
 }

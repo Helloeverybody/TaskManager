@@ -1,13 +1,19 @@
-export class ListModel{
+export class List{
   name: string
   tasks: Array<any>
   color: string
-  isAutomatic: boolean
+  isAuto: boolean
+  isDeletable: boolean
 
-  constructor(name: string, color: string = "", isAutomatic: boolean) {
-    this.name = name
-    this.color = color
-    this.isAutomatic = isAutomatic
+  constructor() {
+    this.name = ""
+    this.color = "#000000"
+    this.isAuto = false
     this.tasks = new Array<any>()
+    this.isDeletable = true
+  }
+
+  addTask () {
+
   }
 }

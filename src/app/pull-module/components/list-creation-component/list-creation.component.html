@@ -1,0 +1,29 @@
+<div class="outer-border">
+  <button class="close-button"><img src="./assets/images/close-icon.svg" alt="cross-icon"></button>
+  <form [formGroup]="newListForm" (ngSubmit)="addList()">
+
+    <div>
+      <label for="name"></label>
+      <input type="text" id="name" name="name" formControlName="name" placeholder="Название списка" autocomplete="off">
+    </div>
+
+    <div>
+      <label for="type" class="inner-field">Тип:</label>
+      <select id="type" name="type" formControlName="isAuto">
+        <option value="false" selected>Ручной</option>
+        <option value="true">Автоматический</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="color" class="inner-field">Цвет:</label>
+      <input type="color" id="color" name="color" formControlName="color" placeholder="Выбор цвета">
+    </div>
+
+    <div>
+      <label for="create"></label>
+      <input type="submit" value="Создать" id="create" name="create" [disabled]="newListForm.invalid">
+    </div>
+
+  </form>
+</div>
