@@ -1,13 +1,13 @@
 [
   {
     "name": "Мой день",
-    "color": "#00ca00",
+    "color": "#af4242",
     "isAuto": false,
     "tasks": []
   },
   {
     "name": "Входящие",
-    "color": "#0fca00",
+    "color": "#2e4594",
     "isAuto": true,
     "tasks": []
   }

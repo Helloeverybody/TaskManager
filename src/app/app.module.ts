@@ -11,6 +11,7 @@ import { MainPageModule } from "./main-page-module/main-page.module";
 import { CoreModule } from "./core.module";
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   { path: 'auth', loadChildren: () => import('./auth-module/auth.module').then(m => m.AuthModule) },
@@ -32,7 +33,8 @@ const routes: Routes = [
     MainPageModule,
     CoreModule.forRoot(),
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

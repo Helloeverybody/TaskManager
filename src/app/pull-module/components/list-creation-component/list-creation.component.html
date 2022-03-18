@@ -1,5 +1,5 @@
-<div class="outer-border">
-  <button class="close-button"><img src="./assets/images/close-icon.svg" alt="cross-icon"></button>
+<div class="card-body">
+  <button class="close-button" (click)="closeForm()"><img src="./assets/images/close-icon.svg" alt="cross-icon"></button>
   <form [formGroup]="newListForm" (ngSubmit)="addList()">
 
     <div>

@@ -16,9 +16,12 @@
 }
 
 a.list-button{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   margin: 0;
   padding: 10px;
-  padding-left: 60px;
+  padding-left: 45px;
   font-family: Roboto, serif;
   font-size: 20px;
   color: #6B6B6B;
@@ -72,4 +75,11 @@ a.list-button:active{
   justify-content: space-between;
   box-shadow: -4px 0 4px 0 rgba(0, 0, 0, 0.25);
   width: 450px;
+}
+
+.colored-point {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 15px;
 }

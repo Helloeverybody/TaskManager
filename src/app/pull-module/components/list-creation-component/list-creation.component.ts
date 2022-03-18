@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { List } from "../../../List-model";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import {DialogCloser} from "../../../global-services/dialogCloser";
+import {DataService} from "../../../global-services/data.service";
 
 @Component({
   selector: 'list-creation-window',
@@ -14,16 +16,21 @@ export class ListCreationComponent implements OnInit {
     color: new FormControl()
   })
 
-  lists: Array<List> = []
-  constructor() {
-  }
+  constructor (public data: DataService, private closer: DialogCloser) { }
 
   addList () {
-    this.lists.push(<List>{
+    this.data.addList(<List>{
       name: this.newListForm.value.name,
       color: this.newListForm.value.color,
-      isAuto:  this.newListForm.value.isAuto
+      isAuto:  this.newListForm.value.isAuto,
+      tasks: <Array<any>>[]
     })
+
+    this.closer.close()
+  }
+
+  closeForm () {
+    this.closer.close()
   }
 
   ngOnInit(): void {
