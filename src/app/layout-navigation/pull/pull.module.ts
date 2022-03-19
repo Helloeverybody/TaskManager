@@ -8,7 +8,7 @@ import {ListComponent} from "./components/list-component/list.component";
 import {OverlayModule} from "@angular/cdk/overlay";
 
 const routes: Routes = [
-  { path: '',  component: PullComponent },
+  { path: '', component: PullComponent },
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
-import { DataService } from "./global-services/data.service";
+import { ListsDataService } from "../layout-navigation/services/lists-data.service";
 import {HttpClient} from "@angular/common/http";
 
 @NgModule({
@@ -12,7 +12,7 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
-        DataService
+        ListsDataService
       ],
     }
   }

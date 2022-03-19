@@ -1,17 +1,18 @@
 <div class="pull-content">
   <div class="sidebar-pull">
     <div class="buttons">
-      <a class="list-button" *ngFor="let list of data.pullOfLists">
+      <a class="list-button" *ngFor="let list of data.listsPull" (click)="setCurrentList(list.id)"
+         [ngClass]="{'active-list-button': list.id === currentListId}">
         <div class="colored-point" [style.background-color]="list.color"></div>
         {{ list.name }}
       </a>
     </div>
     <button class="list-creation-button" (click)="createNewList()">
-      <img src="assets/images/list-creation-button.svg" alt="list-creation-button" class="plus">
+      <img src="../../../assets/images/list-creation-button.svg" alt="list-creation-button" class="plus">
     </button>
   </div>
   <div class="list-details">
-    <list></list>
+    <list [listId]="currentListId"></list>
   </div>
   <div class="task-details"></div>
 </div>

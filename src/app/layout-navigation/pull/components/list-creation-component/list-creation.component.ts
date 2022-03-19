@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import { List } from "../../../List-model";
+import { List } from "../../../../core/list.model";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import {DialogCloser} from "../../../global-services/dialogCloser";
-import {DataService} from "../../../global-services/data.service";
+import {DialogCloser} from "../../../../core/global-services/dialogCloser";
+import {ListsDataService} from "../../../services/lists-data.service";
 
 @Component({
   selector: 'list-creation-window',
@@ -16,7 +16,7 @@ export class ListCreationComponent implements OnInit {
     color: new FormControl()
   })
 
-  constructor (public data: DataService, private closer: DialogCloser) { }
+  constructor (public data: ListsDataService, private closer: DialogCloser) { }
 
   addList () {
     this.data.addList(<List>{

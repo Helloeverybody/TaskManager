@@ -83,3 +83,7 @@ a.list-button:active{
   border-radius: 50%;
   margin-right: 15px;
 }
+
+.active-list-button{
+  background-color: #F2F2F2;
+}

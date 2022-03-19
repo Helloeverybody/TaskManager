@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { DataService } from "../global-services/data.service";
+import { ListsDataService } from "../services/lists-data.service";
 import { ListCreationComponent } from "./components/list-creation-component/list-creation.component";
-import { DialogService } from "../global-services/dialog.service";
+import { DialogService } from "../../core/global-services/dialog.service";
 
 @Component({
   selector: 'pull-component',
@@ -9,16 +9,15 @@ import { DialogService } from "../global-services/dialog.service";
   styleUrls: ['./pull.component.css']
 })
 export class PullComponent{
-  public overlayRef: any
+  public currentListId: number = 0
 
-  constructor(public data: DataService, public overlay: DialogService) { }
-
-  ngOnInit () {
-
-  }
+  constructor(public data: ListsDataService, public overlay: DialogService) { }
 
   createNewList (){
     this.overlay.open(ListCreationComponent)
-    console.log(this.data.pullOfLists)
+  }
+
+  setCurrentList (index: number) {
+    this.currentListId = index
   }
 }

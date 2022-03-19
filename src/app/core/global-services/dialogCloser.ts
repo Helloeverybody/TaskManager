@@ -1,4 +1,4 @@
-import {OverlayRef} from "@angular/cdk/overlay";
+import { OverlayRef } from "@angular/cdk/overlay";
 
 export class DialogCloser {
   constructor (private overlayRef: OverlayRef) { }
