@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { PullComponent } from "./pull.component";
 import { RouterModule, Routes} from "@angular/router";
-import {ListCreationComponent} from "./components/list-creation-component/list-creation.component";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {CommonModule} from "@angular/common";
-import {ListComponent} from "./components/list-component/list.component";
-import {OverlayModule} from "@angular/cdk/overlay";
+import {ListCreationComponent} from "./components/list-creation/list-creation.component";
+import { FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { CommonModule } from "@angular/common";
+import { ListComponent } from "./components/list/list.component";
+import { OverlayModule } from "@angular/cdk/overlay";
+import { TaskCreationComponent } from './components/task-creation/task-creation.component'
 
 const routes: Routes = [
   { path: '', component: PullComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
   declarations: [
     PullComponent,
     ListComponent,
-    ListCreationComponent
+    ListCreationComponent,
+    TaskCreationComponent
   ],
   imports: [
     RouterModule.forChild(routes),

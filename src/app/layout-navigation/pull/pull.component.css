@@ -3,6 +3,7 @@
   flex-direction: row;
   align-items: stretch;
   justify-content: space-between;
+  width: auto;
   height: 100%;
 }
 
@@ -23,10 +24,11 @@ a.list-button{
   padding: 10px;
   padding-left: 45px;
   font-family: Roboto, serif;
-  font-size: 20px;
+  font-size: 18px;
   color: #6B6B6B;
   text-decoration: none;
   user-select: none;
+  cursor: pointer;
 }
 
 a.list-button:hover{
@@ -48,6 +50,7 @@ a.list-button:active{
   margin-left: 200px;
   margin-bottom: 20px;
   padding: 0;
+  cursor: pointer;
 }
 
 .list-creation-button:hover{
@@ -80,10 +83,14 @@ a.list-button:active{
 .colored-point {
   width: 10px;
   height: 10px;
-  border-radius: 50%;
+  border-radius: 5px;
   margin-right: 15px;
 }
 
 .active-list-button{
   background-color: #F2F2F2;
+}
+
+.list-details{
+  flex-grow: 1;
 }

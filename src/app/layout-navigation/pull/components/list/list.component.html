@@ -1,0 +1,18 @@
+<div class="content">
+  <h3 class="list-name">{{ list.title }}</h3>
+  <div class="create-task-button" (click)="createNewTask()">Новая задача<img src="/assets/images/white-plus.svg" alt="white-plus"></div>
+  <div class="no-tasks-placeholder" *ngIf="list.tasks.length === 0">Нет задач в списке.</div>
+  <ul class="tasks-list">
+    <li class="task" *ngFor="let task of list.tasks; let i = index">
+      <div class="marker" (click)="makeCompleted(i)"></div>
+      {{ task.title }}
+    </li>
+  </ul>
+  <div class="completed-title" *ngIf="list.completedTasks.length !== 0">Выполнено</div>
+  <ul class="tasks-list">
+    <li class="completed-task" *ngFor="let task of list.completedTasks; let i = index">
+      <div class="completed-marker" (click)="makeUncompleted(i)"><img src="assets/images/gray-check.svg" alt="check"></div>
+      {{ task.title }}
+    </li>
+  </ul>
+</div>

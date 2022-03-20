@@ -4,7 +4,7 @@
       <a class="list-button" *ngFor="let list of data.listsPull" (click)="setCurrentList(list.id)"
          [ngClass]="{'active-list-button': list.id === currentListId}">
         <div class="colored-point" [style.background-color]="list.color"></div>
-        {{ list.name }}
+        {{ list.title }}
       </a>
     </div>
     <button class="list-creation-button" (click)="createNewList()">

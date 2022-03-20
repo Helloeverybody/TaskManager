@@ -1,14 +1,14 @@
 import { Injectable, Injector } from "@angular/core";
 import { ComponentType, Overlay } from "@angular/cdk/overlay";
 import { ComponentPortal } from "@angular/cdk/portal";
-import { DialogCloser } from "./dialogCloser";
+import { DialogInjection } from "./dialogInjection";
 
 @Injectable({
   providedIn: 'root',
 })
 export class DialogService {
   constructor(private overlay: Overlay, private injector: Injector) {}
-  open<T>(component: ComponentType<T>) {
+  open<T>(component: ComponentType<T>, parameter?: any) {
     const positionStrategy = this.overlay
       .position()
       .global()
@@ -21,12 +21,12 @@ export class DialogService {
       backdropClass: 'overlay-backdrop'
     });
 
-    const closer = new DialogCloser(overlayRef)
+    const closer = new DialogInjection(overlayRef, parameter)
 
     const injector = Injector.create({
       parent: this.injector,
       providers: [
-        { provide: DialogCloser, useValue: closer }
+        { provide: DialogInjection, useValue: closer }
       ]
     })
 

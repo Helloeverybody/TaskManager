@@ -16,6 +16,7 @@
   align-self: end;
   background-color: white;
   border: 2px solid black;
+  cursor: pointer;
 }
 
 .close-button:hover{
@@ -26,14 +27,14 @@
   background-color: #e8e8e8;
 }
 
-button>img{
+.close-button > img{
   margin: 2px;
   width: 27px;
   height: 27px;
   user-select: none;
 }
 
-#name{
+#title{
   padding-bottom: 5px;
   margin-left: 50px;
   margin-bottom: 20px;
@@ -54,6 +55,7 @@ button>img{
   box-shadow: inset 1px 2px 3px 0 rgba(0, 0, 0, 0.2);
   font-family: Roboto-Light, serif;
   font-size: 17px;
+  cursor: pointer;
 }
 
 #color{
@@ -65,6 +67,7 @@ button>img{
   border: 2px solid black;
   border-radius: 5px;
   background-color: white;
+  cursor: pointer;
 }
 
 #create{
@@ -78,6 +81,7 @@ button>img{
   font-size: 17px;
   border: none;
   box-shadow: 1px 3px 4px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 
 label.inner-field{

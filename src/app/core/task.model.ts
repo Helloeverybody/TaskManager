@@ -1,20 +1,28 @@
 export class Task{
-  name: string
+  title: string
   description: string
-  isCompleted: boolean
   startDateTime: Date
   endDateTime: Date
   listId: number
-  colorOrEmoji?: string
+  repeat: RepeatMode
+  emoji?: string
   file?: string
   geoPosition?: string
 
-  constructor () {
-    this.name = ""
-    this.description = ""
-    this.isCompleted = false
-    this.startDateTime = new Date(0)
-    this.endDateTime = new Date(0)
-    this.listId = 0
+  constructor (title?: string, description?: string, listId?: number, startDateTime?: Date, endDateTime?: Date, repeat?: RepeatMode) {
+    this.title = title || ""
+    this.description = description || ""
+    this.listId = listId || 0
+    this.startDateTime = startDateTime || new Date()
+    this.endDateTime = endDateTime || new Date()
+    this.repeat = repeat || RepeatMode.None
   }
+}
+
+export enum RepeatMode {
+  None,
+  EveryDay,
+  EveryWeek,
+  EveryMonth,
+  EveryYear
 }

@@ -45,6 +45,8 @@ div.menu-button{
   font-family: Roboto-Light, serif;
   font-size: 22px;
   text-decoration: none;
+  cursor: pointer;
+  user-select: none;
 }
 
 .active-button{
