@@ -12,7 +12,9 @@
     </button>
   </div>
   <div class="list-details">
-    <list [listId]="currentListId"></list>
+    <list [listId]="currentListId" (onTaskSelected)="onTaskSelected($event)"></list>
   </div>
-  <div class="task-details"></div>
+  <div class="task-details">
+    <task-details [listId]="currentListId" [taskId]="currentTaskId"></task-details>
+  </div>
 </div>

@@ -1,45 +1,44 @@
-<div class="card-body">
+<div class="card card-body">
   <button class="close-button" (click)="closeForm()"><img src="../../../../../assets/images/close-icon.svg" alt="cross-icon"></button>
   <form [formGroup]="newTaskForm" (ngSubmit)="addTask()">
 
     <div>
       <label for="title"></label>
-      <input type="text" id="title" name="title" formControlName="title" placeholder="Что вы хотите сделать?" autocomplete="off">
+      <input type="text" id="title" name="title" formControlName="title" class="title-input" placeholder="Что вы хотите сделать?" autocomplete="off">
     </div>
 
     <div>
       <label for="description" class="inner-field"></label>
-      <textarea id="description" name="description" formControlName="description" placeholder="Описание" rows="6"></textarea>
+      <textarea id="description" name="description" class="description-box" formControlName="description" placeholder="Описание" rows="6"></textarea>
     </div>
 
     <div class="datetime-label">Дата и время</div>
     <div class="datetime-block">
       <div>
         <label for="date" class="inner-field"></label>
-        <input type="date" id="date" name="date" formControlName="date">
+        <input type="date" id="date" name="date" class="box" formControlName="date">
       </div>
 
       <div>
         <label for="time" class="inner-field"></label>
-        <input type="time" id="time" name="time" formControlName="time">
+        <input type="time" id="time" name="time" class="box" formControlName="time">
       </div>
     </div>
 
     <div>
       <label for="repeat" class="inner-field">Повтор:</label>
-      <select id="repeat" name="repeat" formControlName="repeat">
+      <select id="repeat" name="repeat" class="selection-box" formControlName="repeat">
         <option value="0" selected>нет</option>
         <option value="1">каждый день</option>
-        <option value="1">каждую неделю</option>
-        <option value="1">каждый месяц</option>
-        <option value="1">каждый год</option>
+        <option value="2">каждую неделю</option>
+        <option value="3">каждый месяц</option>
+        <option value="4">каждый год</option>
       </select>
     </div>
 
     <div>
       <label for="create"></label>
-      <input type="submit" value="Создать" id="create" name="create" [disabled]="newTaskForm.invalid">
+      <input type="submit" value="Создать" id="create" name="create" class="wide-button" [disabled]="newTaskForm.invalid">
     </div>
-
   </form>
 </div>

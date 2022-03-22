@@ -7,6 +7,7 @@ import { CommonModule } from "@angular/common";
 import { ListComponent } from "./components/list/list.component";
 import { OverlayModule } from "@angular/cdk/overlay";
 import { TaskCreationComponent } from './components/task-creation/task-creation.component'
+import { TaskDetailsComponent } from './components/task-details/task-details.component'
 
 const routes: Routes = [
   { path: '', component: PullComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
     PullComponent,
     ListComponent,
     ListCreationComponent,
-    TaskCreationComponent
+    TaskCreationComponent,
+    TaskDetailsComponent
   ],
   imports: [
     RouterModule.forChild(routes),

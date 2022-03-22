@@ -10,6 +10,7 @@ import { DialogService } from "../../core/global-services/dialog.service";
 })
 export class PullComponent{
   public currentListId: number = 1
+  public currentTaskId: number = 0
 
   constructor(public data: ListsDataService, private overlay: DialogService) { }
 
@@ -19,5 +20,9 @@ export class PullComponent{
 
   setCurrentList (index: number) {
     this.currentListId = index
+  }
+
+  onTaskSelected (taskId: number) {
+    this.currentTaskId = taskId
   }
 }

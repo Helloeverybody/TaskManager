@@ -1,0 +1,11 @@
+<div class="content" *ngIf="task.id !== 0">
+  <div class="header">
+    <div class="checkbox" (click)="changeCompleted()">
+        <img src="assets/images/gray-check.svg" alt="check-mark" *ngIf="task.isCompleted">
+    </div>
+    <input type="text" class="task-title" [(ngModel)]="task.title">
+  </div>
+  <div class="datetime">{{ task.startDateTime | date : 'dd MMMM yyyy, HH:mm'}}</div>
+  <div class="datetime">{{ getRepeatMode() }}</div>
+  <textarea class="description description-box" rows="10" placeholder="Описание" [(ngModel)]="task.description"></textarea>
+</div>

@@ -3,9 +3,10 @@ import { LayoutNavigationComponent } from "./layout-navigation.component";
 import { RouterModule, Routes } from "@angular/router";
 
 const appRoutes: Routes =[
-  { path: 'calendar', component: LayoutNavigationComponent, loadChildren: () => import('./calendar/calendar.module').then(m => m.CalendarModule) },
-  { path: 'pull', component: LayoutNavigationComponent, loadChildren: () => import('./pull/pull.module').then(m => m.PullModule) },
-  { path: '**', redirectTo: '/app/pull', pathMatch: 'prefix'}
+  { path: '' , component: LayoutNavigationComponent, children: [
+      { path: 'calendar', loadChildren: () => import('./calendar/calendar.module').then(m => m.CalendarModule) },
+      { path: 'pull',  loadChildren: () => import('./pull/pull.module').then(m => m.PullModule) }
+    ] }
 ];
 
 @NgModule({

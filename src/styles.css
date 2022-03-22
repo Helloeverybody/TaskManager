@@ -2,6 +2,8 @@ body, html{
   margin: 0;
   width: 100%;
   height: 100%;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  user-select: none;
 }
 
 @font-face {
@@ -12,14 +14,101 @@ body, html{
 }
 
 @font-face {
+  font-family: 'Roboto-Medium';
+  src: url('./assets/fonts/Roboto-Medium.ttf');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Roboto-Light';
   src: url('./assets/fonts/Roboto-Light.ttf');
   font-weight: 300;
   font-style: normal;
 }
 
-body { font-family: Roboto, "Helvetica Neue", sans-serif; }
-
 .overlay-backdrop{
   background-color: rgba(0, 0, 0, 0.25);
+}
+
+.wide-button {
+  padding: 15px 15px;
+  border-radius: 50px;
+  background-color: black;
+  color: white;
+  font-family: Roboto, serif;
+  font-size: 17px;
+  border: none;
+  box-shadow: 1px 3px 4px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.selection-box {
+  padding: 0 3px 0 3px;
+  border: 1px solid #424242;
+  border-radius: 5px;
+  box-shadow: inset 1px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  font-family: Roboto-Light, serif;
+  font-size: 17px;
+  outline: none;
+  cursor: pointer;
+}
+
+.description-box {
+  padding: 10px 15px;
+  outline: none;
+  border: 1px solid black;
+  font-size: 18px;
+  font-family: Roboto-Light, serif;
+  box-shadow: inset 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+  resize: none;
+}
+
+.box {
+  font-family: Roboto-Light, serif;
+  font-size: 20px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid black;
+  border-radius: 4px;
+  box-shadow: inset 1px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.close-button{
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  background-color: white;
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+.close-button:hover{
+  background-color: #f1f1f1;
+}
+
+.close-button:active{
+  background-color: #e8e8e8;
+}
+
+.close-button > img{
+  margin: 2px;
+  width: 27px;
+  height: 27px;
+}
+
+.title-input {
+  padding-bottom: 5px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 23px;
+  font-family: Roboto, serif;
+}
+
+.card {
+  border: 3px solid black;
+  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.25);
+  background-color: white;
 }

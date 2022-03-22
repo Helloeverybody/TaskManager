@@ -15,7 +15,7 @@ export class TaskCreationComponent {
     title: new FormControl("", Validators.required),
     description: new FormControl(""),
     date: new FormControl(""),
-    time: new FormControl(""),
+    time: new FormControl("00:00"),
     repeat: new FormControl("0")
   })
 
@@ -29,9 +29,10 @@ export class TaskCreationComponent {
 
   addTask () {
     let list = this.listsData.listsPull.find(this.findFunction(this.dialog.parameter))
+    let dateTime = new Date(this.newTaskForm.value.date + "T" + this.newTaskForm.value.time)
     if (list !== undefined) {
-      list.tasks.push(new Task(this.newTaskForm.value.title, this.newTaskForm.value.description, this.dialog.parameter,
-          this.newTaskForm.value.time, this.newTaskForm.value.time, this.newTaskForm.value.repeat))
+      list.tasks.push(new Task(list.tasks.length + 1, this.newTaskForm.value.title, this.newTaskForm.value.description, this.dialog.parameter,
+        dateTime, dateTime, this.newTaskForm.value.repeat))
     }
     console.log(list)
     this.dialog.close()

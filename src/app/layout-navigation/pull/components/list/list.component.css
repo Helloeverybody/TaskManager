@@ -34,18 +34,44 @@ li.task:last-child{
   border-bottom: 1px solid black;
 }
 
+li.task:hover{
+  background-color: #F2F2F2;
+}
+
+li.task:active{
+  background-color: #ececec;
+}
+
+li.task.selected{
+  background-color: #F2F2F2;
+  box-shadow: 0 3px 0 -2px black inset, 0 -3px 0 -2px black inset;
+}
+
 li.completed-task{
   display: flex;
   flex-direction: row;
   align-items: center;
   margin: 0;
   padding: 10px 40px 10px 0;
-  border-top: 1px solid #777777;
+  border-top: 1px solid #a1a1a1;
   color: #777777;
 }
 
 li.completed-task:last-child{
-  border-bottom: 1px solid #777777;
+  border-bottom: 1px solid #a1a1a1;
+}
+
+li.completed-task:hover{
+  background-color: #F2F2F2;
+}
+
+li.completed-task:active{
+  background-color: #ececec;
+}
+
+li.completed-task.selected{
+  background-color: #F2F2F2;
+  box-shadow: 0 3px 0 -2px #868686 inset, 0 -3px 0 -2px #868686 inset;
 }
 
 .marker{
@@ -53,11 +79,12 @@ li.completed-task:last-child{
   width: 12px;
   height: 12px;
   border: 1px solid black;
+  cursor: pointer;
+  background-color: white;
 }
 
 .marker:hover{
   background-color: #F2F2F2;
-  cursor: pointer;
 }
 
 .marker:active{
@@ -69,6 +96,7 @@ li.completed-task:last-child{
   width: 12px;
   height: 12px;
   border: 1px solid #777777;
+  background-color: white;
 }
 
 .completed-marker:hover{

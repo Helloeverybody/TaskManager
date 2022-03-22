@@ -1,15 +1,15 @@
-<div class="card-body">
+<div class="card card-body">
   <button class="close-button" (click)="closeForm()"><img src="../../../../../assets/images/close-icon.svg" alt="cross-icon"></button>
   <form [formGroup]="newListForm" (ngSubmit)="addList()">
 
     <div>
       <label for="title"></label>
-      <input type="text" id="title" name="title" formControlName="title" placeholder="Название списка" autocomplete="off">
+      <input type="text" id="title" name="title" formControlName="title" class="title-input" placeholder="Название списка" autocomplete="off">
     </div>
 
     <div>
       <label for="type" class="inner-field">Тип:</label>
-      <select id="type" name="type" formControlName="isAuto">
+      <select id="type" name="type" class="selection-box" formControlName="isAuto">
         <option value="false" selected>Ручной</option>
         <option value="true">Автоматический</option>
       </select>
@@ -22,7 +22,7 @@
 
     <div>
       <label for="create"></label>
-      <input type="submit" value="Создать" id="create" name="create" [disabled]="newListForm.invalid">
+      <input type="submit" value="Создать" id="create" name="create" class="wide-button" [disabled]="newListForm.invalid">
     </div>
 
   </form>

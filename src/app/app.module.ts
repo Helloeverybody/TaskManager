@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -14,9 +14,10 @@ import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
-  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-  { path: 'app', loadChildren: () => import('./layout-navigation/layout-navigation.module').then(m => m.LayoutNavigationModule)},
-  { path: '*', redirectTo: 'app' }
+  { path: '', component: AppComponent, children: [
+      { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+      { path: 'app', loadChildren: () => import('./layout-navigation/layout-navigation.module').then(m => m.LayoutNavigationModule)}
+    ]},
 ];
 
 @NgModule({
