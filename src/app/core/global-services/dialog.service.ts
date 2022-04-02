@@ -1,38 +1,39 @@
-import { Injectable, Injector } from "@angular/core";
-import { ComponentType, Overlay } from "@angular/cdk/overlay";
-import { ComponentPortal } from "@angular/cdk/portal";
-import { DialogInjection } from "./dialogInjection";
+import { Injectable, Injector } from '@angular/core';
+import { ComponentType, GlobalPositionStrategy, Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { DialogInjection } from './dialogInjection';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class DialogService {
-  constructor(private overlay: Overlay, private injector: Injector) {}
-  open<T>(component: ComponentType<T>, parameter?: any) {
-    const positionStrategy = this.overlay
-      .position()
-      .global()
-      .centerHorizontally()
-      .centerVertically();
+    constructor(private _overlay: Overlay, private _injector: Injector) { }
 
-    const overlayRef = this.overlay.create({
-      positionStrategy,
-      hasBackdrop: true,
-      backdropClass: 'overlay-backdrop'
-    });
+    public open<T>(component: ComponentType<T>, parameter?: any) : void {
+        const positionStrategy : GlobalPositionStrategy = this._overlay
+            .position()
+            .global()
+            .centerHorizontally()
+            .centerVertically();
 
-    const closer = new DialogInjection(overlayRef, parameter)
+        const overlayRef : OverlayRef = this._overlay.create({
+            positionStrategy,
+            hasBackdrop: true,
+            backdropClass: 'overlay-backdrop'
+        });
 
-    const injector = Injector.create({
-      parent: this.injector,
-      providers: [
-        { provide: DialogInjection, useValue: closer }
-      ]
-    })
+        const closer : DialogInjection = new DialogInjection(overlayRef, parameter);
 
-    const portal = new ComponentPortal(component, null, injector);
-    overlayRef.attach(portal);
-  }
+        const injector : Injector = Injector.create({
+            parent: this._injector,
+            providers: [
+                { provide: DialogInjection, useValue: closer }
+            ]
+        });
+
+        const portal : ComponentPortal<T> = new ComponentPortal(component, null, injector);
+        overlayRef.attach(portal);
+    }
 }
 
 

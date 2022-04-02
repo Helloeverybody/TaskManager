@@ -11,9 +11,11 @@
       <img src="../../../assets/images/list-creation-button.svg" alt="list-creation-button" class="plus">
     </button>
   </div>
+
   <div class="list-details">
-    <list [listId]="currentListId" (onTaskSelected)="onTaskSelected($event)"></list>
+    <list [listId]="currentListId" (taskSelected)="onTaskSelected($event)"></list>
   </div>
+
   <div class="task-details">
     <task-details [listId]="currentListId" [taskId]="currentTaskId"></task-details>
   </div>

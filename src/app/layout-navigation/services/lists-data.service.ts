@@ -1,22 +1,22 @@
-import { List } from "../../core/list.model";
-import { Injectable } from "@angular/core";
-import { lists } from './data/lists-data.mock'
+import { List } from '../../core/list.model';
+import { Injectable } from '@angular/core';
+import { lists } from './data/lists-data.mock';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class ListsDataService {
-  private _listsPull : Array<List> = []
 
-  get listsPull () : Array<List> {
-    if (this._listsPull.length === 0) {
-      this._listsPull = lists
+    public get listsPull () : List[] {
+        return lists;
     }
-    return this._listsPull
-  }
 
-  constructor() { }
+    constructor() { }
 
-  addList (list: List) {
-    list.id = this._listsPull.length + 1
-    this._listsPull.push(list)
-  }
+    public addList (list: List) : void {
+        list.id = lists.length + 1;
+        lists.push(list);
+    }
+
+    public addTask () : void {
+
+    }
 }

@@ -1,44 +1,32 @@
-import { Component } from '@angular/core'
-import { DialogInjection } from '../../../../core/global-services/dialogInjection'
-import { ListsDataService } from '../../../services/lists-data.service'
-import { List } from '../../../../core/list.model'
-import { Task } from '../../../../core/task.model'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { Component } from '@angular/core';
+import { DialogInjection } from '../../../../core/global-services/dialogInjection';
+import { ListsDataService } from '../../../services/lists-data.service';
+import { Task } from '../../../../core/task.model';
+import { TaskCreationViewModel } from '../../view-models/task-creation.view-moduel';
+import { List } from '../../../../core/list.model';
 
 @Component({
-  selector: 'task-creation',
-  templateUrl: './task-creation.component.html',
-  styleUrls: ['./task-creation.component.css']
+    selector: 'task-creation',
+    templateUrl: './task-creation.component.html',
+    styleUrls: ['./task-creation.component.css']
 })
 export class TaskCreationComponent {
-  newTaskForm: FormGroup = new FormGroup({
-    title: new FormControl("", Validators.required),
-    description: new FormControl(""),
-    date: new FormControl(""),
-    time: new FormControl("00:00"),
-    repeat: new FormControl("0")
-  })
+    public viewModel : TaskCreationViewModel = new TaskCreationViewModel()
 
-  constructor (private dialog: DialogInjection, private listsData: ListsDataService) { }
+    constructor (private _dialog: DialogInjection, private _listsData: ListsDataService) {  }
 
-  findFunction (listId: number){
-    return function (item : List) {
-      return item.id === listId;
+    public addTask () : void {
+        const list : List | undefined = this._listsData.listsPull.find((item : List) => item.id  === this._dialog.parameter);
+        const dateTime : Date = new Date(this.viewModel.newTaskForm.get('date')?.value + 'T' + this.viewModel.newTaskForm.get('time')?.value);
+        if (list) {
+            list.tasks.push(new Task(list.tasks.length + 1, this.viewModel.newTaskForm.value.title, this.viewModel.newTaskForm.value.description, this._dialog.parameter,
+                dateTime, dateTime, this.viewModel.newTaskForm.value.repeat));
+        }
+
+        this._dialog.close();
     }
-  }
 
-  addTask () {
-    let list = this.listsData.listsPull.find(this.findFunction(this.dialog.parameter))
-    let dateTime = new Date(this.newTaskForm.value.date + "T" + this.newTaskForm.value.time)
-    if (list !== undefined) {
-      list.tasks.push(new Task(list.tasks.length + 1, this.newTaskForm.value.title, this.newTaskForm.value.description, this.dialog.parameter,
-        dateTime, dateTime, this.newTaskForm.value.repeat))
+    public closeForm () : void {
+        this._dialog.close();
     }
-    console.log(list)
-    this.dialog.close()
-  }
-
-  closeForm () {
-    this.dialog.close()
-  }
 }

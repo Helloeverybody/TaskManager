@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import {SettingsComponent} from "./settings.component";
+import { SettingsComponent } from './settings.component';
 
 @NgModule({
-  declarations: [SettingsComponent],
-  imports: [],
-  providers: []
+    declarations: [SettingsComponent],
+    imports: [],
+    providers: []
 })
 export class SettingsModule { }

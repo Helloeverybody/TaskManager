@@ -1,6 +1,6 @@
 <div class="card card-body">
   <button class="close-button" (click)="closeForm()"><img src="../../../../../assets/images/close-icon.svg" alt="cross-icon"></button>
-  <form [formGroup]="newTaskForm" (ngSubmit)="addTask()">
+  <form [formGroup]="viewModel.newTaskForm" (ngSubmit)="addTask()">
 
     <div>
       <label for="title"></label>
@@ -38,7 +38,7 @@
 
     <div>
       <label for="create"></label>
-      <input type="submit" value="Создать" id="create" name="create" class="wide-button" [disabled]="newTaskForm.invalid">
+      <input type="submit" value="Создать" id="create" name="create" class="wide-button" [disabled]="viewModel.newTaskForm.invalid">
     </div>
   </form>
 </div>
