@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { lists } from './data/lists-data.mock';
 
 @Injectable({ providedIn: 'root' })
-export class ListsDataService {
+export class ListDataService {
 
     public get listsPull () : List[] {
         return lists;

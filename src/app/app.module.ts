@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { PullModule } from './layout-navigation/pull/pull.module';
-import { CalendarModule } from './layout-navigation/calendar/calendar.module';
+import { CalendarViewModule } from './layout-navigation/calendar-view/calendar-view.module';
 import { SettingsModule } from './layout-navigation/settings/settings.module';
 import { LayoutNavigationModule } from './layout-navigation/layout-navigation.module';
 import { CoreModule } from './core/core.module';
@@ -29,7 +29,7 @@ const routes: Routes = [
         RouterModule.forRoot(routes),
         AuthModule,
         PullModule,
-        CalendarModule,
+        CalendarViewModule,
         SettingsModule,
         LayoutNavigationModule,
         CoreModule.forRoot(),

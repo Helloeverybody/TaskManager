@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { List } from '../../../../core/list.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DialogInjection } from '../../../../core/global-services/dialogInjection';
-import { ListsDataService } from '../../../services/lists-data.service';
+import { ListDataService } from '../../../services/list-data.service';
 
 @Component({
     selector: 'list-creation-window',
@@ -16,7 +16,7 @@ export class ListCreationComponent implements OnInit {
         color: new FormControl()
     })
 
-    constructor (public data: ListsDataService, private _closer: DialogInjection) { }
+    constructor (public data: ListDataService, private _closer: DialogInjection) { }
 
     public addList () : void {
         this.data.addList (new List(this.newListForm.value.title,

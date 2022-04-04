@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ListsDataService } from '../../../services/lists-data.service';
+import { ListDataService } from '../../../services/list-data.service';
 import { List } from '../../../../core/list.model';
 import { DialogService } from '../../../../core/global-services/dialog.service';
 import { TaskCreationComponent } from '../task-creation/task-creation.component';
@@ -18,15 +18,11 @@ export class ListComponent {
     public taskSelected : EventEmitter<number> = new EventEmitter<number>();
 
     public get completedTasks() : Task[] {
-        return this.list.tasks.filter(function(item : Task) {
-            return item.isCompleted;
-        });
+        return this.list.tasks.filter((item : Task) => item.isCompleted);
     }
 
     public get uncompletedTasks() : Task[] {
-        return this.list.tasks.filter(function(item : Task) {
-            return !item.isCompleted;
-        });
+        return this.list.tasks.filter((item : Task) => !item.isCompleted);
     }
 
     @Input()
@@ -39,7 +35,7 @@ export class ListComponent {
 
     private _listId: number = 0
 
-    constructor(private _listsData: ListsDataService, private _overlay: DialogService) { }
+    constructor(private _listsData: ListDataService, private _overlay: DialogService) { }
 
     public createNewTask () : void {
         this._overlay.open(TaskCreationComponent, this._listId);

@@ -1,0 +1,14 @@
+<div class="content">
+    {{currentMonth | date : 'MMMM yyyy'}}
+    <button (click)="toPreviousMonth()">previous</button>
+    <button (click)="toNextMonth()">next</button>
+    <div class="window">
+        <div class="table">
+            <div *ngFor="let week of monthTable" class="row">
+                <div *ngFor="let dayOfWeek of week" class="cell">
+                    <date-cell-component [dateModel]="dayOfWeek" (taskSelected)="onTaskClicked($event)"></date-cell-component>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

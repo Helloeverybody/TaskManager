@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ListsDataService } from '../services/lists-data.service';
+import { ListDataService } from '../services/list-data.service';
 import { ListCreationComponent } from './components/list-creation/list-creation.component';
 import { DialogService } from '../../core/global-services/dialog.service';
 
@@ -12,7 +12,7 @@ export class PullComponent{
   public currentListId: number = 1
   public currentTaskId: number = 0
 
-  constructor(public data: ListsDataService, private _overlay: DialogService) { }
+  constructor(public data: ListDataService, private _overlay: DialogService) { }
 
   public createNewList () : void {
       this._overlay.open(ListCreationComponent);

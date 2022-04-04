@@ -5,7 +5,7 @@ import { DatePipe } from '@angular/common';
 
 const appRoutes: Routes =[
     { path: '' , component: LayoutNavigationComponent, children: [
-        { path: 'calendar', loadChildren: () => import('./calendar/calendar.module').then((m : any) => m.CalendarModule) },
+        { path: 'calendar', loadChildren: () => import('./calendar-view/calendar-view.module').then((m : any) => m.CalendarViewModule) },
         { path: 'pull',  loadChildren: () => import('./pull/pull.module').then((m : any) => m.PullModule) }
     ] }
 ];

@@ -15,7 +15,7 @@
   "rules": {
     "prefer-const": "error",
     "semi": "error",
-    "unused-imports/no-unused-imports": "warn",
+    "unused-imports/no-unused-imports": "off",
     "padding-line-between-statements": [
       "error",
       {

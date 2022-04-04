@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DialogInjection } from '../../../../core/global-services/dialogInjection';
-import { ListsDataService } from '../../../services/lists-data.service';
+import { ListDataService } from '../../../services/list-data.service';
 import { Task } from '../../../../core/task.model';
 import { TaskCreationViewModel } from '../../view-models/task-creation.view-moduel';
 import { List } from '../../../../core/list.model';
@@ -13,7 +13,7 @@ import { List } from '../../../../core/list.model';
 export class TaskCreationComponent {
     public viewModel : TaskCreationViewModel = new TaskCreationViewModel()
 
-    constructor (private _dialog: DialogInjection, private _listsData: ListsDataService) {  }
+    constructor (private _dialog: DialogInjection, private _listsData: ListDataService) {  }
 
     public addTask () : void {
         const list : List | undefined = this._listsData.listsPull.find((item : List) => item.id  === this._dialog.parameter);

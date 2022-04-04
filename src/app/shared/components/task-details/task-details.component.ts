@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ListsDataService } from '../../../layout-navigation/services/lists-data.service';
+import { ListDataService } from '../../../layout-navigation/services/list-data.service';
 import { Task } from '../../../core/task.model';
 import { List } from '../../../core/list.model';
 
@@ -29,7 +29,7 @@ export class TaskDetailsComponent {
 
 
 
-    constructor (private _listsData: ListsDataService) { }
+    constructor (private _listsData: ListDataService) { }
 
     public changeCompleted () : void {
         this._task.isCompleted = !this._task.isCompleted;

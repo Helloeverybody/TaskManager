@@ -7,6 +7,7 @@ export class Task{
     public listId: number
     public repeat: RepeatMode
     public isCompleted: boolean
+
     public emoji?: string
     public file?: string
     public geoPosition?: string
