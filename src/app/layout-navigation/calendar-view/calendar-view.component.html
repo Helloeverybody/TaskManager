@@ -1,6 +1,6 @@
 <div class="content">
     <div class="calendar">
-        <calendar-component></calendar-component>
+        <month-view-component #monthView></month-view-component>
     </div>
-    <task-details class="task-details"></task-details>
+    <task-details class="task-details" [taskId]="monthView.selectedTaskId"></task-details>
 </div>

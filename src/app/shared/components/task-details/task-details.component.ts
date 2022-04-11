@@ -1,41 +1,37 @@
 import { Component, Input } from '@angular/core';
 import { ListDataService } from '../../../layout-navigation/services/list-data.service';
 import { Task } from '../../../core/task.model';
-import { List } from '../../../core/list.model';
 
 @Component({
     selector: 'task-details',
     templateUrl: './task-details.component.html',
-    styleUrls: ['./task-details.component.css']
+    styleUrls: ['./task-details.component.css'],
 })
 export class TaskDetailsComponent {
     @Input()
-    public listId: number = 0
-    @Input()
-    public taskId: number = -1
-    public get task () : Task {
+    public taskId: number = -1;
+
+    public get task() : Task {
         if (this._task.id !== this.taskId) {
-            const list : List = this._listsData.listsPull.find((index : List) => this.listId === index.id) || new List();
-            this._task = list.tasks.find((index : Task) => this.taskId === index.id) || new Task();
+            this._task = this._listsData.tasksPull.find((index : Task) => this.taskId === index.id) || new Task();
         }
 
         return this._task;
     }
 
-    public set task (value: Task) {
+    public set task(value: Task) {
         this._task = value;
     }
-    private _task: Task = new Task()
 
+    private _task: Task = new Task();
 
+    constructor(private _listsData: ListDataService) { }
 
-    constructor (private _listsData: ListDataService) { }
-
-    public changeCompleted () : void {
+    public changeCompleted() : void {
         this._task.isCompleted = !this._task.isCompleted;
     }
 
-    public getRepeatMode () : string {
+    public getRepeatMode() : string {
         return RepeatMode[this.task.repeat];
     }
 }

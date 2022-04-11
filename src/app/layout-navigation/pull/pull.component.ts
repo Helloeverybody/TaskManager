@@ -6,23 +6,24 @@ import { DialogService } from '../../core/global-services/dialog.service';
 @Component({
     selector: 'pull-component',
     templateUrl: './pull.component.html',
-    styleUrls: ['./pull.component.css']
+    styleUrls: ['./pull.component.css'],
 })
-export class PullComponent{
-  public currentListId: number = 1
-  public currentTaskId: number = 0
+export class PullComponent {
+    public currentListId: number = 1;
 
-  constructor(public data: ListDataService, private _overlay: DialogService) { }
+    public currentTaskId: number = 0;
 
-  public createNewList () : void {
-      this._overlay.open(ListCreationComponent);
-  }
+    constructor(public data: ListDataService, private _overlay: DialogService) { }
 
-  public setCurrentList (index: number) : void {
-      this.currentListId = index;
-  }
+    public createNewList() : void {
+        this._overlay.open(ListCreationComponent);
+    }
 
-  public onTaskSelected (taskId: number) : void {
-      this.currentTaskId = taskId;
-  }
+    public setCurrentList(index: number) : void {
+        this.currentListId = index;
+    }
+
+    public onTaskSelected(taskId: number) : void {
+        this.currentTaskId = taskId;
+    }
 }

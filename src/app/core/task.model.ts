@@ -1,18 +1,27 @@
-export class Task{
-    public id: number
-    public title: string
-    public description: string
-    public startDateTime: Date
-    public endDateTime: Date
-    public listId: number
-    public repeat: RepeatMode
-    public isCompleted: boolean
+export class Task {
+    public id: number;
 
-    public emoji?: string
-    public file?: string
-    public geoPosition?: string
+    public title: string;
 
-    constructor (id?: number, title?: string, description?: string, listId?: number, startDateTime?: Date, endDateTime?: Date, repeat?: RepeatMode) {
+    public description: string;
+
+    public startDateTime: Date;
+
+    public endDateTime: Date;
+
+    public listId: number;
+
+    public repeat: RepeatMode;
+
+    public isCompleted: boolean;
+
+    public emoji?: string;
+
+    public file?: string;
+
+    public geoPosition?: string;
+
+    constructor(id?: number, title?: string, description?: string, listId?: number, startDateTime?: Date, endDateTime?: Date, repeat?: RepeatMode) {
         this.id = id || 0;
         this.title = title || '';
         this.description = description || '';

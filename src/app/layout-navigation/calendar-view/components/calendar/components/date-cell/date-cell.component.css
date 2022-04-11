@@ -34,3 +34,9 @@
     max-width: inherit;
     overflow: hidden;
 }
+
+.task-selected {
+    border-radius: 5px;
+    color: white;
+    background-color: black;
+}

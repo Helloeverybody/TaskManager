@@ -4,6 +4,6 @@ import { AuthComponent } from './auth.component';
 @NgModule({
     declarations: [AuthComponent],
     imports: [],
-    providers: []
+    providers: [],
 })
 export class AuthModule { }

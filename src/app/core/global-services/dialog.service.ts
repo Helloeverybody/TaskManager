@@ -1,5 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
-import { ComponentType, GlobalPositionStrategy, Overlay, OverlayRef } from '@angular/cdk/overlay';
+import {
+    ComponentType, GlobalPositionStrategy, Overlay, OverlayRef,
+} from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { DialogInjection } from './dialogInjection';
 
@@ -19,7 +21,7 @@ export class DialogService {
         const overlayRef : OverlayRef = this._overlay.create({
             positionStrategy,
             hasBackdrop: true,
-            backdropClass: 'overlay-backdrop'
+            backdropClass: 'overlay-backdrop',
         });
 
         const closer : DialogInjection = new DialogInjection(overlayRef, parameter);
@@ -27,13 +29,11 @@ export class DialogService {
         const injector : Injector = Injector.create({
             parent: this._injector,
             providers: [
-                { provide: DialogInjection, useValue: closer }
-            ]
+                { provide: DialogInjection, useValue: closer },
+            ],
         });
 
         const portal : ComponentPortal<T> = new ComponentPortal(component, null, injector);
         overlayRef.attach(portal);
     }
 }
-
-

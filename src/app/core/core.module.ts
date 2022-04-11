@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @NgModule({
     declarations: [],
     imports: [],
-    providers: [HttpClient]
+    providers: [HttpClient],
 })
 export class CoreModule {
     public static forRoot(): ModuleWithProviders<CoreModule> {

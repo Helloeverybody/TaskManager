@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CalendarViewComponent } from './calendar-view.component';
 import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { CalendarViewComponent } from './calendar-view.component';
 import { SharedModule } from '../../shared/shared.module';
 import { MonthViewComponent } from './components/calendar/month-view.component';
-import { CommonModule } from '@angular/common';
 import { DateCellComponent } from './components/calendar/components/date-cell/date-cell.component';
 import { MonthDatesService } from './components/calendar/services/month-dates.service';
 
@@ -15,15 +15,15 @@ const routes: Routes = [
     declarations: [
         CalendarViewComponent,
         MonthViewComponent,
-        DateCellComponent
+        DateCellComponent,
     ],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
-        SharedModule
+        SharedModule,
     ],
     providers: [
-        MonthDatesService
-    ]
+        MonthDatesService,
+    ],
 })
 export class CalendarViewModule { }
