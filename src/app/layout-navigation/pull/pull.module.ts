@@ -6,7 +6,6 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { ListComponent } from './components/list/list.component';
 import { ListCreationComponent } from './components/list-creation/list-creation.component';
 import { PullComponent } from './pull.component';
-import { TaskCreationComponent } from './components/task-creation/task-creation.component';
 import { SharedModule } from '../../shared/shared.module';
 
 const routes: Routes = [
@@ -18,7 +17,6 @@ const routes: Routes = [
         PullComponent,
         ListComponent,
         ListCreationComponent,
-        TaskCreationComponent,
     ],
     imports: [
         RouterModule.forChild(routes),
@@ -27,10 +25,6 @@ const routes: Routes = [
         ReactiveFormsModule,
         OverlayModule,
         SharedModule,
-    ],
-    exports: [
-        TaskCreationComponent,
-    ],
-    providers: [],
+    ]
 })
 export class PullModule { }

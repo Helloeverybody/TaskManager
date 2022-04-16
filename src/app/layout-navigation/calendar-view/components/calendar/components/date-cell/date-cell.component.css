@@ -12,6 +12,7 @@
     align-items: center;
     justify-content: center;
     font-family: Roboto-Medium, serif;
+    cursor: pointer;
 }
 
 .otherMonth {
@@ -33,10 +34,16 @@
     max-height: inherit;
     max-width: inherit;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .task-selected {
     border-radius: 5px;
     color: white;
     background-color: black;
+}
+
+.date:hover {
+    border: solid 2px black;
+    border-radius: 10px;
 }

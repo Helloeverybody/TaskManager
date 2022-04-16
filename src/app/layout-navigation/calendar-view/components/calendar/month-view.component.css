@@ -4,8 +4,49 @@
     height: 95%;
 }
 
+.date-switch {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 15px;
+    margin-top: 35px;
+}
+
+.date {
+    font-family: Roboto-Bold, serif;
+    font-size: 18px;
+    margin-left: 50px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    box-shadow: 0 0 0 2px black;
+    background-color: white;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.button > img {
+    max-width: inherit;
+    max-height: inherit;
+    width: 25px;
+    height: 25px;
+}
+
+.button:hover {
+    background-color: #F2F2F2;
+}
+
+.button:active {
+    background-color: #ececec;
+}
+
 .window {
-    margin: 3% auto;
+    margin: 0 auto;
     padding: 2px;
     width: 95%;
     height: 90%;

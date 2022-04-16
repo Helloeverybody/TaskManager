@@ -1,16 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Task } from '../../../../../core/task.model';
-import { ListDataService } from '../../../../services/list-data.service';
-import { DateModel } from '../models/date-model';
+import { ListDataService } from '../../services/list-data.service';
+import { DateModel } from '../components/calendar/models/date-model';
 
 @Injectable()
 export class MonthDatesService {
-    private static areDatesEqual(date1: Date, date2: Date) : boolean {
-        return date1.getDate() === date2.getDate()
-            && date1.getMonth() === date2.getMonth()
-            && date1.getFullYear() === date2.getFullYear();
-    }
-
     public dateToday: Date = new Date();
 
     public currentMonth: Date = new Date(
@@ -92,20 +85,13 @@ export class MonthDatesService {
                 const dateModel : DateModel = new DateModel(
                     date,
                     isThisMonth,
-                    MonthDatesService.areDatesEqual(date, new Date())
+                    DateModel.areDatesEqual(date, new Date()),
+                    this._listsData.tasksPull
                 );
-                dateModel.tasks = this.findTasks(date);
                 startDay += 1;
                 line.push(dateModel);
             }
             this._monthTable.push(line);
         }
-    }
-
-    private findTasks(date : Date) : Task[] {
-        return this._listsData.tasksPull.filter(
-            (item : Task) => MonthDatesService.areDatesEqual(item.startDateTime, date)
-                && !item.isCompleted
-        );
     }
 }

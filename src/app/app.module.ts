@@ -11,7 +11,6 @@ import { PullModule } from './layout-navigation/pull/pull.module';
 import { CalendarViewModule } from './layout-navigation/calendar-view/calendar-view.module';
 import { SettingsModule } from './layout-navigation/settings/settings.module';
 import { LayoutNavigationModule } from './layout-navigation/layout-navigation.module';
-import { CoreModule } from './core/core.module';
 
 const routes: Routes = [
     {
@@ -36,7 +35,6 @@ const routes: Routes = [
         CalendarViewModule,
         SettingsModule,
         LayoutNavigationModule,
-        CoreModule.forRoot(),
         CommonModule,
         HttpClientModule,
         BrowserAnimationsModule,

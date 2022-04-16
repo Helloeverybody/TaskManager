@@ -5,7 +5,7 @@ import { CalendarViewComponent } from './calendar-view.component';
 import { SharedModule } from '../../shared/shared.module';
 import { MonthViewComponent } from './components/calendar/month-view.component';
 import { DateCellComponent } from './components/calendar/components/date-cell/date-cell.component';
-import { MonthDatesService } from './components/calendar/services/month-dates.service';
+import { MonthDatesService } from './services/month-dates.service';
 
 const routes: Routes = [
     { path: '', component: CalendarViewComponent },

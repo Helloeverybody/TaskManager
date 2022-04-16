@@ -4,8 +4,8 @@ import {
 import { ListDataService } from '../../../services/list-data.service';
 import { List } from '../../../../core/list.model';
 import { DialogService } from '../../../../core/global-services/dialog.service';
-import { TaskCreationComponent } from '../task-creation/task-creation.component';
 import { Task } from '../../../../core/task.model';
+import { TaskCreationComponent } from '../../../../shared/components/task-creation/task-creation.component';
 
 @Component({
     selector: 'list',

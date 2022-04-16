@@ -1,9 +1,9 @@
 <div class="content">
-    <div class="date" [ngClass]="{otherMonth: !dateModel.isThisMonth, today: dateModel.isToday}">
+    <div class="date" [ngClass]="{otherMonth: !dateModel.isThisMonth, today: dateModel.isToday}" (click)="createTask()">
         {{ dateModel.date.getDate() }}
     </div>
     <div *ngFor="let task of dateModel.tasks">
-        <div *ngIf="!task.isCompleted" class="task"
+        <div class="task"
              [ngClass]="{ 'task-selected': task.id === selectedTaskId }"
              (click)="taskClicked(task.id)">
             {{task.title}}

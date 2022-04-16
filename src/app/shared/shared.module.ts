@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TaskDetailsComponent } from './components/task-details/task-details.component';
+import { TaskCreationComponent } from './components/task-creation/task-creation.component';
 
 @NgModule({
     declarations: [
         TaskDetailsComponent,
+        TaskCreationComponent
     ],
     imports: [
         ReactiveFormsModule,
@@ -14,7 +16,7 @@ import { TaskDetailsComponent } from './components/task-details/task-details.com
     ],
     exports: [
         TaskDetailsComponent,
+        TaskCreationComponent
     ],
-    providers: [],
 })
 export class SharedModule { }
