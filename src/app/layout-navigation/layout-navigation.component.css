@@ -29,7 +29,7 @@
 
 .buttons{
   display: flex;
-  margin-right: 35%;
+  margin-right: 25%;
 }
 
 img{
@@ -71,4 +71,12 @@ div.menu-button:link{
 
 div.menu-button:active{
   background-color: #ececec;
+}
+
+.settings-button {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  margin-right: 0.5%;
+  cursor: pointer;
 }

@@ -1,1 +1,16 @@
-Тут настройки
+<div class="card">
+    <div class="top">
+        <header>Настройки</header>
+        <button class="close-button" (click)="closeOverlay()">
+            <img src="assets/images/close-icon.svg">
+        </button>
+    </div>
+    <div class="sidebar">
+        <p (click)="setGeneral()">Общие</p>
+        <p (click)="setProfile()">Профиль</p>
+    </div>
+    <div class="sidebar-footer"> </div>
+    <div class="settings-content" #settingsContent>
+
+    </div>
+</div>

@@ -27,12 +27,12 @@ export class TaskDetailsComponent {
 
     constructor(private _listsData: ListDataService) { }
 
-    public changeCompleted() : void {
-        this._task.isCompleted = !this._task.isCompleted;
+    public getRepeatMode() : string {
+        return RepeatMode[this._task.repeat];
     }
 
-    public getRepeatMode() : string {
-        return RepeatMode[this.task.repeat];
+    public changeCompleted() : void {
+        this._task.isCompleted = !this._task.isCompleted;
     }
 }
 

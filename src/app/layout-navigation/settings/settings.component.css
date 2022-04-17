@@ -1,0 +1,42 @@
+.card {
+    display: grid;
+    grid-template-areas:
+        "A A A A A A A A"
+        "B B C C C C C C"
+        "D D C C C C C C";
+    grid-template-rows: 70px auto 50px;
+    grid-template-columns: 100px auto;
+    width: 900px;
+    height: 600px;
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    grid-area: A;
+}
+
+header {
+    font-family: Roboto-Medium;
+    font-size: 25px;
+    margin-top: 25px;
+    margin-left: 50px;
+}
+
+.sidebar {
+    grid-area: B;
+    border-right: 1px solid black;
+}
+
+.settings-content {
+    grid-area: C;
+}
+
+.sidebar-footer {
+    grid-area: D;
+}
+
+p {
+    margin-left: 20px;
+}

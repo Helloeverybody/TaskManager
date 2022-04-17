@@ -22,6 +22,7 @@ export class ListDataService {
     }
 
     public addTask(task: Task) : void {
+        task.id = this.tasksPull.length + 1;
         tasks.push(task);
     }
 }

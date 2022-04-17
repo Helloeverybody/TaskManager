@@ -79,6 +79,7 @@ body, html{
   width: 35px;
   height: 35px;
   padding: 0;
+  margin: 10px;
   background-color: white;
   border: 2px solid black;
   cursor: pointer;

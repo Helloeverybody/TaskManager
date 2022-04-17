@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { List } from '../../../../core/list.model';
 import { DialogInjection } from '../../../../core/global-services/dialogInjection';
@@ -9,7 +9,7 @@ import { ListDataService } from '../../../services/list-data.service';
     templateUrl: './list-creation.component.html',
     styleUrls: ['./list-creation.component.css'],
 })
-export class ListCreationComponent implements OnInit {
+export class ListCreationComponent {
     public newListForm: FormGroup = new FormGroup({
         title: new FormControl('', Validators.required),
         isAuto: new FormControl('false', Validators.required),
@@ -33,6 +33,4 @@ export class ListCreationComponent implements OnInit {
     public closeForm() : void {
         this._closer.close();
     }
-
-    public ngOnInit() : void { }
 }

@@ -6,10 +6,15 @@
         <span>Списки</span>
         <img src="assets/images/check-mark-icon.svg" alt="check-mark">
       </div>
+
       <div routerLink="/app/calendar" routerLinkActive="active-button" class="menu-button">
         <span>Календарь</span>
         <img src="assets/images/calendar-icon.svg" alt="calendar">
       </div>
+    </div>
+
+    <div class="settings-button" (click)="openSettings()">
+      <img src="assets/images/gear.png">
     </div>
   </div>
   <div class="inner-content">
