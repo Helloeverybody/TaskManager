@@ -4,13 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { AuthModule } from './auth/auth.module';
 import { PullModule } from './layout-navigation/pull/pull.module';
-import { CalendarViewModule } from './layout-navigation/calendar-view/calendar-view.module';
-import { SettingsModule } from './layout-navigation/settings/settings.module';
-import { LayoutNavigationModule } from './layout-navigation/layout-navigation.module';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 const routes: Routes = [
     {
@@ -19,7 +15,8 @@ const routes: Routes = [
         children: [
             { path: 'auth', loadChildren: () => import('./auth/auth.module').then((m : any) => m.AuthModule) },
             { path: 'app', loadChildren: () => import('./layout-navigation/layout-navigation.module').then((m : any) => m.LayoutNavigationModule) },
-        ],
+            { path: '', redirectTo: '/app/pull', pathMatch: 'full' },
+        ]
     },
 ];
 
@@ -29,15 +26,11 @@ const routes: Routes = [
     ],
     imports: [
         BrowserModule,
-        RouterModule.forRoot(routes),
-        AuthModule,
         PullModule,
-        CalendarViewModule,
-        SettingsModule,
-        LayoutNavigationModule,
+        RouterModule.forRoot(routes),
         CommonModule,
         HttpClientModule,
-        BrowserAnimationsModule,
+        OverlayModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

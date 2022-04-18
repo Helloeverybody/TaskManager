@@ -1,0 +1,17 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+
+.logo {
+    font-family: Roboto-Bold;
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.square-button {
+    margin-top: 10px;
+}

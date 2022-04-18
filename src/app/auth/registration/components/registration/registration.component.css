@@ -1,0 +1,99 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+
+.logo {
+    font-family: Roboto-Bold;
+    font-size: 35px;
+}
+
+.auth-link {
+    font-size: 13px;
+    color: #9a9a9a;
+    cursor: pointer;
+    grid-area: L;
+    align-self: end;
+}
+
+span {
+    text-decoration: underline;
+}
+
+form {
+    display: grid;
+    grid-template-rows: 20px auto auto auto;
+    grid-template-columns: 300px auto auto 300px;
+    grid-template-areas:
+            "E1 L  L  E3"
+            "E1 F1 F3 E3"
+            "E2 F2 F4 E4"
+            "B  B  B  B ";
+    gap: 10px;
+    justify-items: center;
+    margin-top: 10px;
+}
+
+.field-1 {
+    grid-area: F1;
+    align-self: end;
+}
+
+.field-2 {
+    grid-area: F2;
+    align-self: start;
+}
+
+.field-3 {
+    grid-area: F3;
+    align-self: end;
+}
+
+.field-4 {
+    grid-area: F4;
+    align-self: start;
+}
+
+.field-5 {
+    grid-area: B;
+}
+
+.error-1 {
+    grid-area: E1;
+    align-self: end;
+    justify-self: end;
+}
+
+.error-2 {
+    grid-area: E2;
+    align-self: start;
+    justify-self: end;
+}
+
+.error-3 {
+    grid-area: E3;
+    align-self: end;
+    justify-self: start;
+}
+
+.error-4 {
+    grid-area: E4;
+    justify-self: start;
+    align-self: start;
+}
+
+.error-window {
+    background-color: rgba(255, 137, 137, 0.37);
+    border-radius: 8px;
+    max-width: 300px;
+    padding: 8px;
+    font-size: 12px;
+}
+
+.square-button{
+    margin-top: 15px;
+}
+

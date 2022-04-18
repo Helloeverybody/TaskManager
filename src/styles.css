@@ -113,3 +113,35 @@ body, html{
   box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.25);
   background-color: white;
 }
+
+.square-button {
+  width: 250px;
+  height: 35px;
+  background-color: white;
+  font-family: Roboto;
+  font-size: 15px;
+  border: none;
+  color: black;
+  box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.25), 0 0 0 2px black;
+  cursor: pointer;
+  outline: none;
+}
+
+.square-button:hover {
+  background-color: #f1f1f1;
+}
+
+.square-button:active {
+  background-color: #e8e8e8;
+}
+
+.big-input-field {
+  outline: none;
+  padding-left: 10px;
+  border-radius: 8px;
+  width: 250px;
+  height: 40px;
+  border: 2px solid black;
+  box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.25);
+  font-size: 17px;
+}

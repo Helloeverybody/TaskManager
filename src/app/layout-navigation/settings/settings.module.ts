@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 @NgModule({
     declarations: [SettingsComponent],
     imports: [
-        CommonModule
+        CommonModule,
     ],
     providers: [],
 })

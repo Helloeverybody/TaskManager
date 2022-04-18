@@ -1,0 +1,56 @@
+<div class="content">
+    <div class="logo">Task Manager</div>
+    <form [formGroup]="viewModel.form">
+        <div class="auth-link" (click)="toAuthentication()">Есть аккаунт? <span>Вход</span></div>
+        <div class="field-1">
+            <label for="login"></label>
+            <input id="login" class="big-input-field" type="text" formControlName="login" placeholder="Логин">
+        </div>
+
+        <div class="error-1">
+            <div class="error-window" *ngIf="viewModel.form?.get('login')?.invalid && submitTouched">
+                Логин должен быть больше 6 символов и состоять только из цифр,
+                прописных или строчных букв латинского алфавита, а также символа "_".
+            </div>
+        </div>
+
+        <div class="field-2">
+            <label for="email"></label>
+            <input id="email" class="big-input-field" type="text" formControlName="email" placeholder="Почта">
+        </div>
+
+        <div class="error-2">
+            <div class="error-window" *ngIf="viewModel.form?.get('email')?.invalid && submitTouched">
+                Введен некорректный e-mail.
+            </div>
+        </div>
+
+        <div class="field-3">
+            <label for="password"></label>
+            <input id="password" class="big-input-field" type="password" formControlName="password" placeholder="Пароль">
+        </div>
+
+        <div class="error-3">
+            <div class="error-window" *ngIf="viewModel.form?.get('password')?.invalid && submitTouched">
+                Пароль должен быть длиннее 8 символов и состоять только из цифр,
+                прописных или строчных букв латинского алфавита, а также символов !"#$%&'()*+,-.
+            </div>
+        </div>
+
+        <div class="field-4">
+            <label for="passwordConfirmation"></label>
+            <input id="passwordConfirmation" class="big-input-field" type="password" formControlName="passwordConfirmation" placeholder="Подтверждение пароля">
+        </div>
+
+        <div class="error-4">
+            <div class="error-window" *ngIf="viewModel.form.errors?.['passwordConfirmed'] && submitTouched">
+                Пароль не совпадает!
+            </div>
+        </div>
+
+        <div class="field-5">
+            <label for="submit-button"></label>
+            <input id="submit-button" type="submit" value="Регистрация" class="square-button" (click)="submit()">
+        </div>
+    </form>
+</div>

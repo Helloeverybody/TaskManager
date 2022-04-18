@@ -2,7 +2,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Task } from '../../core/task.model';
 
 export class TaskCreationViewModel {
-    public newTaskForm: FormGroup = new FormGroup({
+    public form: FormGroup = new FormGroup({
         title: new FormControl('', Validators.required),
         description: new FormControl(''),
         date: new FormControl(this.starDateValue()),
@@ -11,15 +11,15 @@ export class TaskCreationViewModel {
     });
 
     constructor(private _startValue: number | Date) {
-        this.changeDateAccessibility(this.newTaskForm.get('date')?.value);
-        this.newTaskForm.get('date')?.valueChanges.subscribe((value : any) => {
+        this.changeDateAccessibility(this.form.get('date')?.value);
+        this.form.get('date')?.valueChanges.subscribe((value : any) => {
             this.changeDateAccessibility(value);
         });
     }
 
     public toModel(): Task {
         let dateTime : Date = new Date(
-            `${this.newTaskForm.get('date')?.value}T${this.newTaskForm.get('time')?.value}`
+            `${this.form.get('date')?.value}T${this.form.get('time')?.value}`
         );
 
         let listId : number = 2;
@@ -33,12 +33,12 @@ export class TaskCreationViewModel {
 
         return {
             id: 0,
-            title: this.newTaskForm.value.title,
-            description: this.newTaskForm.value.description,
+            title: this.form.value.title,
+            description: this.form.value.description,
             listId: listId,
             startDateTime: dateTime,
             endDateTime: dateTime,
-            repeat: this.newTaskForm.value.repeat,
+            repeat: this.form.value.repeat,
             isCompleted: false
         };
     }
@@ -63,9 +63,9 @@ export class TaskCreationViewModel {
 
     private changeDateAccessibility(value: string) : void {
         if (value === '') {
-            this.newTaskForm.get('time')?.disable();
+            this.form.get('time')?.disable();
         } else {
-            this.newTaskForm.get('time')?.enable();
+            this.form.get('time')?.enable();
         }
     }
 }
