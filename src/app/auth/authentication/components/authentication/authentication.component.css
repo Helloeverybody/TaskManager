@@ -1,0 +1,72 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+
+.logo {
+    font-family: Roboto-Bold;
+    font-size: 35px;
+}
+
+.auth-link {
+    font-size: 13px;
+    color: #9a9a9a;
+    cursor: pointer;
+    grid-area: L;
+    align-self: end;
+}
+
+span {
+    text-decoration: underline;
+}
+
+form {
+    display: grid;
+    grid-template-rows: 20px auto auto auto;
+    grid-template-columns: 300px auto 300px;
+    grid-template-areas:
+            "N  L  E1 "
+            "N  F1 E1"
+            "N  F2 E1"
+            "N  B  E1 ";
+    gap: 10px;
+    justify-items: center;
+    margin-top: 10px;
+}
+
+.field-1 {
+    grid-area: F1;
+    align-self: end;
+}
+
+.field-2 {
+    grid-area: F2;
+    align-self: start;
+}
+
+.field-3 {
+    grid-area: B;
+    align-self: end;
+}
+
+.error-1 {
+    grid-area: E1;
+    align-self: end;
+    justify-self: end;
+}
+
+.error-window {
+    background-color: rgba(255, 137, 137, 0.37);
+    border-radius: 8px;
+    max-width: 300px;
+    padding: 8px;
+    font-size: 12px;
+}
+
+.square-button{
+    margin-top: 15px;
+}
+

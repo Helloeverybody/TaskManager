@@ -1,0 +1,26 @@
+<div class="content">
+    <div class="logo">Task Manager</div>
+    <form [formGroup]="viewModel.form">
+        <div class="auth-link" (click)="toRegistration()">Первый раз? <span>Создать аккаунт</span></div>
+        <div class="field-1">
+            <label for="login"></label>
+            <input id="login" class="big-input-field" type="email" formControlName="login" placeholder="Логин">
+        </div>
+
+        <div class="error-1">
+            <div class="error-window" *ngIf="viewModel.form?.get('login')?.invalid && submitTouched">
+                Логин или пароль введены неверно. Проверьте правильность заполнения данных.
+            </div>
+        </div>
+
+        <div class="field-2">
+            <label for="password"></label>
+            <input id="password" class="big-input-field" type="password" formControlName="password" placeholder="Пароль">
+        </div>
+
+        <div class="field-3">
+            <label for="submit-button"></label>
+            <input id="submit-button" type="submit" value="Войти" class="square-button" (click)="submit()">
+        </div>
+    </form>
+</div>

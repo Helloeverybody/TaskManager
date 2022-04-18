@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { AuthComponent } from './auth.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { AuthServerService } from './services/auth-server.service';
 
 const routes: Routes = [
     {
@@ -23,7 +24,8 @@ const routes: Routes = [
         RouterModule.forChild(routes),
     ],
     providers: [
-        AuthService
+        AuthService,
+        AuthServerService
     ],
 })
 export class AuthModule { }
