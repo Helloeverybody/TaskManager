@@ -8,7 +8,7 @@
         </div>
 
         <div class="error-1">
-            <div class="error-window" *ngIf="viewModel.form?.get('login')?.invalid && submitTouched">
+            <div class="error-window" *ngIf="!formValid">
                 Логин или пароль введены неверно. Проверьте правильность заполнения данных.
             </div>
         </div>

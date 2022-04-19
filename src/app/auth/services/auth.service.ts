@@ -1,15 +1,14 @@
 import { Injectable, Injector } from '@angular/core';
 import { AuthServerService } from './auth-server.service';
-import { User } from '../models/user';
 import { RegistrationDataModel } from '../models/registration-data.model';
 import { AuthenticationDataModel } from '../models/authentication-data.model';
+import { AuthorizationService } from '../../core/global-services/authorizaton.service';
 
 @Injectable()
 export class AuthService {
-    public token : string = '';
     public server : AuthServerService;
 
-    constructor (private _injector: Injector) {
+    constructor (private _injector: Injector, private _auth: AuthorizationService) {
         this.server = this._injector.get(AuthServerService);
     }
 
@@ -23,7 +22,13 @@ export class AuthService {
         });
     }
 
-    public authoriseUser(user: AuthenticationDataModel) : boolean {
-        return true;
+    public authoriseUser(userData: AuthenticationDataModel) : boolean {
+        this.server.getToken(userData).subscribe((data : string | null) => {
+            if (data !== null) {
+                this._auth.updateToken(data);
+            }
+        });
+
+        return this._auth.checkToken();
     }
 }

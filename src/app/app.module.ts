@@ -7,15 +7,28 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { PullModule } from './layout-navigation/pull/pull.module';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { AuthGuard } from './auth/guards/auth-guard';
 
 const routes: Routes = [
     {
         path: '',
         component: AppComponent,
         children: [
-            { path: 'auth', loadChildren: () => import('./auth/auth.module').then((m : any) => m.AuthModule) },
-            { path: 'app', loadChildren: () => import('./layout-navigation/layout-navigation.module').then((m : any) => m.LayoutNavigationModule) },
-            { path: '', redirectTo: '/app/pull', pathMatch: 'full' },
+            {
+                path: 'auth',
+                loadChildren: () => import('./auth/auth.module').then((m : any) => m.AuthModule)
+            },
+            {
+                path: 'app',
+                loadChildren: () => import('./layout-navigation/layout-navigation.module').then((m : any) => m.LayoutNavigationModule),
+                canActivate: [AuthGuard],
+                canActivateChild: [AuthGuard]
+            },
+            {
+                path: '',
+                redirectTo: '/app/pull',
+                pathMatch: 'full'
+            },
         ]
     },
 ];
@@ -32,7 +45,7 @@ const routes: Routes = [
         HttpClientModule,
         OverlayModule,
     ],
-    providers: [],
+    providers: [AuthGuard],
     bootstrap: [AppComponent],
 })
 export class AppModule { }
