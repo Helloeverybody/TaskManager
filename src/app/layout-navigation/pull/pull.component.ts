@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ListDataService } from '../services/list-data.service';
 import { ListCreationComponent } from './components/list-creation/list-creation.component';
-import { DialogService } from '../../core/global-services/dialog.service';
+import { DialogService } from '../../global-services/dialog.service';
 
 @Component({
     selector: 'pull-component',

@@ -9,10 +9,6 @@ export class AuthServerService {
     private _allUsers : User[] = users;
 
     public registerUser(newUser: User) : void {
-        console.log('данные на сервере');
-        console.log(newUser);
-        console.log('что лежит на сервере');
-        console.log(this._allUsers);
         this._allUsers.push(newUser);
     }
 

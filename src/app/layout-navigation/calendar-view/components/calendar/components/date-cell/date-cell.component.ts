@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 import { DateModel } from '../../models/date-model';
 import { TaskCreationComponent } from '../../../../../../shared/components/task-creation/task-creation.component';
-import { DialogService } from '../../../../../../core/global-services/dialog.service';
+import { DialogService } from '../../../../../../global-services/dialog.service';
 
 @Component({
     selector: 'date-cell-component',

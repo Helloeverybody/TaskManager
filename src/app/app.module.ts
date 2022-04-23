@@ -39,7 +39,6 @@ const routes: Routes = [
     ],
     imports: [
         BrowserModule,
-        PullModule,
         RouterModule.forRoot(routes),
         CommonModule,
         HttpClientModule,

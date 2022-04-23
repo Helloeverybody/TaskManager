@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 import { ListDataService } from '../../../services/list-data.service';
 import { List } from '../../../../core/list.model';
-import { DialogService } from '../../../../core/global-services/dialog.service';
+import { DialogService } from '../../../../global-services/dialog.service';
 import { Task } from '../../../../core/task.model';
 import { TaskCreationComponent } from '../../../../shared/components/task-creation/task-creation.component';
 

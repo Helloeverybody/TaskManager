@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { List } from '../../../../core/list.model';
-import { DialogInjection } from '../../../../core/global-services/dialogInjection';
+import { DialogInjection } from '../../../../global-services/dialogInjection';
 import { ListDataService } from '../../../services/list-data.service';
 
 @Component({

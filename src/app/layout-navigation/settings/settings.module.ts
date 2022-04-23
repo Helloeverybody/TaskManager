@@ -3,7 +3,9 @@ import { SettingsComponent } from './settings.component';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
-    declarations: [SettingsComponent],
+    declarations: [
+        SettingsComponent
+    ],
     imports: [
         CommonModule,
     ],

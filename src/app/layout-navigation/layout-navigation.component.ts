@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DialogService } from '../core/global-services/dialog.service';
+import { DialogService } from '../global-services/dialog.service';
 import { SettingsComponent } from './settings/settings.component';
 
 @Component({

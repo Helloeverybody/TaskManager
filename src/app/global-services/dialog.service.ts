@@ -5,9 +5,7 @@ import {
 import { ComponentPortal } from '@angular/cdk/portal';
 import { DialogInjection } from './dialogInjection';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class DialogService {
     constructor(private _overlay: Overlay, private _injector: Injector) { }
 

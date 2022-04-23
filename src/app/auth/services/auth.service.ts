@@ -2,7 +2,7 @@ import { Injectable, Injector } from '@angular/core';
 import { AuthServerService } from './auth-server.service';
 import { RegistrationDataModel } from '../models/registration-data.model';
 import { AuthenticationDataModel } from '../models/authentication-data.model';
-import { AuthorizationService } from '../../core/global-services/authorizaton.service';
+import { AuthorizationService } from '../../global-services/authorizaton.service';
 
 @Injectable()
 export class AuthService {

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { LayoutNavigationComponent } from './layout-navigation.component';
+import { DialogService } from '../global-services/dialog.service';
 
 const appRoutes: Routes = [
     {
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
     ],
     providers: [
         DatePipe,
+        DialogService
     ],
 })
 export class LayoutNavigationModule { }
