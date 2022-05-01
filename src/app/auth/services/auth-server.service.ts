@@ -13,7 +13,7 @@ export class AuthServerService {
     }
 
     public getToken(data : AuthenticationDataModel) : Observable<string | null> {
-        return new Observable<string | null>((sub :  Subscriber<string | null>) => {
+        return new Observable<string | null>((sub : Subscriber<string | null>) => {
             const user : User | undefined = this._allUsers.find(
                 (u : User) => u.login === data.login || u.email === data.login
             );
@@ -30,7 +30,9 @@ export class AuthServerService {
                     }
                 };
 
-                sub.next('someAccessToken');
+                const token : string = btoa(JSON.stringify(requestBody.payload));
+
+                sub.next(token);
             } else {
                 sub.next(null);
             }

@@ -7,5 +7,12 @@ export const users : User[] = [
         email: 'seva.bocharov@mail.ru',
         name: 'Всеволод',
         surname: 'Бочаров'
+    },
+    {
+        login: 'ErmolaevID',
+        password: 'ilyailya',
+        email: 'Ermolaev.ID@yandex.ru',
+        name: 'Илья',
+        surname: 'Ермолаев'
     }
 ];

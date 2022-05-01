@@ -27,19 +27,7 @@ export class TaskDetailsComponent {
 
     constructor(private _listsData: ListDataService) { }
 
-    public getRepeatMode() : string {
-        return RepeatMode[this._task.repeat];
-    }
-
     public changeCompleted() : void {
         this._task.isCompleted = !this._task.isCompleted;
     }
-}
-
-enum RepeatMode{
-    'без повтора',
-    'каждый день',
-    'каждую неделю',
-    'каждый месяц',
-    'каждый год'
 }

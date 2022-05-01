@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SettingsComponent } from './settings.component';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -8,6 +9,7 @@ import { CommonModule } from '@angular/common';
     ],
     imports: [
         CommonModule,
+        SharedModule,
     ],
     providers: [],
 })

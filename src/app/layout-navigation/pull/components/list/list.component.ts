@@ -1,6 +1,4 @@
-import {
-    Component, EventEmitter, Input, Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, } from '@angular/core';
 import { ListDataService } from '../../../services/list-data.service';
 import { List } from '../../../../core/list.model';
 import { DialogService } from '../../../../global-services/dialog.service';
