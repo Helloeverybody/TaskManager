@@ -1,7 +1,7 @@
 <div class="content">
   <div class="header">
-
     <h3 class="list-name">{{ list.title }}</h3>
+    <div class="edit-button" (click)="editList()"><img src="assets/images/edit-icon.png"></div>
   </div>
   <div class="create-task-button" (click)="createNewTask()">Новая задача<img src="./assets/images/white-plus.svg" alt="white-plus"></div>
   <div class="no-tasks-placeholder" *ngIf="uncompletedTasks.length === 0">Нет задач в списке.</div>

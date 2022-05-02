@@ -22,13 +22,13 @@ export class Task {
     public geoPosition?: string;
 
     constructor(id?: number, title?: string, description?: string, listId?: number, startDateTime?: Date, endDateTime?: Date, repeat?: RepeatMode) {
-        this.id = id || 0;
-        this.title = title || '';
-        this.description = description || '';
-        this.listId = listId || 0;
-        this.startDateTime = startDateTime || new Date();
-        this.endDateTime = endDateTime || new Date();
-        this.repeat = repeat || RepeatMode.none;
+        this.id = id ?? 0;
+        this.title = title ?? '';
+        this.description = description ?? '';
+        this.listId = listId ?? 0;
+        this.startDateTime = startDateTime ?? new Date();
+        this.endDateTime = endDateTime ?? new Date();
+        this.repeat = repeat ?? RepeatMode.none;
         this.isCompleted = false;
     }
 }

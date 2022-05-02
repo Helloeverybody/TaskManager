@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output, } from '@angular/core';
 import { ListDataService } from '../../../services/list-data.service';
-import { List } from '../../../../core/list.model';
+import { List } from '../../models/list.model';
 import { DialogService } from '../../../../global-services/dialog.service';
 import { Task } from '../../../../core/task.model';
 import { TaskCreationComponent } from '../../../../shared/components/task-creation/task-creation.component';
+import { ListEditComponent } from '../list-edit/list-edit.component';
 
 @Component({
     selector: 'list',
@@ -42,6 +43,10 @@ export class ListComponent {
 
     public createNewTask() : void {
         this._overlay.open(TaskCreationComponent, this._listId);
+    }
+
+    public editList() : void {
+        this._overlay.open(ListEditComponent, this._listId);
     }
 
     public makeCompleted(id: number) : void {

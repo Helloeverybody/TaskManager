@@ -32,12 +32,12 @@ body, html{
 }
 
 .wide-button {
-  padding: 15px 15px;
+  padding: 15px;
   border-radius: 50px;
   background-color: black;
   color: white;
   font-family: Roboto, serif;
-  font-size: 17px;
+  font-size: 15px;
   border: none;
   box-shadow: 1px 3px 4px 0 rgba(0, 0, 0, 0.2);
   cursor: pointer;
@@ -144,4 +144,24 @@ body, html{
   border: 2px solid black;
   box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.25);
   font-size: 17px;
+}
+
+.red-button{
+  background-color: #ffd1d1;
+  color: #c90707;
+  border-radius: 50px;
+  padding: 15px 15px;
+  max-width: min-content;
+  border: none;
+  cursor: pointer;
+  font-family: Roboto, serif;
+  font-size: 15px;
+}
+
+.red-button:hover {
+  background-color: #ffbdbd;
+}
+
+.red-button:active {
+  background-color: #ff9696;
 }

@@ -11,11 +11,16 @@
     </div>
     <div class="sidebar-footer"> </div>
     <div class="settings-content">
-        <div *ngIf="true" class="settings-chapter general">
-            -+
+        <div *ngIf="chapter ==='general'" class="settings-chapter general">
+            Общие
+            Формат даты (сделать форму)
         </div>
-        <div class="settings-chapter profile">
-
+        <div *ngIf="chapter ==='profile'" class="settings-chapter profile">
+            Профиль
+            Сменить пароль (сделать форму)
+            <div class="red-button" (click)="quitUser()">
+                Выйти
+            </div>
         </div>
     </div>
 </div>

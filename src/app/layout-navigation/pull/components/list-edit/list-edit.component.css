@@ -43,6 +43,10 @@ label.inner-field{
   justify-content: end;
 }
 
-#create{
+#edit{
   margin-right: 20px;
+}
+
+#delete{
+  margin-right: 10px;
 }

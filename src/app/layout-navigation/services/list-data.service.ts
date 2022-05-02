@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { List } from '../../core/list.model';
+import { List } from '../pull/models/list.model';
 import { Task } from '../../core/task.model';
 import { AuthorizationService } from '../../global-services/authorizaton.service';
 import { ListDataServer } from './list-data.server';
@@ -11,25 +11,42 @@ export class ListDataService {
     private _tasks : Task[] = [];
 
     public get listsPull() : List[] {
+        this.loadData();
+
         return this._lists;
     }
 
     public get tasksPull() : Task[] {
+        this.loadData();
+
         return this._tasks;
     }
 
-    constructor(private _auth: AuthorizationService, private _server: ListDataServer) {
-        this.loadData();
-    }
+    constructor(private _auth: AuthorizationService, private _server: ListDataServer) { }
 
     public addList(list: List) : void {
         list.id = this._lists.length + 1;
         this._lists.push(list);
     }
 
+    public updateList(list: List) : void {
+        const index : number = this.listsPull.indexOf(list);
+        this.listsPull.splice(index, 1, list);
+    }
+
+    public deleteList(list: List) : void {
+        const index : number = this.listsPull.indexOf(list);
+        this.listsPull.splice(index, 1);
+    }
+
     public addTask(task: Task) : void {
         task.id = this.tasksPull.length + 1;
         this._tasks.push(task);
+    }
+
+    public clearData() : void {
+        this._lists = [];
+        this._tasks = [];
     }
 
     public loadData() : void {

@@ -6,6 +6,7 @@ import { ListComponent } from './components/list/list.component';
 import { ListCreationComponent } from './components/list-creation/list-creation.component';
 import { PullComponent } from './pull.component';
 import { SharedModule } from '../../shared/shared.module';
+import { ListEditComponent } from './components/list-edit/list-edit.component';
 
 const routes: Routes = [
     { path: '', component: PullComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
     declarations: [
         PullComponent,
         ListComponent,
+        ListEditComponent,
         ListCreationComponent,
     ],
     imports: [

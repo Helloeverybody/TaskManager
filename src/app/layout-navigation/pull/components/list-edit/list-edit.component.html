@@ -1,17 +1,9 @@
 <div class="card card-body">
   <button class="close-button" (click)="closeForm()"><img src="../../../../../assets/images/close-icon.svg" alt="cross-icon"></button>
-  <form [formGroup]="viewModel.form" (ngSubmit)="addList()">
+  <form [formGroup]="viewModel.form" (ngSubmit)="updateList()">
     <div>
       <label for="title"></label>
       <input type="text" id="title" name="title" formControlName="title" class="title-input" placeholder="Название списка" autocomplete="off">
-    </div>
-
-    <div>
-      <label for="type" class="inner-field">Тип:</label>
-      <select id="type" name="type" class="selection-box" formControlName="isAuto">
-        <option value="false" selected>Ручной</option>
-        <option value="true">Автоматический</option>
-      </select>
     </div>
 
     <div>
@@ -20,8 +12,11 @@
     </div>
 
     <div class="buttons">
-      <label for="create"></label>
-      <input type="submit" value="Создать" id="create" name="create" class="wide-button" [disabled]="viewModel.form.invalid">
+      <label for="delete"></label>
+      <input type="button" value="Удалить" id="delete" name="create" class="red-button"
+             *ngIf="list.isDeletable" (click)="deleteList()">
+      <label for="edit"></label>
+      <input type="submit" value="Сохранить" id="edit" name="create" class="wide-button" [disabled]="viewModel.form.invalid">
     </div>
   </form>
 </div>

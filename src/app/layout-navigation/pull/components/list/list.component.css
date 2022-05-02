@@ -6,7 +6,8 @@
 
 .header{
   display: flex;
-
+  flex-direction: row;
+  align-items: center;
   margin: 20px 100px 20px 100px;
   padding: 20px 40px 15px 40px;
   border-bottom: 1px solid #9a9898;
@@ -18,6 +19,23 @@ h3.list-name{
   font-weight: normal;
   color: #303030;
   margin: 0;
+}
+
+.edit-button {
+  padding: 4px 5px 1px 5px;
+  margin: 0 15px;
+  border: 1px solid gray;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.edit-button:hover{
+  background-color: #f6f6f6;
+}
+
+.edit-button > img{
+  width: 20px;
+  height: auto;
 }
 
 .tasks-list{

@@ -5,7 +5,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { PullModule } from './layout-navigation/pull/pull.module';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { AuthGuard } from './auth/guards/auth-guard';
 
