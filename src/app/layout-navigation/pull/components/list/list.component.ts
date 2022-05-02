@@ -19,11 +19,13 @@ export class ListComponent {
     public taskSelected : EventEmitter<number> = new EventEmitter<number>();
 
     public get completedTasks() : Task[] {
-        return this.list.getCompletedTasks(this._listsData);
+        return this._listsData.tasksPull.filter((item: Task) =>
+            item.listId === this.list.id && item.isCompleted) ?? new Array<Task>();
     }
 
     public get uncompletedTasks() : Task[] {
-        return this.list.getUncompletedTasks(this._listsData);
+        return this._listsData.tasksPull.filter((item: Task) =>
+            item.listId === this.list.id && !item.isCompleted) ?? new Array<Task>();
     }
 
     @Input()

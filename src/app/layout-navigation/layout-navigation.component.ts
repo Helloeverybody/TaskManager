@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DialogService } from '../global-services/dialog.service';
-import { SettingsComponent } from './settings/settings.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @Component({
     selector: 'layout-nav-component',

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DialogInjection } from '../../global-services/dialogInjection';
+import { DialogInjection } from '../../../global-services/dialogInjection';
 
 @Component({
     selector: 'settings-component',

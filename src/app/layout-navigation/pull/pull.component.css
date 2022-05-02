@@ -93,3 +93,10 @@ a.list-button:active{
 .list-details{
   flex-grow: 1;
 }
+
+.tasks-count{
+  margin-left: auto;
+  margin-right: 13px;
+  font-size: 15px;
+  color: black;
+}

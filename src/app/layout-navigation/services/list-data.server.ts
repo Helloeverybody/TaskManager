@@ -6,7 +6,7 @@ import { Observable, Subscriber } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ListDataServer {
-    constructor(private _http: HttpClient) {  }
+    constructor(private _http: HttpClient) { }
 
     public getListsData (token : string) : Observable<string | null> {
         const login : string = JSON.parse(atob(token)).login;

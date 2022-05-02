@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { LayoutNavigationComponent } from './layout-navigation.component';
 import { DialogService } from '../global-services/dialog.service';
+import { SettingsComponent } from './components/settings/settings.component';
 
 const appRoutes: Routes = [
     {
@@ -18,9 +19,11 @@ const appRoutes: Routes = [
 @NgModule({
     declarations: [
         LayoutNavigationComponent,
+        SettingsComponent
     ],
     imports: [
         RouterModule.forChild(appRoutes),
+        CommonModule
     ],
     providers: [
         DatePipe,

@@ -4,14 +4,20 @@
   justify-content: start;
 }
 
+.header{
+  display: flex;
+
+  margin: 20px 100px 20px 100px;
+  padding: 20px 40px 15px 40px;
+  border-bottom: 1px solid #9a9898;
+}
+
 h3.list-name{
   font-family: Roboto, serif;
   font-size: 27px;
   font-weight: normal;
   color: #303030;
-  margin: 20px 100px 20px 100px;
-  padding: 20px 40px 15px 40px;
-  border-bottom: 1px solid #9a9898;
+  margin: 0;
 }
 
 .tasks-list{
