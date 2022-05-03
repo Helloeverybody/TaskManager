@@ -1,0 +1,176 @@
+.content{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20px 100px 20px 100px;
+  padding: 20px 40px 15px 40px;
+  border-bottom: 1px solid #9a9898;
+}
+
+h3.list-name{
+  font-family: Roboto, serif;
+  font-size: 27px;
+  font-weight: normal;
+  color: #303030;
+  margin: 0;
+}
+
+.edit-button {
+  padding: 4px 5px 1px 5px;
+  margin: 0 15px;
+  border: 1px solid gray;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.edit-button:hover{
+  background-color: #f6f6f6;
+}
+
+.edit-button > img{
+  width: 20px;
+  height: auto;
+}
+
+.tasks-list{
+  align-self: center;
+  width: 70%;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li.task{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  padding: 10px 40px 10px 0;
+  border-top: 1px solid black;
+}
+
+li.task:last-child{
+  border-bottom: 1px solid black;
+}
+
+li.task:hover{
+  background-color: #F2F2F2;
+}
+
+li.task:active{
+  background-color: #ececec;
+}
+
+li.task.selected{
+  background-color: #F2F2F2;
+  box-shadow: 0 3px 0 -2px black inset, 0 -3px 0 -2px black inset;
+}
+
+li.completed-task{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  padding: 10px 40px 10px 0;
+  border-top: 1px solid #a1a1a1;
+  color: #777777;
+}
+
+li.completed-task:last-child{
+  border-bottom: 1px solid #a1a1a1;
+}
+
+li.completed-task:hover{
+  background-color: #F2F2F2;
+}
+
+li.completed-task:active{
+  background-color: #ececec;
+}
+
+li.completed-task.selected{
+  background-color: #F2F2F2;
+  box-shadow: 0 3px 0 -2px #868686 inset, 0 -3px 0 -2px #868686 inset;
+}
+
+.marker{
+  margin: 0 10px 0 10px;
+  width: 12px;
+  height: 12px;
+  border: 1px solid black;
+  cursor: pointer;
+  background-color: white;
+}
+
+.marker:hover{
+  background-color: #F2F2F2;
+}
+
+.marker:active{
+  background-color: #ececec;
+}
+
+.completed-marker{
+  margin: 0 10px 0 10px;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #777777;
+  background-color: white;
+}
+
+.completed-marker:hover{
+  background-color: #F2F2F2;
+  cursor: pointer;
+}
+
+.completed-marker:active{
+  background-color: #ececec;
+}
+
+.completed-marker > img{
+  position: absolute;
+  height: 11px;
+  width: auto;
+  margin-left: 1px;
+}
+
+.create-task-button{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  font-family: Roboto, serif;
+  font-size: 15px;
+  width: 140px;
+  background-color: black;
+  color: white;
+  border-radius: 50px;
+  padding: 6px 8px 6px 8px;
+  margin: 0 0 10px 110px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.create-task-button > img {
+  height: 18px;
+  width: auto;
+}
+
+.completed-title{
+  margin-left: 20%;
+  margin-top: 30px;
+  color: #777777;
+}
+
+.no-tasks-placeholder{
+  margin: 10px auto;
+  font-size: 17px;
+}
+
+
+

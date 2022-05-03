@@ -7,11 +7,11 @@ import { TaskCreationComponent } from '../../../../shared/components/task-creati
 import { ListEditComponent } from '../list-edit/list-edit.component';
 
 @Component({
-    selector: 'list',
-    templateUrl: './list.component.html',
-    styleUrls: ['./list.component.css'],
+    selector: 'handle-list',
+    templateUrl: './handle-list.component.html',
+    styleUrls: ['./handle-list.component.css'],
 })
-export class ListComponent {
+export class HandleListComponent {
     public list : List = new List();
 
     public selectedTaskId : number = 0;

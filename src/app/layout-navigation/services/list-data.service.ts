@@ -69,7 +69,7 @@ export class ListDataService {
                                     list.id,
                                     list.color,
                                     list.isAuto,
-                                    list.isDeletable
+                                    list.isEditable
                                 ));
                             });
                         } else {

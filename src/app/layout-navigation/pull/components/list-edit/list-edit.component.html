@@ -13,8 +13,7 @@
 
     <div class="buttons">
       <label for="delete"></label>
-      <input type="button" value="Удалить" id="delete" name="create" class="red-button"
-             *ngIf="list.isDeletable" (click)="deleteList()">
+      <input type="button" value="Удалить" id="delete" name="create" class="red-button" (click)="deleteList()">
       <label for="edit"></label>
       <input type="submit" value="Сохранить" id="edit" name="create" class="wide-button" [disabled]="viewModel.form.invalid">
     </div>

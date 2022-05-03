@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { AuthGuard } from './auth/guards/auth-guard';
+import { AuthGuard } from './auth/guards/auth.guard';
 
 const routes: Routes = [
     {

@@ -46,3 +46,23 @@ label.inner-field{
 #create{
   margin-right: 20px;
 }
+
+.add-filter-button {
+  border: none;
+  outline: none;
+  background-color: black;
+  font-size: 15px;
+  font-family: Roboto;
+  border-radius: 50px;
+  padding: 5px 12px;
+  color: white;
+  cursor: pointer;
+  margin-left: 30px;
+  margin-bottom: 10px;
+}
+
+#filterType {
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+

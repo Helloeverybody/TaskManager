@@ -1,6 +1,6 @@
 <div class="card card-body">
   <button class="close-button" (click)="closeForm()"><img src="../../../../../assets/images/close-icon.svg" alt="cross-icon"></button>
-  <form [formGroup]="viewModel.form" (ngSubmit)="addList()">
+  <form [formGroup]="viewModel.form">
     <div>
       <label for="title"></label>
       <input type="text" id="title" name="title" formControlName="title" class="title-input" placeholder="Название списка" autocomplete="off">
@@ -8,10 +8,34 @@
 
     <div>
       <label for="type" class="inner-field">Тип:</label>
-      <select id="type" name="type" class="selection-box" formControlName="isAuto">
+      <select id="type" name="type" class="selection-box" formControlName="isAuto" [title]="listTypeHint">
         <option value="false" selected>Ручной</option>
         <option value="true">Автоматический</option>
       </select>
+    </div>
+
+    <div *ngIf="isAuto">
+      <button class="add-filter-button" (click)="viewModel.addFilter()" [title]="filterHint"
+              [disabled]="viewModel.filters.length >= 5">Добавить фильтр</button>
+      <div formArrayName="filters">
+        <div *ngFor="let filter of viewModel.filters.controls; let i = index">
+          <div class="filter" [formGroupName]="i">
+            <label for="filterType" class="inner-field">{{i + 1}}.  </label>
+            <select id="filterType" name="filterType" class="selection-box" formControlName="filterType">
+              <option value="none" [defaultSelected]="true" disabled hidden>тип</option>
+              <option value="timePeriod">по времени</option>
+              <option value="priority">по приоритету</option>
+              <option value="listAffiliation">по списку</option>
+              <option value="completeness">завершенные</option>
+              <option value="userTag">свой тег</option>
+            </select>
+
+            <input type="text" formControlName="filterValue">
+            <button (click)="viewModel.removeFilter(i)">x</button>
+
+          </div>
+        </div>
+      </div>
     </div>
 
     <div>
@@ -21,7 +45,8 @@
 
     <div class="buttons">
       <label for="create"></label>
-      <input type="submit" value="Создать" id="create" name="create" class="wide-button" [disabled]="viewModel.form.invalid">
+      <input type="submit" value="Создать" id="create" name="create" class="wide-button"
+             [disabled]="viewModel.form.invalid" (click)="addList()">
     </div>
   </form>
 </div>
