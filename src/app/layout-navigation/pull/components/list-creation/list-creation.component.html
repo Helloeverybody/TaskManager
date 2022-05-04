@@ -30,7 +30,31 @@
               <option value="userTag">свой тег</option>
             </select>
 
-            <input type="text" formControlName="filterValue">
+            <div *filterInput="getTemplate(i)"> </div>
+
+            <ng-template #timePeriod>
+              time period input
+            </ng-template>
+
+            <ng-template #priority>
+              <button>Высокий</button>
+              <button>Средний</button>
+              <button>Низкий</button>
+            </ng-template>
+
+            <ng-template #listAffiliation>
+              list affiliation input
+            </ng-template>
+
+            <ng-template #completeness>
+              <button>Завершено</button>
+              <button>Не завершено</button>
+            </ng-template>
+
+            <ng-template #userTag>
+              <input type="text" placeholder="userTag">
+            </ng-template>
+
             <button (click)="viewModel.removeFilter(i)">x</button>
 
           </div>

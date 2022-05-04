@@ -8,6 +8,7 @@ import { PullComponent } from './pull.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ListEditComponent } from './components/list-edit/list-edit.component';
 import { AutomaticListComponent } from './components/automatic-list/automatic-list.component';
+import { DifferentInputDirective } from './directives/different-input.directive';
 
 const routes: Routes = [
     { path: '', component: PullComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
         AutomaticListComponent,
         ListEditComponent,
         ListCreationComponent,
+        DifferentInputDirective,
     ],
     imports: [
         RouterModule.forChild(routes),
