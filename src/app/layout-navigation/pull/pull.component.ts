@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ListDataService } from '../services/list-data.service';
 import { ListCreationComponent } from './components/list-creation/list-creation.component';
 import { DialogService } from '../../global-services/dialog.service';
-import { List } from './models/list.model';
+import { HandleList } from './models/handleList.model';
 import { Task } from '../../core/task.model';
 
 @Component({
@@ -11,7 +11,7 @@ import { Task } from '../../core/task.model';
     styleUrls: ['./pull.component.css'],
 })
 export class PullComponent {
-    public pull : List[] = [];
+    public pull : HandleList[] = [];
     public currentListId: number = 1;
     public currentTaskId: number = 0;
 

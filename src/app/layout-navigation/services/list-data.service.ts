@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
-import { List } from '../pull/models/list.model';
+import { HandleList } from '../pull/models/handleList.model';
 import { Task } from '../../core/task.model';
 import { AuthorizationService } from '../../global-services/authorizaton.service';
 import { ListDataServer } from './list-data.server';
 import { Observable, Subscriber } from 'rxjs';
+import { IList } from '../pull/interfaces/list.interface';
+import { IListCreator } from '../pull/interfaces/listCreator.interface';
+import { AutoListCreator } from '../pull/models/autoListCreator.model';
+import { HandleListCreator } from '../pull/models/handleListCreator.model';
 
 @Injectable({ providedIn: 'root' })
 export class ListDataService {
-    private _lists : List[] = [];
+    private _lists : HandleList[] = [];
     private _tasks : Task[] = [];
 
-    public get listsPull() : List[] {
+    public get listsPull() : IList[] {
         this.loadData();
 
         return this._lists;
@@ -24,17 +28,17 @@ export class ListDataService {
 
     constructor(private _auth: AuthorizationService, private _server: ListDataServer) { }
 
-    public addList(list: List) : void {
+    public addList(list: IList) : void {
         list.id = this._lists.length + 1;
         this._lists.push(list);
     }
 
-    public updateList(list: List) : void {
+    public updateList(list: IList) : void {
         const index : number = this.listsPull.indexOf(list);
         this.listsPull.splice(index, 1, list);
     }
 
-    public deleteList(list: List) : void {
+    public deleteList(list: IList) : void {
         const index : number = this.listsPull.indexOf(list);
         this.listsPull.splice(index, 1);
     }
@@ -63,14 +67,12 @@ export class ListDataService {
                 this._server.getListsData(this._auth.token).subscribe(
                     (data : string | null) => {
                         if (data) {
-                            JSON.parse(data).forEach((list: List) => {
-                                this._lists.push(new List(
-                                    list.title,
-                                    list.id,
-                                    list.color,
-                                    list.isAuto,
-                                    list.isEditable
-                                ));
+                            const dataObject : any = JSON.parse(data);
+
+                            dataObject.forEach((list: IList) => {
+                                const creator : IListCreator =
+                                    list.hasOwnProperty('filters') ? new AutoListCreator() : new HandleListCreator();
+                                this._lists.push(creator.listFromData(list));
                             });
                         } else {
                             console.log('Пользователь не был найден');

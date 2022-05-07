@@ -21,7 +21,7 @@
         <div *ngFor="let filter of viewModel.filters.controls; let i = index">
           <div class="filter" [formGroupName]="i">
             <label for="filterType" class="inner-field">{{i + 1}}.  </label>
-            <select id="filterType" name="filterType" class="selection-box" formControlName="filterType">
+            <select id="filterType" name="filterType" class="selection-box" formControlName="filterType" (change)="setTemplate(i)">
               <option value="none" [defaultSelected]="true" disabled hidden>тип</option>
               <option value="timePeriod">по времени</option>
               <option value="priority">по приоритету</option>
@@ -30,10 +30,21 @@
               <option value="userTag">свой тег</option>
             </select>
 
-            <div *filterInput="getTemplate(i)"> </div>
+            <button (click)="viewModel.removeFilter(i)">x</button>
+
+            <br>
+            <div *filterInput="inputTemplates[i]" ></div>
 
             <ng-template #timePeriod>
-              time period input
+              <div formGroupName="inputData">
+                с
+                <input type="date" formControlName="startDate">
+                <input type="time" formControlName="startTime">
+                <br>
+                по
+                <input type="date" formControlName="endDate">
+                <input type="time" formControlName="endTime">
+              </div>
             </ng-template>
 
             <ng-template #priority>
@@ -54,8 +65,6 @@
             <ng-template #userTag>
               <input type="text" placeholder="userTag">
             </ng-template>
-
-            <button (click)="viewModel.removeFilter(i)">x</button>
 
           </div>
         </div>

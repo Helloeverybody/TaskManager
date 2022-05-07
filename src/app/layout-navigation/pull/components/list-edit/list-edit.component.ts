@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { List } from '../../models/list.model';
+import { HandleList } from '../../models/handleList.model';
 import { DialogInjection } from '../../../../global-services/dialogInjection';
 import { ListDataService } from '../../../services/list-data.service';
 import { ListEditViewModel } from '../../view-models/list-edit.view-model';
+import { IList } from '../../interfaces/list.interface';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'list-creation-window',
@@ -10,12 +12,12 @@ import { ListEditViewModel } from '../../view-models/list-edit.view-model';
     styleUrls: ['./list-edit.component.css'],
 })
 export class ListEditComponent {
-    public viewModel : ListEditViewModel = new ListEditViewModel();
+    public viewModel : ListEditViewModel = new ListEditViewModel(this._fb);
     public id : number = this._closer.parameter;
-    public list : List;
+    public list : IList;
 
-    constructor(private _data: ListDataService, private _closer: DialogInjection) {
-        this.list = _data.listsPull.find((list: List) => list.id === this.id) ?? new List();
+    constructor(private _data: ListDataService, private _closer: DialogInjection, private _fb : FormBuilder) {
+        this.list = _data.listsPull.find((list: IList) => list.id === this.id) ?? new HandleList();
         this.viewModel.fromModel(this.list);
     }
 

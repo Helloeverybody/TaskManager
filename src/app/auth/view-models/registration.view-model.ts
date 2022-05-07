@@ -1,27 +1,27 @@
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegistrationDataModel } from '../models/registration-data.model';
 import { passwordConfirmValidator } from '../validators/password-confirm.validator';
 
 export class RegistrationViewModel {
-    public form: FormGroup = new FormGroup({
-        login: new FormControl('', [
+    public form: FormGroup = this._fb.group({
+        login: ['', [
             Validators.required,
             Validators.pattern(/^\w+$/),
             Validators.minLength(6),
-        ]),
-        email: new FormControl('', [
+        ]],
+        email: ['', [
             Validators.required,
             Validators.email,
-        ]),
-        password: new FormControl('', [
+        ]],
+        password: ['', [
             Validators.required,
             Validators.pattern(/^[\w!"#$%&'()*+,\-./]+$/),
             Validators.minLength(8),
-        ]),
-        passwordConfirmation: new FormControl('', [
-            Validators.required,
-        ]),
-    }, { validators : passwordConfirmValidator });
+        ]],
+        passwordConfirmation: ['', Validators.required],
+    },{ validators : passwordConfirmValidator });
+
+    constructor (private _fb : FormBuilder) { }
 
     public toModel() : RegistrationDataModel {
         return {

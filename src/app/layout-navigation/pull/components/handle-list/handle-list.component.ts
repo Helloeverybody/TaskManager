@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, } from '@angular/core';
 import { ListDataService } from '../../../services/list-data.service';
-import { List } from '../../models/list.model';
+import { HandleList } from '../../models/handleList.model';
 import { DialogService } from '../../../../global-services/dialog.service';
 import { Task } from '../../../../core/task.model';
 import { TaskCreationComponent } from '../../../../shared/components/task-creation/task-creation.component';
@@ -12,7 +12,7 @@ import { ListEditComponent } from '../list-edit/list-edit.component';
     styleUrls: ['./handle-list.component.css'],
 })
 export class HandleListComponent {
-    public list : List = new List();
+    public list : HandleList = new HandleList();
 
     public selectedTaskId : number = 0;
 
@@ -32,7 +32,7 @@ export class HandleListComponent {
     @Input()
     public set listId(id: number) {
         this._listId = id;
-        this.list = this._listsData.listsPull.find((item : List) => item.id === id) || new List();
+        this.list = this._listsData.listsPull.find((item : HandleList) => item.id === id) || new HandleList();
         this.selectedTaskId = 0;
         this.selectTask(0);
     }

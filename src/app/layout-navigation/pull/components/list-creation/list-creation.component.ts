@@ -2,6 +2,7 @@ import { Component, TemplateRef, ViewChild, } from '@angular/core';
 import { DialogInjection } from '../../../../global-services/dialogInjection';
 import { ListDataService } from '../../../services/list-data.service';
 import { ListCreationViewModel } from '../../view-models/list-creation.view-model';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'list-creation-window',
@@ -9,7 +10,7 @@ import { ListCreationViewModel } from '../../view-models/list-creation.view-mode
     styleUrls: ['./list-creation.component.css'],
 })
 export class ListCreationComponent {
-    public viewModel : ListCreationViewModel = new ListCreationViewModel();
+    public viewModel : ListCreationViewModel = new ListCreationViewModel(this._fb);
     public filterHint : string = 'По этим фильтрам в список будут выбираться задачи из всех существующих задач';
     public listTypeHint : string = 'В ручном списке вы сами создаете задачи. В автоматическом списке задачи собираются по выбранным вами фильтрам';
 
@@ -29,22 +30,27 @@ export class ListCreationComponent {
     @ViewChild('userTag')
     public userTag : TemplateRef<any> | undefined = undefined;
 
-    constructor(public data: ListDataService, private _closer: DialogInjection) { }
+    public inputTemplates : Array<TemplateRef<any> | undefined> = [];
 
-    public getTemplate(id: number) : TemplateRef<any> | undefined {
+    constructor(public data: ListDataService, private _closer: DialogInjection, private _fb : FormBuilder) {}
+
+    public setTemplate(id: number) : void {
         const val : string = this.viewModel.filters.controls[id].get('filterType')?.value;
+        if (this.inputTemplates.length < id) {
+            this.inputTemplates.push(undefined);
+        }
+
         if (val === 'timePeriod') {
-            return this.timePeriod;
+            this.inputTemplates[id] = this.timePeriod;
+            this.viewModel.addTimePeriodControls(id);
         } else if (val === 'priority') {
-            return this.priority;
+            this.inputTemplates[id] = this.priority;
         } else if (val === 'listAffiliation') {
-            return this.listAffiliation;
+            this.inputTemplates[id] = this.listAffiliation;
         } else if (val === 'completeness') {
-            return this.completeness;
+            this.inputTemplates[id] = this.completeness;
         } else if (val === 'userTag') {
-            return this.userTag;
-        } else {
-            return undefined;
+            this.inputTemplates[id] = this.userTag;
         }
     }
 

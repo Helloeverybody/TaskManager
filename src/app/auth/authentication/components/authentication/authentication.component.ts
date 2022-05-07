@@ -3,6 +3,7 @@ import { AuthenticationViewModel } from '../../../view-models/authentication.vie
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AuthenticationDataModel } from '../../../models/authentication-data.model';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'authentication-component',
@@ -10,10 +11,10 @@ import { AuthenticationDataModel } from '../../../models/authentication-data.mod
     styleUrls: ['./authentication.component.css'],
 })
 export class AuthenticationComponent {
-    public viewModel : AuthenticationViewModel = new AuthenticationViewModel();
+    public viewModel : AuthenticationViewModel = new AuthenticationViewModel(this._fb);
     public formValid : boolean = true;
 
-    constructor (private _router : Router, private _authService : AuthService) { }
+    constructor (private _router : Router, private _authService : AuthService, private _fb : FormBuilder) { }
 
     public toRegistration() : void {
         this._router.navigate(['/auth/registration']);

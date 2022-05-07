@@ -1,22 +1,25 @@
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { List } from '../models/list.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HandleList } from '../models/handleList.model';
 
 export class ListEditViewModel{
-    public form: FormGroup = new FormGroup({
-        title: new FormControl('', Validators.required),
-        color: new FormControl('#ffffff'),
+    public form: FormGroup = this._fb.group({
+        title: ['', Validators.required],
+        color: ['#ffffff'],
     });
 
-    public toModel(list : List) : List {
+    constructor (private _fb : FormBuilder) {
+    }
+
+    public toModel(list : HandleList) : HandleList {
         list.title = this.form.value.title;
         list.color = this.form.value.color;
 
         return list;
     }
 
-    public fromModel(list: List | undefined) : void {
+    public fromModel(list: HandleList | undefined) : void {
         if (list === undefined) {
-            console.log('Ошибка: список не найден');
+            console.log('Error: list not found');
         }
         this.form.setValue({ title: list?.title, color: list?.color });
     }

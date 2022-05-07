@@ -1,23 +1,21 @@
-import { ITag } from './filter.interface';
+import { ITag } from '../interfaces/filter.interface';
+import { IList } from '../interfaces/list.interface';
 
-export class List {
+export class AutoList implements IList{
     public title: string;
 
     public id: number;
 
     public color: string;
 
-    public isAuto: boolean;
-
     public isEditable: boolean;
 
-    public filters: any[];
+    public filters : ITag[];
 
-    constructor(title?: string, id?: number, color?: string, isAuto?: boolean, isDeletable?: boolean, filters?: ITag[]) {
+    constructor(title?: string, id?: number, color?: string, isDeletable?: boolean, filters?: ITag[]) {
         this.title = title ?? '';
         this.id = id ?? 0;
         this.color = color ?? '#ffffff';
-        this.isAuto = isAuto ?? false;
         this.isEditable = isDeletable ?? true;
         this.filters = filters ?? [];
     }

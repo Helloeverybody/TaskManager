@@ -1,46 +1,54 @@
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { List } from '../models/list.model';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IList } from '../interfaces/list.interface';
+import { AutoListCreator } from '../models/autoListCreator.model';
+import { HandleListCreator } from '../models/handleListCreator.model';
+import { IListCreator } from '../interfaces/listCreator.interface';
 
-export class ListCreationViewModel{
-    public form: FormGroup = new FormGroup({
-        title: new FormControl('', Validators.required),
-        isAuto: new FormControl('false', Validators.required),
-        color: new FormControl('#ffffff'),
-        filters: new FormArray([]),
+export class ListCreationViewModel {
+    public form: FormGroup = this._fb.group({
+        title: ['', Validators.required],
+        isAuto: ['false', Validators.required],
+        color: ['#ffffff'],
+        filters: this._fb.array([]),
     });
+
+    constructor (private _fb : FormBuilder) { }
 
     public get filters() : FormArray  {
         return this.form.get('filters') as FormArray;
     }
 
     public addFilter() : void {
-        const newFilter : FormGroup = new FormGroup({
-            filterType : new FormControl(),
-            filterValue : new FormControl()
+        const newFilter : FormGroup = this._fb.group({
+            filterType : []
         });
 
-        const filtersControl : FormArray = this.form.get('filters') as FormArray;
+        const filtersControl : FormArray = this.filters;
         filtersControl.push(newFilter);
+    }
+
+    public addTimePeriodControls(id : number) : void {
+        const inputData : FormGroup = this._fb.group({
+            startDate: [''],
+            startTime: [''],
+            endDate: [''],
+            endTime: [''],
+        });
+
+        const con : FormGroup = this.filters.controls[id] as FormGroup;
+        con.addControl('inputData', inputData);
     }
 
     public removeFilter(id : number) : void {
         this.filters.removeAt(id);
     }
 
-    public toModel(id: number) : List {
-        let filters : [] = this.form.value.filters;
+    public toModel(id: number) : IList {
         const isAuto : boolean = this.form.value.isAuto === 'true';
-        if (!isAuto) {
-            filters = [];
-        }
+        const creator : IListCreator = isAuto ? new AutoListCreator() : new HandleListCreator();
 
-        return {
-            title: this.form.value.title,
-            id: id,
-            color: this.form.value.color,
-            isAuto: isAuto,
-            isEditable: true,
-            filters: filters
-        };
+        console.log(this.form);
+
+        return creator.listFromForm(this.form, id);
     }
 }

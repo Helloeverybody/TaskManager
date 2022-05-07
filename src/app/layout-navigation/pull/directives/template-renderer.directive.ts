@@ -1,7 +1,7 @@
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
 @Directive({ selector: '[filterInput]' })
-export class DifferentInputDirective {
+export class TemplateRendererDirective {
     @Input()
     public set filterInput(el : TemplateRef<any> | undefined) {
         if (el !== undefined) {

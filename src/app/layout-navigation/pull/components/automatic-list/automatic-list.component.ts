@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output, } from '@angular/core';
 import { ListDataService } from '../../../services/list-data.service';
-import { List } from '../../models/list.model';
 import { DialogService } from '../../../../global-services/dialog.service';
 import { Task } from '../../../../core/task.model';
 import { TaskCreationComponent } from '../../../../shared/components/task-creation/task-creation.component';
 import { ListEditComponent } from '../list-edit/list-edit.component';
+import { AutoList } from '../../models/autoList.model';
+import { IList } from '../../interfaces/list.interface';
 
 @Component({
     selector: 'automatic-list',
@@ -12,7 +13,7 @@ import { ListEditComponent } from '../list-edit/list-edit.component';
     styleUrls: ['./automatic-list.component.css'],
 })
 export class AutomaticListComponent {
-    public list : List = new List();
+    public list : AutoList = new AutoList();
 
     public selectedTaskId : number = 0;
 
@@ -32,7 +33,7 @@ export class AutomaticListComponent {
     @Input()
     public set listId(id: number) {
         this._listId = id;
-        this.list = this._listsData.listsPull.find((item : List) => item.id === id) || new List();
+        this.list = this._listsData.listsPull.find((item : IList) => item.id === id) as AutoList || new AutoList();
         this.selectedTaskId = 0;
         this.selectTask(0);
     }

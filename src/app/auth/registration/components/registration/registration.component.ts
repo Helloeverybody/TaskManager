@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { RegistrationViewModel } from '../../../view-models/registration.view-model';
 import { RegistrationDataModel } from '../../../models/registration-data.model';
 import { AuthService } from '../../../services/auth.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'registration-component',
@@ -10,10 +11,10 @@ import { AuthService } from '../../../services/auth.service';
     styleUrls: ['./registration.component.css'],
 })
 export class RegistrationComponent {
-    public viewModel : RegistrationViewModel = new RegistrationViewModel();
+    public viewModel : RegistrationViewModel = new RegistrationViewModel(this._fb);
     public submitTouched : boolean = false;
 
-    constructor (private _router : Router, private _authService : AuthService) { }
+    constructor (private _router : Router, private _authService : AuthService, private _fb : FormBuilder) { }
 
     public toAuthentication() : void {
         this._router.navigate(['/auth/authentication']);
