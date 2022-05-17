@@ -66,8 +66,8 @@ label.inner-field{
   margin-bottom: 5px;
 }
 
-.date-input-field-group{
-  margin-left: 60px;
+.input-field-group{
+  margin-left: 90px;
   margin-bottom: 10px;
 }
 
@@ -89,52 +89,56 @@ label.inner-field{
 
 .small-close-button{
   font-size: 10px;
-  color: #ff6e6e;
-  background-color: #fff1f1;
+  color: #000000;
+  background-color: #ffffff;
   width: 18px;
   height: 18px;
   outline: none;
   border-radius: 10px;
-  border: 1px solid #ff5959;
+  border: 1px solid #000000;
   cursor: pointer;
   padding: 0
 }
 
 .small-close-button:hover {
   background-color: #ffe5e5;
+  border: 1px solid #ff5959;
+  color: #ff6e6e;
 }
 
 .small-close-button:active {
   background-color: #ffd5d5;
+  border: 1px solid #ff5959;
+  color: #ff6e6e;
 }
 
-.light-button {
-  background-color: white;
-  font-family: Roboto;
+input[type=radio] {
+  display: none;
+}
+
+input[type=radio]+label {
+  display: inline-block;
   padding: 5px 10px;
-  outline: none;
+  margin-left: 5px;
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: white;
+  background-repeat: repeat-x;
   border-radius: 10px;
   border: black solid 1px;
-  cursor: pointer;
-  margin-left: 5px;
   box-shadow: 2px 2px 1px 1px black;
 }
 
-.light-button:hover {
-  background-color: #eeeeee;
-}
-
-.light-button:active {
-  background-color: #d2d2d2;
-}
-
-.selected-button {
+input[type=radio]:checked+label {
   border: #27af39 solid 1px;
   box-shadow: 2px 2px 1px 1px #0b9300;
 }
 
-.filter {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+input[type=radio]:hover+label {
+  background-color: #f5fff1;
 }

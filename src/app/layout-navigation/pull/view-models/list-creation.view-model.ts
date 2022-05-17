@@ -15,9 +15,9 @@ export class ListCreationViewModel {
     public get addControl() : any {
         return {
             timePeriod: this.addTimePeriodControls(this._fb, this.filters),
-            // priority: this.priority,
-            // listAffiliation: this.listAffiliation,
-            // completeness: this.completeness,
+            priority: this.addPriorityControls(this._fb, this.filters),
+            listAffiliation: this.addListAffiliationControls(this._fb, this.filters),
+            completeness: this.addCompletenessControls(this._fb, this.filters),
             // userTag: this.userTag
         };
     }
@@ -30,7 +30,7 @@ export class ListCreationViewModel {
 
     public addFilter() : void {
         const newFilter : FormGroup = this._fb.group({
-            filterType : []
+            filterType : ['none']
         });
 
         const filtersControl : FormArray = this.filters;
@@ -42,10 +42,49 @@ export class ListCreationViewModel {
     public addTimePeriodControls(formBuilder: FormBuilder, filterControls: FormArray) : Function {
         return function (id : number) {
             const inputData : FormGroup = formBuilder.group({
-                startDate: [''],
-                startTime: [''],
-                endDate: [''],
-                endTime: [''],
+                startDate: [],
+                startTime: [],
+                endDate: [],
+                endTime: [],
+            });
+
+            const filterGroup: FormGroup = filterControls.controls[id] as FormGroup;
+            filterGroup.addControl('inputData', inputData);
+            console.log('Контролы фильтра с айди после добавления инпут контрола:', id);
+            console.log(filterGroup);
+        };
+    }
+
+    public addPriorityControls(formBuilder: FormBuilder, filterControls: FormArray) : Function {
+        return function (id : number) {
+            const inputData : FormGroup = formBuilder.group({
+                degrees: [],
+            });
+
+            const filterGroup: FormGroup = filterControls.controls[id] as FormGroup;
+            filterGroup.addControl('inputData', inputData);
+            console.log('Контролы фильтра с айди после добавления инпут контрола:', id);
+            console.log(filterGroup);
+        };
+    }
+
+    public addListAffiliationControls(formBuilder: FormBuilder, filterControls: FormArray) : Function {
+        return function (id : number) {
+            const inputData : FormGroup = formBuilder.group({
+                listId: [],
+            });
+
+            const filterGroup: FormGroup = filterControls.controls[id] as FormGroup;
+            filterGroup.addControl('inputData', inputData);
+            console.log('Контролы фильтра с айди после добавления инпут контрола:', id);
+            console.log(filterGroup);
+        };
+    }
+
+    public addCompletenessControls(formBuilder: FormBuilder, filterControls: FormArray) : Function {
+        return function (id : number) {
+            const inputData : FormGroup = formBuilder.group({
+                isCompleted: [],
             });
 
             const filterGroup: FormGroup = filterControls.controls[id] as FormGroup;

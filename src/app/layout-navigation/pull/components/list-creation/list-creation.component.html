@@ -19,24 +19,24 @@
               [disabled]="viewModel.filters.length >= 5">Добавить фильтр</button>
       <div formArrayName="filters">
         <div *ngFor="let filter of viewModel.filters.controls; let i = index">
-          <div class="filter" [formGroupName]="i">
+          <div class="filter" [formGroup]=getForm(i)>
             <label for="filterType" class="inner-field">{{i + 1}}.  </label>
             <select id="filterType" name="filterType" class="selection-box" formControlName="filterType" (change)="setTemplate(i)">
               <option value="none" [defaultSelected]="true" disabled hidden>тип</option>
-              <option value="timePeriod">по времени</option>
-              <option value="priority">по приоритету</option>
-              <option value="listAffiliation">по списку</option>
-              <option value="completeness">завершенные</option>
-              <option value="userTag">свой тег</option>
+              <option value="timePeriod" [disabled]="formHasControl('timePeriod')">по времени</option>
+              <option value="priority" [disabled]="formHasControl('priority')">по приоритету</option>
+              <option value="listAffiliation" [disabled]="formHasControl('listAffiliation')">по списку</option>
+              <option value="completeness" [disabled]="formHasControl('completeness')">завершенные</option>
+<!--              <option value="userTag" [disabled]="formHasControl('userTag')">свой тег</option>-->
             </select>
 
             <button class="small-close-button" (click)="removeFilter(i)">✖</button>
 
             <br>
-            <div *filterInput="inputTemplates[i]" ></div>
+            <div *filterInput="inputTemplates[i]"></div>
 
             <ng-template #timePeriod>
-              <div formGroupName="inputData" class="date-input-field-group">
+              <div formGroupName="inputData" class="input-field-group">
                 <div class="label">c</div>
                 <input id="startDate" type="date" formControlName="startDate" class="selection-box">
                 <input id="startTime" type="time" formControlName="startTime" class="selection-box">
@@ -48,26 +48,45 @@
             </ng-template>
 
             <ng-template #priority>
-              <div class="date-input-field-group">
-                <button class="light-button" [ngClass]="{'selected-button': true}">Высокий</button>
-                <button class="light-button" [ngClass]="{'selected-button': true}">Средний</button>
-                <button class="light-button" [ngClass]="{'selected-button': true}">Низкий</button>
-              </div>
+              <div formGroupName="inputData" class="input-field-group">
+                <input type="radio" class="light-button" formControlName="degrees" name="degrees" value="high" id="deg-high">
+                <label for="deg-high">Высокий</label>
+
+                <input type="radio" class="light-button" name="degrees" value="normal" id="deg-normal">
+                <label for="deg-normal">Средний</label>
+
+                <input type="radio" class="light-button" name="degrees" value="low" id="deg-low">
+                <label for="deg-low">Низкий</label>
+               </div>
             </ng-template>
 
             <ng-template #listAffiliation>
-              list affiliation input
+              <div formGroupName="inputData" class="input-field-group">
+                <label for="listId" class="inner-field"></label>
+                <select id="listId" name="listId" class="selection-box" formControlName="listId">
+                  <option value="none" [defaultSelected]="true" disabled hidden>выберите список</option>
+                  <option *ngFor="let list of data.handleLists" value="{{list.id}}">{{list.title}}</option>
+                </select>
+              </div>
             </ng-template>
 
             <ng-template #completeness>
-              <button>Завершено</button>
-              <button>Не завершено</button>
+              <div formGroupName="inputData" class="input-field-group">
+                <input type="radio" class="light-button" formControlName="isCompleted" name="isCompleted" value="completed" id="completed">
+                <label for="completed">Завершено</label>
+
+                <input type="radio" class="light-button" name="isCompleted" value="uncompleted" id="uncompleted">
+                <label for="uncompleted">Не завершено</label>
+              </div>
             </ng-template>
 
+<!--            В разработке-->
+<!--            дожить бы до тегов...-->
             <ng-template #userTag>
-              <input type="text" placeholder="userTag">
+              <div formGroupName="inputData" class="input-field-group">
+                <input type="text" placeholder="userTag">
+              </div>
             </ng-template>
-
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@ import { Component, TemplateRef, ViewChild, } from '@angular/core';
 import { DialogInjection } from '../../../../global-services/dialogInjection';
 import { ListDataService } from '../../../services/list-data.service';
 import { ListCreationViewModel } from '../../view-models/list-creation.view-model';
-import { FormBuilder } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'list-creation-window',
@@ -29,7 +29,7 @@ export class ListCreationComponent {
     @ViewChild('userTag')
     public userTag : TemplateRef<any> | undefined = undefined;
 
-    public get templates() : any {
+    private get templates() : any {
         return {
             timePeriod: this.timePeriod,
             priority: this.priority,
@@ -55,7 +55,16 @@ export class ListCreationComponent {
 
         this.inputTemplates[id] = this.templates[type];
         this.viewModel.addControl[type](id);
+    }
 
+    public formHasControl(name: string) : boolean {
+        const controls: AbstractControl[] = this.viewModel.filters.controls;
+
+        return controls.find((control: AbstractControl) => control.get('filterType')?.value === name) !== undefined;
+    }
+
+    public getForm(id: number) : FormGroup {
+        return this.viewModel.filters.controls[id] as FormGroup;
     }
 
     public removeFilter(id : number) : void {
@@ -74,9 +83,5 @@ export class ListCreationComponent {
 
     public get isAuto() : boolean {
         return this.viewModel.form.value.isAuto === 'true';
-    }
-
-    public a(value: any) : void {
-        console.log(value);
     }
 }

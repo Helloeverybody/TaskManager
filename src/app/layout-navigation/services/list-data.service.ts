@@ -7,6 +7,7 @@ import { IList } from '../pull/interfaces/list.interface';
 import { IListCreator } from '../pull/interfaces/listCreator.interface';
 import { AutoListCreator } from '../pull/models/autoListCreator.model';
 import { HandleListCreator } from '../pull/models/handleListCreator.model';
+import { HandleList } from '../pull/models/handleList.model';
 
 @Injectable({ providedIn: 'root' })
 export class ListDataService {
@@ -17,6 +18,10 @@ export class ListDataService {
         this.loadData();
 
         return this._lists;
+    }
+
+    public get handleLists() : HandleList[] {
+        return <HandleList[]>(this._lists.filter((list : IList) => !list.hasOwnProperty('filters')) || []);
     }
 
     public get tasksPull() : Task[] {
