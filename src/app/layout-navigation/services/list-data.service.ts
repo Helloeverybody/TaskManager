@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HandleList } from '../pull/models/handleList.model';
 import { Task } from '../../core/task.model';
 import { AuthorizationService } from '../../global-services/authorizaton.service';
 import { ListDataServer } from './list-data.server';
@@ -11,7 +10,7 @@ import { HandleListCreator } from '../pull/models/handleListCreator.model';
 
 @Injectable({ providedIn: 'root' })
 export class ListDataService {
-    private _lists : HandleList[] = [];
+    private _lists : IList[] = [];
     private _tasks : Task[] = [];
 
     public get listsPull() : IList[] {

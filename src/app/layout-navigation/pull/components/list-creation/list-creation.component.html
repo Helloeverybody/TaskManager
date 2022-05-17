@@ -30,27 +30,29 @@
               <option value="userTag">свой тег</option>
             </select>
 
-            <button (click)="viewModel.removeFilter(i)">x</button>
+            <button class="small-close-button" (click)="removeFilter(i)">✖</button>
 
             <br>
             <div *filterInput="inputTemplates[i]" ></div>
 
             <ng-template #timePeriod>
-              <div formGroupName="inputData">
-                с
-                <input type="date" formControlName="startDate">
-                <input type="time" formControlName="startTime">
+              <div formGroupName="inputData" class="date-input-field-group">
+                <div class="label">c</div>
+                <input id="startDate" type="date" formControlName="startDate" class="selection-box">
+                <input id="startTime" type="time" formControlName="startTime" class="selection-box">
                 <br>
-                по
-                <input type="date" formControlName="endDate">
-                <input type="time" formControlName="endTime">
+                <div class="label">по</div>
+                <input id="endDate" type="date" formControlName="endDate" class="selection-box">
+                <input id="endTime" type="time" formControlName="endTime" class="selection-box">
               </div>
             </ng-template>
 
             <ng-template #priority>
-              <button>Высокий</button>
-              <button>Средний</button>
-              <button>Низкий</button>
+              <div class="date-input-field-group">
+                <button class="light-button" [ngClass]="{'selected-button': true}">Высокий</button>
+                <button class="light-button" [ngClass]="{'selected-button': true}">Средний</button>
+                <button class="light-button" [ngClass]="{'selected-button': true}">Низкий</button>
+              </div>
             </ng-template>
 
             <ng-template #listAffiliation>

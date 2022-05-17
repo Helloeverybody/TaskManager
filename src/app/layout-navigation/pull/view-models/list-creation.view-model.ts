@@ -12,6 +12,16 @@ export class ListCreationViewModel {
         filters: this._fb.array([]),
     });
 
+    public get addControl() : any {
+        return {
+            timePeriod: this.addTimePeriodControls(this._fb, this.filters),
+            // priority: this.priority,
+            // listAffiliation: this.listAffiliation,
+            // completeness: this.completeness,
+            // userTag: this.userTag
+        };
+    }
+
     constructor (private _fb : FormBuilder) { }
 
     public get filters() : FormArray  {
@@ -25,22 +35,37 @@ export class ListCreationViewModel {
 
         const filtersControl : FormArray = this.filters;
         filtersControl.push(newFilter);
+        console.log('Все фильтры после добавления фильтра');
+        console.log(filtersControl);
     }
 
-    public addTimePeriodControls(id : number) : void {
-        const inputData : FormGroup = this._fb.group({
-            startDate: [''],
-            startTime: [''],
-            endDate: [''],
-            endTime: [''],
-        });
+    public addTimePeriodControls(formBuilder: FormBuilder, filterControls: FormArray) : Function {
+        return function (id : number) {
+            const inputData : FormGroup = formBuilder.group({
+                startDate: [''],
+                startTime: [''],
+                endDate: [''],
+                endTime: [''],
+            });
 
-        const con : FormGroup = this.filters.controls[id] as FormGroup;
-        con.addControl('inputData', inputData);
+            const filterGroup: FormGroup = filterControls.controls[id] as FormGroup;
+            filterGroup.addControl('inputData', inputData);
+            console.log('Контролы фильтра с айди после добавления инпут контрола:', id);
+            console.log(filterGroup);
+        };
+    }
+
+    public clearInputControl(id : number) : void {
+        const filterGroup : FormGroup = this.filters.controls[id] as FormGroup;
+        filterGroup.removeControl('inputData');
+        console.log('Контролы фильтра с айди после очистки инпут контрола:', id);
+        console.log(filterGroup);
     }
 
     public removeFilter(id : number) : void {
         this.filters.removeAt(id);
+        console.log('Все фильтры после удаления фильтра');
+        console.log(this.filters);
     }
 
     public toModel(id: number) : IList {

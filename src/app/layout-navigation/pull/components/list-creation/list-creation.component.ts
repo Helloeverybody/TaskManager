@@ -14,7 +14,6 @@ export class ListCreationComponent {
     public filterHint : string = 'По этим фильтрам в список будут выбираться задачи из всех существующих задач';
     public listTypeHint : string = 'В ручном списке вы сами создаете задачи. В автоматическом списке задачи собираются по выбранным вами фильтрам';
 
-
     @ViewChild('timePeriod')
     public timePeriod : TemplateRef<any> | undefined = undefined;
 
@@ -30,33 +29,42 @@ export class ListCreationComponent {
     @ViewChild('userTag')
     public userTag : TemplateRef<any> | undefined = undefined;
 
+    public get templates() : any {
+        return {
+            timePeriod: this.timePeriod,
+            priority: this.priority,
+            listAffiliation: this.listAffiliation,
+            completeness: this.completeness,
+            userTag: this.userTag
+        };
+    }
+
     public inputTemplates : Array<TemplateRef<any> | undefined> = [];
 
     constructor(public data: ListDataService, private _closer: DialogInjection, private _fb : FormBuilder) {}
 
     public setTemplate(id: number) : void {
-        const val : string = this.viewModel.filters.controls[id].get('filterType')?.value;
+        const type : string = this.viewModel.filters.controls[id].get('filterType')?.value;
         if (this.inputTemplates.length < id) {
             this.inputTemplates.push(undefined);
         }
 
-        if (val === 'timePeriod') {
-            this.inputTemplates[id] = this.timePeriod;
-            this.viewModel.addTimePeriodControls(id);
-        } else if (val === 'priority') {
-            this.inputTemplates[id] = this.priority;
-        } else if (val === 'listAffiliation') {
-            this.inputTemplates[id] = this.listAffiliation;
-        } else if (val === 'completeness') {
-            this.inputTemplates[id] = this.completeness;
-        } else if (val === 'userTag') {
-            this.inputTemplates[id] = this.userTag;
+        if (!this.inputTemplates[id] || this.inputTemplates[id] !== this.templates[type]) {
+            this.viewModel.clearInputControl(id);
         }
+
+        this.inputTemplates[id] = this.templates[type];
+        this.viewModel.addControl[type](id);
+
+    }
+
+    public removeFilter(id : number) : void {
+        this.inputTemplates.splice(id, 1);
+        this.viewModel.removeFilter(id);
     }
 
     public addList() : void {
         this.data.addList(this.viewModel.toModel(this.data.listsPull.length));
-        console.log(this.data.listsPull);
         this._closer.close();
     }
 

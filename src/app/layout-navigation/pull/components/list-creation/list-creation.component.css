@@ -66,3 +66,75 @@ label.inner-field{
   margin-bottom: 5px;
 }
 
+.date-input-field-group{
+  margin-left: 60px;
+  margin-bottom: 10px;
+}
+
+.date-input-field-group #startTime {
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.date-input-field-group #endTime {
+  margin-left: 10px;
+}
+
+.label {
+  display: inline-block;
+  width: 25px;
+  text-align: end;
+  padding-right: 5px;
+}
+
+.small-close-button{
+  font-size: 10px;
+  color: #ff6e6e;
+  background-color: #fff1f1;
+  width: 18px;
+  height: 18px;
+  outline: none;
+  border-radius: 10px;
+  border: 1px solid #ff5959;
+  cursor: pointer;
+  padding: 0
+}
+
+.small-close-button:hover {
+  background-color: #ffe5e5;
+}
+
+.small-close-button:active {
+  background-color: #ffd5d5;
+}
+
+.light-button {
+  background-color: white;
+  font-family: Roboto;
+  padding: 5px 10px;
+  outline: none;
+  border-radius: 10px;
+  border: black solid 1px;
+  cursor: pointer;
+  margin-left: 5px;
+  box-shadow: 2px 2px 1px 1px black;
+}
+
+.light-button:hover {
+  background-color: #eeeeee;
+}
+
+.light-button:active {
+  background-color: #d2d2d2;
+}
+
+.selected-button {
+  border: #27af39 solid 1px;
+  box-shadow: 2px 2px 1px 1px #0b9300;
+}
+
+.filter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
