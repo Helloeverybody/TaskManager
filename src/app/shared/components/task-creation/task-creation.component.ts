@@ -12,7 +12,6 @@ import { Task } from '../../../core/task.model';
 export class TaskCreationComponent {
     public viewModel : TaskCreationViewModel = new TaskCreationViewModel(this._dialog.parameter);
 
-
     constructor(private _dialog: DialogInjection, private _listsData: ListDataService) { }
 
     public closeForm() : void {

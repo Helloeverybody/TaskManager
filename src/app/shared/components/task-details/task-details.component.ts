@@ -9,7 +9,7 @@ import { Task } from '../../../core/task.model';
 })
 export class TaskDetailsComponent {
     @Input()
-    public taskId: number = -1;
+    public taskId: number | null = null;
 
     public get task() : Task {
         if (this._task.id !== this.taskId) {

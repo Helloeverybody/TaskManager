@@ -1,4 +1,4 @@
-<div class="content" *ngIf="task.id !== 0">
+<div class="content" *ngIf="taskId !== null">
   <div class="header">
     <div class="checkbox" (click)="changeCompleted()">
         <img src="../../../../assets/images/gray-check.svg" alt="check-mark" *ngIf="task.isCompleted">

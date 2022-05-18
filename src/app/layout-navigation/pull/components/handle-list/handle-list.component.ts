@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, Output, } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, } from '@angular/core';
 import { ListDataService } from '../../../services/list-data.service';
 import { HandleList } from '../../models/handleList.model';
 import { DialogService } from '../../../../global-services/dialog.service';
 import { Task } from '../../../../core/task.model';
 import { TaskCreationComponent } from '../../../../shared/components/task-creation/task-creation.component';
 import { ListEditComponent } from '../list-edit/list-edit.component';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: 'handle-list',
@@ -14,10 +15,10 @@ import { ListEditComponent } from '../list-edit/list-edit.component';
 export class HandleListComponent {
     public list : HandleList = new HandleList();
 
-    public selectedTaskId : number = 0;
+    public selectedTaskId : number | null = null;
 
     @Output()
-    public taskSelected : EventEmitter<number> = new EventEmitter<number>();
+    public taskSelected : EventEmitter<number | null> = new EventEmitter<number | null>();
 
     public get completedTasks() : Task[] {
         return this._listsData.tasksPull.filter((item: Task) =>
@@ -30,14 +31,13 @@ export class HandleListComponent {
     }
 
     @Input()
-    public set listId(id: number) {
+    public set listId(id: number | null) {
         this._listId = id;
         this.list = this._listsData.listsPull.find((item : HandleList) => item.id === id) || new HandleList();
         this.selectedTaskId = 0;
-        this.selectTask(0);
     }
 
-    private _listId: number = 0;
+    private _listId: number | null = null;
 
     constructor(private _listsData: ListDataService, private _overlay: DialogService) { }
 
@@ -63,7 +63,7 @@ export class HandleListComponent {
         }
     }
 
-    public selectTask(id: number) : void {
+    public selectTask(id: number | null) : void {
         this.selectedTaskId = id;
         this.taskSelected.emit(id);
     }
