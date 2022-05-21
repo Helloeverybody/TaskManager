@@ -12,7 +12,7 @@ export class MonthViewComponent {
 
     public monthTable : DateModel[][] = this._monthData.monthTable;
 
-    public selectedTaskId : number = 0;
+    public selectedTaskId : number | null = null;
 
     constructor(private _monthData: MonthDatesService) { }
 

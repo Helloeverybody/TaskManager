@@ -15,7 +15,7 @@ export class DateCellComponent {
     public dateModel: DateModel;
 
     @Input()
-    public selectedTaskId : number = 0;
+    public selectedTaskId : number | null = null;
 
     @Output()
     public taskClickedEvent : EventEmitter<number> = new EventEmitter<number>();

@@ -28,7 +28,6 @@ export class RegistrationViewModel {
             login: this.form.get('login')?.value,
             email: this.form.get('email')?.value,
             password: this.form.get('password')?.value,
-            passwordConfirmation: this.form.get('passwordConfirmation')?.value,
         };
     }
 }
