@@ -3,7 +3,9 @@
     <h3 class="list-name">{{ list.title }}</h3>
     <div class="edit-button" *ngIf="list.isEditable" (click)="editList()"><img src="assets/images/edit-icon.png"></div>
   </div>
-  <div class="create-task-button" (click)="createNewTask()">Новая задача<img src="./assets/images/white-plus.svg" alt="white-plus"></div>
+
+  <div class="create-task-button" [hint]="'Создать задачу в этом списке'" (click)="createNewTask()">Новая задача<img src="./assets/images/white-plus.svg" alt="white-plus"></div>
+
   <div class="no-tasks-placeholder" *ngIf="uncompletedTasks.length === 0">Нет задач в списке.</div>
   <ul class="tasks-list">
     <li class="task" *ngFor="let task of uncompletedTasks" (click)="selectTask(task.id)" [ngClass]="{selected: selectedTaskId === task.id}">

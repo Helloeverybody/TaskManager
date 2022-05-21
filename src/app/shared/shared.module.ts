@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { TaskDetailsComponent } from './components/task-details/task-details.component';
 import { TaskCreationComponent } from './components/task-creation/task-creation.component';
 import { RepeatPipe } from '../layout-navigation/pipes/repeat.pipe';
+import { HintDirective } from './directives/hint.directive';
 
 @NgModule({
     declarations: [
         TaskDetailsComponent,
         TaskCreationComponent,
-        RepeatPipe
+        RepeatPipe,
+        HintDirective
     ],
     imports: [
         ReactiveFormsModule,
@@ -18,7 +20,8 @@ import { RepeatPipe } from '../layout-navigation/pipes/repeat.pipe';
     ],
     exports: [
         TaskDetailsComponent,
-        TaskCreationComponent
+        TaskCreationComponent,
+        HintDirective
     ],
 })
 export class SharedModule { }
