@@ -8,7 +8,7 @@
         <div class="tasks-count" *ngIf="getTasksCount(list.id)">{{getTasksCount(list.id)}}</div>
       </a>
     </div>
-    <button class="list-creation-button" id="foobar" (click)="createNewList()" [hint]="'Создание списка'">
+    <button class="list-creation-button" (click)="createNewList()" [hint]="'Создание списка'">
       <img src="../../../assets/images/list-creation-button.svg" alt="list-creation-button" class="plus">
     </button>
   </div>

@@ -8,7 +8,7 @@
 
   <div class="no-tasks-placeholder" *ngIf="uncompletedTasks.length === 0">Нет задач в списке.</div>
   <ul class="tasks-list">
-    <li class="task" *ngFor="let task of uncompletedTasks" (click)="selectTask(task.id)" [ngClass]="{selected: selectedTaskId === task.id}">
+    <li class="task" *ngFor="let task of uncompletedTasks" drag (click)="selectTask(task.id)" [ngClass]="{selected: selectedTaskId === task.id}">
       <div class="marker" (click)="makeCompleted(task.id)"></div>
       {{ task.title }}
     </li>

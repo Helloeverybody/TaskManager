@@ -7,15 +7,15 @@
     </div>
 
     <div>
-      <label for="type" class="inner-field">Тип:</label>
-      <select id="type" name="type" class="selection-box" formControlName="isAuto" [title]="listTypeHint">
+      <label for="type" class="inner-field" [hint]="listTypeHint">Тип:</label>
+      <select id="type" name="type" class="selection-box" formControlName="isAuto">
         <option value="false" selected>Ручной</option>
         <option value="true">Автоматический</option>
       </select>
     </div>
 
     <div *ngIf="isAuto">
-      <button class="add-filter-button" (click)="viewModel.addFilter()" [title]="filterHint"
+      <button class="add-filter-button" (click)="viewModel.addFilter()" [hint]="filterHint"
               [disabled]="viewModel.filters.length >= 5">Добавить фильтр</button>
       <div formArrayName="filters">
         <div *ngFor="let filter of viewModel.filters.controls; let i = index">
