@@ -14,7 +14,26 @@ export class MonthViewComponent {
 
     public selectedTaskId : number | null = null;
 
-    constructor(private _monthData: MonthDatesService) { }
+    public isDisco : boolean = false;
+    private _currentWord : string = '';
+
+    constructor(private _monthData: MonthDatesService) {
+        document.addEventListener('keydown', (event: KeyboardEvent) => {
+            if (event.code === 'KeyC' && this._currentWord === '') {
+                this._currentWord = 'С';
+            } else if (event.code === 'KeyT' && this._currentWord === 'С') {
+                this._currentWord = 'СЕ';
+            } else if (event.code === 'KeyD' && this._currentWord === 'СЕ') {
+                this._currentWord = 'СЕВ';
+            } else if (event.code === 'KeyF' && this._currentWord === 'СЕВ') {
+                this._currentWord = 'СЕВА';
+                this.isDisco = true;
+                this._currentWord = '';
+            } else {
+                this._currentWord = '';
+            }
+        });
+    }
 
     public onTaskClicked(taskId : number) : void {
         this.selectedTaskId = taskId;

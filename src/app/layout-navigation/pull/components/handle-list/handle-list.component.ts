@@ -1,11 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output, } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChildren } from '@angular/core';
 import { ListDataService } from '../../../services/list-data.service';
 import { HandleList } from '../../models/handleList.model';
 import { DialogService } from '../../../../global-services/dialog.service';
 import { Task } from '../../../../core/task.model';
 import { TaskCreationComponent } from '../../../../shared/components/task-creation/task-creation.component';
 import { ListEditComponent } from '../list-edit/list-edit.component';
-import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: 'handle-list',
@@ -16,6 +15,9 @@ export class HandleListComponent {
     public list : HandleList = new HandleList();
 
     public selectedTaskId : number | null = null;
+
+    @ViewChildren('draggable')
+    public listElements : ElementRef[] = [];
 
     @Output()
     public taskSelected : EventEmitter<number | null> = new EventEmitter<number | null>();
@@ -43,6 +45,7 @@ export class HandleListComponent {
 
     public createNewTask() : void {
         this._overlay.open(TaskCreationComponent, this._listId);
+        console.log(this.listElements);
     }
 
     public editList() : void {
@@ -67,4 +70,10 @@ export class HandleListComponent {
         this.selectedTaskId = id;
         this.taskSelected.emit(id);
     }
+
+    ////////////////////////////////
+    //////Работа с драг-н-дроп//////
+    ////////////////////////////////
+
+
 }

@@ -23,11 +23,12 @@ export class AuthService {
     }
 
     public authoriseUser(userData: AuthenticationDataModel) : boolean {
-        this.server.getToken(userData).subscribe((data : string | null) => {
-            if (data !== null) {
-                this._auth.updateToken(data);
-            }
-        });
+        this.server.getToken(userData)
+            .subscribe((data : string | null) => {
+                if (data !== null) {
+                    this._auth.updateToken(data);
+                }
+            });
 
         return this._auth.checkToken();
     }

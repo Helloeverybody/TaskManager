@@ -12,7 +12,7 @@
     <div class="window">
         <div class="table">
             <div *ngFor="let week of monthTable" class="row">
-                <div *ngFor="let dayOfWeek of week" class="cell">
+                <div *ngFor="let dayOfWeek of week" class="cell" [danceFloor]="isDisco">
                     <date-cell-component [dateModel]="dayOfWeek"
                                          (taskClickedEvent)="onTaskClicked($event)"
                                          [selectedTaskId]="selectedTaskId"></date-cell-component>

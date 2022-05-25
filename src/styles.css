@@ -190,3 +190,21 @@ body, html{
     opacity: 1;
   }
 }
+
+.task-moving {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  padding: 10px 40px 10px 0;
+  overflow: hidden;
+
+  position: absolute;
+  width: 150px;
+  border-radius: 30px;
+  white-space: nowrap;
+  border: 1px solid black;
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.22);
+  z-index: 100;
+  background-color: white;
+}
