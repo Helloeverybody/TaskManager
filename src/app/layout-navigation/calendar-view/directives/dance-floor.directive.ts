@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 
 @Directive({ selector: '[danceFloor]' })
 export class DanceFloorDirective {
@@ -6,7 +6,7 @@ export class DanceFloorDirective {
     public set danceFloor(value: boolean) {
         if (value && !this._isTurned) {
             setInterval(() => {
-                const random = Math.floor(Math.random() * 6);
+                const random : number = Math.floor(Math.random() * 6);
                 this._renderer.setStyle(this._element.nativeElement, 'background-color', this._color[random]);
             }, 300);
             this._isTurned = true;
@@ -14,8 +14,6 @@ export class DanceFloorDirective {
     }
 
     private _isTurned : boolean = false;
-
-    private _currentWord : string = '';
 
     private _color : string[] = [
         'rgba(0,60,255,0.38)',
@@ -28,6 +26,4 @@ export class DanceFloorDirective {
     ];
 
     constructor(private _element: ElementRef, private _renderer: Renderer2){ }
-
-
 }
