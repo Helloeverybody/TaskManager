@@ -45,11 +45,11 @@ export class DragAndDropDirective {
             this._offsetY = event.offsetY;
         }
 
-        const downDistance = -(this._top - (event.clientY - this._offsetY));
+        const downDistance : number = -(this._top - (event.clientY - this._offsetY));
         console.log(downDistance);
 
         this._renderer.setStyle(this._element.nativeElement, 'display', 'none');
-        const backElement = document.elementFromPoint(event.clientX, event.clientY);
+        const backElement : Element | null = document.elementFromPoint(event.clientX, event.clientY);
         this._renderer.setStyle(this._element.nativeElement, 'display', 'flex');
 
 

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ListDataService } from '../../services/list-data.service';
 import { DateModel } from '../components/calendar/models/date-model';
+import { TasksService } from '../../services/tasks.service';
+import { Task } from '../../../core/task.model';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class MonthDatesService {
@@ -26,7 +28,7 @@ export class MonthDatesService {
         return this._monthTable;
     }
 
-    constructor(private _listsData: ListDataService) {
+    constructor(private _tasksService: TasksService) {
         this.recalculateDates();
     }
 
@@ -63,35 +65,38 @@ export class MonthDatesService {
     }
 
     private recalculateTable() : void {
-        this._monthTable = [];
+        this._tasksService.tasksPull.subscribe((tasks: Task[]) => {
+            this._monthTable = [];
 
-        let startDay : number = -this.currentMonth.getDay() + 2;
+            let startDay : number = -this.currentMonth.getDay() + 2;
 
-        // getDay() возвращает число, соответствующее дню недели, в диапазоне [1, 2, 3, 4, 5, 6, 0]
-        // поэтому при 0 необходимо отнять 7 еще для правильных расчетов
-        if (this.currentMonth.getDay() === 0) {
-            startDay -= 7;
-        }
-
-        for (let i: number = 0; i <= 5; i++) {
-            const line: DateModel[] = [];
-            for (let j: number = 1; j <= 7; j++) {
-                const date : Date = new Date(
-                    this.currentMonth.getFullYear(),
-                    this.currentMonth.getMonth(),
-                    startDay
-                );
-                const isThisMonth : boolean = date.getMonth() === this.currentMonth.getMonth();
-                const dateModel : DateModel = new DateModel(
-                    date,
-                    isThisMonth,
-                    DateModel.areDatesEqual(date, new Date()),
-                    this._listsData.tasksPull
-                );
-                startDay += 1;
-                line.push(dateModel);
+            // getDay() возвращает число, соответствующее дню недели, в диапазоне [1, 2, 3, 4, 5, 6, 0]
+            // поэтому при 0 необходимо отнять 7 еще для правильных расчетов
+            if (this.currentMonth.getDay() === 0) {
+                startDay -= 7;
             }
-            this._monthTable.push(line);
-        }
+
+            for (let i: number = 0; i <= 5; i++) {
+                const line: DateModel[] = [];
+                for (let j: number = 1; j <= 7; j++) {
+                    const date : Date = new Date(
+                        this.currentMonth.getFullYear(),
+                        this.currentMonth.getMonth(),
+                        startDay
+                    );
+                    const isThisMonth : boolean = date.getMonth() === this.currentMonth.getMonth();
+                    const dateModel : DateModel = new DateModel(
+                        date,
+                        isThisMonth,
+                        DateModel.areDatesEqual(date, new Date()),
+                        tasks
+                    );
+                    startDay += 1;
+                    line.push(dateModel);
+                }
+                this._monthTable.push(line);
+            }
+        });
+
     }
 }

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { ListDataService } from '../../../layout-navigation/services/list-data.service';
 import { Task } from '../../../core/task.model';
+import { map, Observable, tap } from 'rxjs';
+import { TasksService } from '../../../layout-navigation/services/tasks.service';
 
 @Component({
     selector: 'task-details',
@@ -11,23 +12,25 @@ export class TaskDetailsComponent {
     @Input()
     public taskId: number | null = null;
 
-    public get task() : Task {
-        if (this._task.id !== this.taskId) {
-            this._task = this._listsData.tasksPull.find((index : Task) => this.taskId === index.id) || new Task();
-        }
-
-        return this._task;
+    public get task() : Observable<Task> {
+        return this._tasksService.tasksPull
+            .pipe(
+                map((tasks: Task[]) => {
+                    return tasks.find((index : Task) => this.taskId === index.id) || new Task();
+                })
+            );
     }
 
-    public set task(value: Task) {
-        this._task = value;
-    }
 
-    private _task: Task = new Task();
-
-    constructor(private _listsData: ListDataService) { }
+    constructor(private _tasksService: TasksService) { }
 
     public changeCompleted() : void {
-        this._task.isCompleted = !this._task.isCompleted;
+        this._tasksService.tasksPull
+            .pipe(
+                tap((tasks: Task[]) => {
+                    const task : Task = tasks.find((index : Task) => this.taskId === index.id) || new Task();
+                    task.isCompleted = !task.isCompleted;
+                })
+            );
     }
 }

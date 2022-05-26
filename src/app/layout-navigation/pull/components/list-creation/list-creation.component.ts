@@ -1,8 +1,10 @@
 import { Component, TemplateRef, ViewChild, } from '@angular/core';
 import { DialogInjection } from '../../../../global-services/dialogInjection';
-import { ListDataService } from '../../../services/list-data.service';
+import { DataLoaderService } from '../../../services/data-loader.service';
 import { ListCreationViewModel } from '../../view-models/list-creation.view-model';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { ListsService } from '../../../services/lists.service';
+import { IList } from '../../interfaces/list.interface';
 
 @Component({
     selector: 'list-creation-window',
@@ -41,7 +43,7 @@ export class ListCreationComponent {
 
     public inputTemplates : Array<TemplateRef<any> | undefined> = [];
 
-    constructor(public data: ListDataService, private _closer: DialogInjection, private _fb : FormBuilder) {}
+    constructor(public listService: ListsService, private _closer: DialogInjection, private _fb : FormBuilder) {}
 
     public setTemplate(id: number) : void {
         const type : string = this.viewModel.filters.controls[id].get('filterType')?.value;
@@ -73,7 +75,10 @@ export class ListCreationComponent {
     }
 
     public addList() : void {
-        this.data.addList(this.viewModel.toModel(this.data.listsPull.length));
+        this.listService.listsPull.subscribe((lists: IList[]) => {
+            this.listService.addList(this.viewModel.toModel(lists.length));
+        });
+
         this._closer.close();
     }
 
