@@ -11,7 +11,7 @@ export class TaskDetailsComponent {
     @Input()
     public taskId: number | null = null;
 
-    public task! : Task;
+    public task : Task = new Task();
 
     constructor(private _tasksService: TasksService) { }
 
