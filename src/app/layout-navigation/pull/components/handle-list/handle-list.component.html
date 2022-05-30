@@ -1,21 +1,21 @@
 <div class="content">
   <div class="header">
-    <h3 class="list-name">{{ list.title }}</h3>
-    <div class="edit-button" *ngIf="list.isEditable" (click)="editList()"><img src="assets/images/edit-icon.png"></div>
+    <h3 class="list-name" >{{ list?.title }}</h3>
+    <div class="edit-button" *ngIf="list?.isEditable" (click)="editList()"><img src="assets/images/edit-icon.png"></div>
   </div>
 
   <div class="create-task-button" [hint]="'Создать задачу в этом списке'" (click)="createNewTask()">Новая задача<img src="./assets/images/white-plus.svg" alt="white-plus"></div>
 
-  <div class="no-tasks-placeholder" *ngIf="uncompletedTasks.length === 0">Нет задач в списке.</div>
+  <div class="no-tasks-placeholder" *ngIf="(getUncompletedTasks() | async)?.length === 0">Нет задач в списке.</div>
   <ul class="tasks-list">
-    <li class="task" *ngFor="let task of uncompletedTasks" #draggable (click)="selectTask(task.id)" [ngClass]="{selected: selectedTaskId === task.id}">
+    <li class="task" *ngFor="let task of (getUncompletedTasks() | async)" #draggable (click)="selectTask(task.id)" [ngClass]="{ selected: selectedTaskId === task.id }">
       <div class="marker" (click)="makeCompleted(task.id)"></div>
       {{ task.title }}
     </li>
   </ul>
-  <div class="completed-title" *ngIf="completedTasks.length !== 0">Выполнено</div>
+  <div class="completed-title" *ngIf="(getCompletedTasks() | async) && (getCompletedTasks() | async)?.length !== 0">Выполнено</div>
   <ul class="tasks-list">
-    <li class="completed-task" *ngFor="let task of completedTasks" (click)="selectTask(task.id)" [ngClass]="{selected: selectedTaskId === task.id}">
+    <li class="completed-task" *ngFor="let task of (getCompletedTasks() | async)" (click)="selectTask(task.id)" [ngClass]="{ selected: selectedTaskId === task.id }">
       <div class="completed-marker" (click)="makeUncompleted(task.id)"><img src="../../../../../assets/images/gray-check.svg" alt="check"></div>
       {{ task.title }}
     </li>

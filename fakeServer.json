@@ -1,0 +1,83 @@
+{
+    "sevaLists": [
+        {
+            "title": "Мой день",
+            "id": 1,
+            "color": "#d54040",
+            "isEditable": false
+        },
+        {
+            "title": "Входящие",
+            "id": 2,
+            "color": "#4e73ea",
+            "isEditable": false
+        },
+        {
+            "title": "Севин списочек",
+            "id": 3,
+            "color": "#2f6b2f",
+            "isEditable": false
+        },
+        {
+            "title": "Автоматический списочек",
+            "id": 4,
+            "color": "#676c38",
+            "isEditable": false,
+            "filters": []
+        }
+    ],
+
+    "ilyaLists": [
+        {
+            "title": "Мой день",
+            "id": 1,
+            "color": "#d54040",
+            "isEditable": false
+        },
+        {
+            "title": "Входящие",
+            "id": 2,
+            "color": "#4e73ea",
+            "isEditable": false
+        },
+        {
+            "title": "Илюшин списочек",
+            "id": 3,
+            "color": "#2f6b2f",
+            "isEditable": false
+        },
+        {
+            "title": "Автоматический списочек",
+            "id": 4,
+            "color": "#676c38",
+            "isEditable": false,
+            "filters": []
+        }
+    ],
+
+    "sevaTasks": [
+        {
+            "id": 1,
+            "title": "Севина задача-задаченька",
+            "description": "самое лучшее описание в мире",
+            "listId": 2,
+            "startDateTime": "2022-05-25T17:26:08.101Z",
+            "endDateTime": "2022-05-25T17:26:08.101Z",
+            "repeat": 0,
+            "isCompleted": false
+        }
+    ],
+
+    "ilyaTasks": [
+        {
+            "id": 1,
+            "title": "Илюшина задача-задаченька",
+            "description": "самое лучшее описание в мире",
+            "listId": 2,
+            "startDateTime": "2022-05-25T17:26:08.101Z",
+            "endDateTime": "2022-05-25T17:26:08.101Z",
+            "repeat": 0,
+            "isCompleted": false
+        }
+    ]
+}

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, } from '@angular/core';
-import { ListDataService } from '../../../services/list-data.service';
+import { DataLoaderService } from '../../../services/data-loader.service';
 import { DialogService } from '../../../../global-services/dialog.service';
 import { Task } from '../../../../core/task.model';
 import { TaskCreationComponent } from '../../../../shared/components/task-creation/task-creation.component';
@@ -40,7 +40,7 @@ export class AutomaticListComponent {
 
     private _listId: number = 0;
 
-    constructor(private _listsData: ListDataService, private _overlay: DialogService) { }
+    constructor(private _listsData: DataLoaderService, private _overlay: DialogService) { }
 
     public createNewTask() : void {
         this._overlay.open(TaskCreationComponent, this._listId);

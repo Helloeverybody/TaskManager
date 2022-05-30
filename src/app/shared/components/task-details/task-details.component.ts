@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { ListDataService } from '../../../layout-navigation/services/list-data.service';
 import { Task } from '../../../core/task.model';
+import { TasksService } from '../../../layout-navigation/services/tasks.service';
 
 @Component({
     selector: 'task-details',
@@ -11,23 +11,26 @@ export class TaskDetailsComponent {
     @Input()
     public taskId: number | null = null;
 
-    public get task() : Task {
-        if (this._task.id !== this.taskId) {
-            this._task = this._listsData.tasksPull.find((index : Task) => this.taskId === index.id) || new Task();
+    public task! : Task;
+
+    constructor(private _tasksService: TasksService) { }
+
+    public getTask() : Task {
+        if (!this.task || this.taskId !== this.task.id) {
+            this._tasksService.getTasksPull()
+                .subscribe((tasks: Task[]) => {
+                    this.task = tasks.find((index: Task) => this.taskId === index.id) || new Task();
+                });
         }
 
-        return this._task;
+        return this.task;
     }
 
-    public set task(value: Task) {
-        this._task = value;
-    }
-
-    private _task: Task = new Task();
-
-    constructor(private _listsData: ListDataService) { }
-
-    public changeCompleted() : void {
-        this._task.isCompleted = !this._task.isCompleted;
+    public changeCompleteness() : void {
+        this._tasksService.getTasksPull()
+            .subscribe((tasks: Task[]) => {
+                const task : Task = tasks.find((index : Task) => this.taskId === index.id) || new Task();
+                task.isCompleted = !task.isCompleted;
+            });
     }
 }

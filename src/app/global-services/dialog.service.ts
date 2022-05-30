@@ -9,7 +9,7 @@ import { DialogInjection } from './dialogInjection';
 export class DialogService {
     constructor(private _overlay: Overlay, private _injector: Injector) { }
 
-    public open<T>(component: ComponentType<T>, parameter?: any) : void {
+    public open<T>(component: ComponentType<T>, parameters?: any) : void {
         const positionStrategy : GlobalPositionStrategy = this._overlay
             .position()
             .global()
@@ -22,7 +22,7 @@ export class DialogService {
             backdropClass: 'overlay-backdrop',
         });
 
-        const closer : DialogInjection = new DialogInjection(overlayRef, parameter);
+        const closer : DialogInjection = new DialogInjection(overlayRef, parameters);
 
         const injector : Injector = Injector.create({
             parent: this._injector,

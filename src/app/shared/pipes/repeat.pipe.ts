@@ -4,8 +4,12 @@ import { Pipe, PipeTransform } from '@angular/core';
     name: 'repeat',
 })
 export class RepeatPipe implements PipeTransform {
-    public transform(value: number, args?: any): string {
-        return RepeatMode[value];
+    public transform(value: number | undefined, args?: any): string | undefined {
+        if (value !== undefined) {
+            return RepeatMode[value];
+        } else {
+            return 'undefined';
+        }
     }
 }
 

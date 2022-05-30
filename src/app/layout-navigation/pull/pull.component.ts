@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ListDataService } from '../services/list-data.service';
 import { ListCreationComponent } from './components/list-creation/list-creation.component';
 import { DialogService } from '../../global-services/dialog.service';
-import { HandleList } from './models/handleList.model';
 import { Task } from '../../core/task.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ListsService } from '../services/lists.service';
+import { TasksService } from '../services/tasks.service';
+import { map, Observable } from 'rxjs';
 
 @Component({
     selector: 'pull-component',
@@ -12,13 +13,15 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
     styleUrls: ['./pull.component.css'],
 })
 export class PullComponent implements OnInit{
-    public pull : HandleList[] = [];
     public currentListId: number = 1;
     public currentTaskId: number | null = null;
 
-    constructor(public data: ListDataService, private _overlay: DialogService, private _router: Router, private _route: ActivatedRoute) {
-        this.pull = data.listsPull;
-    }
+    constructor(
+        public listsService: ListsService,
+        public tasksService: TasksService,
+        private _overlay: DialogService,
+        private _router: Router,
+        private _route: ActivatedRoute) { }
 
     public ngOnInit (): void {
         this._route.queryParams.subscribe((params: Params) => {
@@ -46,8 +49,15 @@ export class PullComponent implements OnInit{
         this.setNewPath();
     }
 
-    public getTasksCount(id: number) : number {
-        return (this.data.tasksPull.filter((item: Task) => item.listId === id && !item.isCompleted) ?? new Array<Task>()).length;
+    public getTasksCount(id: number) : Observable<number> {
+        return this.tasksService.getTasksPull()
+            .pipe(
+                map((tasks: Task[]) => {
+                    const uncompleted : Task[] = tasks.filter((task : Task) => task.listId === id && !task.isCompleted) ?? new Array<Task>();
+
+                    return uncompleted.length;
+                })
+            );
     }
 
     private setNewPath() : void {

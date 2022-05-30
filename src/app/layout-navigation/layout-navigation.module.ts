@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CommonModule, DatePipe } from '@angular/common';
+import { AsyncPipe, CommonModule, DatePipe } from '@angular/common';
 import { LayoutNavigationComponent } from './layout-navigation.component';
 import { DialogService } from '../global-services/dialog.service';
 import { SettingsComponent } from './components/settings/settings.component';
+import { DataLoaderService } from './services/data-loader.service';
+import { ListsService } from './services/lists.service';
+import { TasksService } from './services/tasks.service';
 
 const appRoutes: Routes = [
     {
@@ -27,7 +30,11 @@ const appRoutes: Routes = [
     ],
     providers: [
         DatePipe,
-        DialogService
+        DialogService,
+        DataLoaderService,
+        ListsService,
+        TasksService,
+        AsyncPipe
     ],
 })
 export class LayoutNavigationModule { }

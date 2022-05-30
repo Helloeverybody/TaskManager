@@ -1,11 +1,11 @@
 <div class="pull-content">
   <div class="sidebar-pull">
     <div class="buttons">
-      <a class="list-button" *ngFor="let list of pull" (click)="setCurrentList(list.id)"
+      <a class="list-button" *ngFor="let list of listsService.getListsPull() | async" (click)="setCurrentList(list.id)"
          [ngClass]="{'active-list-button': list.id === currentListId}">
         <div class="colored-point" [style.background-color]="list.color"></div>
         {{ list.title }}
-        <div class="tasks-count" *ngIf="getTasksCount(list.id)">{{getTasksCount(list.id)}}</div>
+        <div class="tasks-count" *ngIf="getTasksCount(list.id) | async">{{ getTasksCount(list.id) | async }}</div>
       </a>
     </div>
     <button class="list-creation-button" (click)="createNewList()" [hint]="'Создание списка'">

@@ -12,7 +12,7 @@ import { DialogService } from '../../../../../../global-services/dialog.service'
 })
 export class DateCellComponent {
     @Input()
-    public dateModel: DateModel;
+    public dateModel!: DateModel;
 
     @Input()
     public selectedTaskId : number | null = null;
@@ -20,9 +20,7 @@ export class DateCellComponent {
     @Output()
     public taskClickedEvent : EventEmitter<number> = new EventEmitter<number>();
 
-    constructor(private _overlay: DialogService) {
-        this.dateModel = new DateModel(new Date(), true, false, []);
-    }
+    constructor(private _overlay: DialogService) {  }
 
     public taskClicked(id : number) : void {
         this.taskClickedEvent.emit(id);

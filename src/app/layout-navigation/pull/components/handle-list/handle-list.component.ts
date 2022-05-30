@@ -1,10 +1,20 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChildren } from '@angular/core';
-import { ListDataService } from '../../../services/list-data.service';
+import {
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    Output,
+    ViewChildren
+} from '@angular/core';
 import { HandleList } from '../../models/handleList.model';
 import { DialogService } from '../../../../global-services/dialog.service';
 import { Task } from '../../../../core/task.model';
 import { TaskCreationComponent } from '../../../../shared/components/task-creation/task-creation.component';
 import { ListEditComponent } from '../list-edit/list-edit.component';
+import { map, Observable } from 'rxjs';
+import { ListsService } from '../../../services/lists.service';
+import { TasksService } from '../../../services/tasks.service';
+import { IList } from '../../interfaces/list.interface';
 
 @Component({
     selector: 'handle-list',
@@ -12,8 +22,6 @@ import { ListEditComponent } from '../list-edit/list-edit.component';
     styleUrls: ['./handle-list.component.css'],
 })
 export class HandleListComponent {
-    public list : HandleList = new HandleList();
-
     public selectedTaskId : number | null = null;
 
     @ViewChildren('draggable')
@@ -22,26 +30,50 @@ export class HandleListComponent {
     @Output()
     public taskSelected : EventEmitter<number | null> = new EventEmitter<number | null>();
 
-    public get completedTasks() : Task[] {
-        return this._listsData.tasksPull.filter((item: Task) =>
-            item.listId === this.list.id && item.isCompleted) ?? new Array<Task>();
-    }
+    public list!: HandleList;
 
-    public get uncompletedTasks() : Task[] {
-        return this._listsData.tasksPull.filter((item: Task) =>
-            item.listId === this.list.id && !item.isCompleted) ?? new Array<Task>();
-    }
+    public completedTasks!: Task[];
+
+    public uncompletedTasks!: Task[];
 
     @Input()
     public set listId(id: number | null) {
-        this._listId = id;
-        this.list = this._listsData.listsPull.find((item : HandleList) => item.id === id) || new HandleList();
         this.selectedTaskId = 0;
+        this._listId = id;
+        this.getList();
+        this.getCompletedTasks();
     }
 
     private _listId: number | null = null;
 
-    constructor(private _listsData: ListDataService, private _overlay: DialogService) { }
+    constructor(private _listsService: ListsService, private _tasksService: TasksService, private _overlay: DialogService) {
+        this.getList();
+    }
+
+    public getList() : void {
+        this._listsService.getListsPull()
+            .subscribe((lists: IList[]) => {
+                this.list = lists.find((item : HandleList) => item.id === this._listId) ?? new HandleList();
+            });
+    }
+
+    public getCompletedTasks() : Observable<Task[]> {
+        return this._tasksService.getTasksPull()
+            .pipe(
+                map((tasks: Task[]) => {
+                    return this.uncompletedTasks = tasks.filter((task : Task) => task.listId === this.list?.id && task.isCompleted) ?? new Array<Task>();
+                })
+            );
+    }
+
+    public getUncompletedTasks() : Observable<Task[]> {
+        return this._tasksService.getTasksPull()
+            .pipe(
+                map((tasks: Task[]) => {
+                    return this.uncompletedTasks = tasks.filter((task : Task) => task.listId === this.list?.id && !task.isCompleted) ?? new Array<Task>();
+                })
+            );
+    }
 
     public createNewTask() : void {
         this._overlay.open(TaskCreationComponent, this._listId);
@@ -53,27 +85,27 @@ export class HandleListComponent {
     }
 
     public makeCompleted(id: number) : void {
-        const task : Task | undefined = this._listsData.tasksPull.find((item : Task) => item.id === id);
-        if (task) {
-            task.isCompleted = true;
-        }
+        this._tasksService.getTasksPull()
+            .subscribe((tasks: Task[]) => {
+                const task : Task | undefined = tasks.find((item : Task) => item.id === id);
+                if (task) {
+                    task.isCompleted = true;
+                }
+            });
     }
 
     public makeUncompleted(id: number) : void {
-        const task : Task | undefined = this._listsData.tasksPull.find((item : Task) => item.id === id);
-        if (task) {
-            task.isCompleted = false;
-        }
+        this._tasksService.getTasksPull()
+            .subscribe((tasks: Task[]) => {
+                const task : Task | undefined = tasks.find((item : Task) => item.id === id);
+                if (task) {
+                    task.isCompleted = false;
+                }
+            });
     }
 
     public selectTask(id: number | null) : void {
         this.selectedTaskId = id;
         this.taskSelected.emit(id);
     }
-
-    ////////////////////////////////
-    //////Работа с драг-н-дроп//////
-    ////////////////////////////////
-
-
 }

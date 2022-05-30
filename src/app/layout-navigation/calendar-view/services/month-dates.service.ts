@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ListDataService } from '../../services/list-data.service';
 import { DateModel } from '../components/calendar/models/date-model';
+import { TasksService } from '../../services/tasks.service';
+import { Task } from '../../../core/task.model';
 
 @Injectable()
 export class MonthDatesService {
@@ -18,15 +19,9 @@ export class MonthDatesService {
 
     public prevLastDayOfMonth: number = 30;
 
-    private _monthTable: DateModel[][] = [];
+    public monthTable: DateModel[][] = [];
 
-    public get monthTable(): DateModel[][] {
-        this.recalculateTable();
-
-        return this._monthTable;
-    }
-
-    constructor(private _listsData: ListDataService) {
+    constructor(private _tasksService: TasksService) {
         this.recalculateDates();
     }
 
@@ -46,24 +41,29 @@ export class MonthDatesService {
         this.recalculateDates();
     }
 
-    private recalculateDates() : void {
+    public recalculateDates() : void {
         this.firstDayOfMonth = this.currentMonth.getDay();
+
         this.lastDayOfMonth = 33 - new Date(
             this.currentMonth.getFullYear(),
             this.currentMonth.getMonth(),
             33,
         ).getDate();
+
         this.prevLastDayOfMonth = 33 - new Date(
             this.currentMonth.getFullYear(),
             this.currentMonth.getMonth() - 1,
             33,
         ).getDate();
 
-        this.recalculateTable();
+        this._tasksService.getTasksPull()
+            .subscribe((tasks: Task[]) => {
+                this.recalculateTable(tasks);
+            });
     }
 
-    private recalculateTable() : void {
-        this._monthTable = [];
+    private recalculateTable(tasks: Task[]) : void {
+        this.monthTable = [];
 
         let startDay : number = -this.currentMonth.getDay() + 2;
 
@@ -86,12 +86,13 @@ export class MonthDatesService {
                     date,
                     isThisMonth,
                     DateModel.areDatesEqual(date, new Date()),
-                    this._listsData.tasksPull
+                    tasks
                 );
                 startDay += 1;
                 line.push(dateModel);
             }
-            this._monthTable.push(line);
+            this.monthTable.push(line);
         }
+        console.log(this.monthTable);
     }
 }
