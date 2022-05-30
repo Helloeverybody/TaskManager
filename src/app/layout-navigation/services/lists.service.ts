@@ -1,21 +1,24 @@
 import { Injectable } from '@angular/core';
 import { IList } from '../pull/interfaces/list.interface';
-import { map, Observable, Subscriber, tap } from 'rxjs';
+import { map, Observable, Subscriber } from 'rxjs';
 import { HandleList } from '../pull/models/handleList.model';
 import { DataLoaderService } from './data-loader.service';
 
 @Injectable()
 export class ListsService {
+    public handleLists!: HandleList[];
+
     private _lists : IList[] = [];
 
-    constructor(private _dataLoader : DataLoaderService) { }
+    constructor(private _dataLoader : DataLoaderService) {
+        this.getListsPull();
+    }
 
-    public get listsPull() : Observable<IList[]> {
+    public getListsPull() : Observable<IList[]> {
         if (this._dataLoader.areListsLoaded) {
             return new Observable<IList[]>((sub : Subscriber<IList[]>) => {
                 sub.next(this._lists);
                 sub.complete();
-                console.log('ff');
             });
         } else {
             return this._dataLoader.loadListsData()
@@ -35,17 +38,15 @@ export class ListsService {
         }
     }
 
-    public get handleLists() : Observable<HandleList[]> {
-        return this.listsPull
-            .pipe(
-                map((lists: IList[]) => {
-                    return lists.filter((list : IList) => !list.hasOwnProperty('filters')) || [];
-                })
-            );
+    public getHandleLists() : void {
+        this.getListsPull()
+            .subscribe((lists: IList[]) => {
+                this.handleLists = lists.filter((list : IList) => !list.hasOwnProperty('filters')) || [];
+            });
     }
 
     public addList(list: IList) : void {
-        this.listsPull
+        this.getListsPull()
             .subscribe((lists : IList[]) => {
                 list.id = lists.length + 1;
                 this._lists.push(list);
@@ -53,8 +54,7 @@ export class ListsService {
     }
 
     public updateList(list: IList) : void {
-        // возможно не будет работать так как ссылка на пул оч странно отдается
-        this.listsPull
+        this.getListsPull()
             .subscribe((lists : IList[]) => {
                 const index : number = lists.indexOf(list);
                 lists.splice(index, 1, list);
@@ -62,8 +62,7 @@ export class ListsService {
     }
 
     public deleteList(list: IList) : void {
-        // возможно не будет работать так как ссылка на пул оч странно отдается
-        this.listsPull
+        this.getListsPull()
             .subscribe((lists : IList[]) => {
                 const index : number = lists.indexOf(list);
                 lists.splice(index, 1);

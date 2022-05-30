@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { TaskDetailsComponent } from './components/task-details/task-details.component';
 import { TaskCreationComponent } from './components/task-creation/task-creation.component';
-import { RepeatPipe } from '../layout-navigation/pipes/repeat.pipe';
+import { RepeatPipe } from './pipes/repeat.pipe';
 import { HintDirective } from './directives/hint.directive';
 
 @NgModule({

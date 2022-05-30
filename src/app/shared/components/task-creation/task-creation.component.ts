@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { TaskCreationViewModel } from '../../view-models/task-creation.view-model';
 import { DialogInjection } from '../../../global-services/dialogInjection';
-import { DataLoaderService } from '../../../layout-navigation/services/data-loader.service';
 import { Task } from '../../../core/task.model';
 import { TasksService } from '../../../layout-navigation/services/tasks.service';
 

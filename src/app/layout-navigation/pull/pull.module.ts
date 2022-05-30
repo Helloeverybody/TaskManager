@@ -22,7 +22,7 @@ const routes: Routes = [
         ListEditComponent,
         ListCreationComponent,
         TemplateRendererDirective,
-        DragAndDropDirective
+        DragAndDropDirective,
     ],
     imports: [
         RouterModule.forChild(routes),

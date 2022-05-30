@@ -1,6 +1,6 @@
 <div class="content">
     <div class="date-switch">
-        <div class="date">{{currentMonth | date : 'MMMM yyyy'}}</div>
+        <div class="date">{{ currentMonth | date : 'MMMM yyyy' }}</div>
         <div class="button" (click)="toPreviousMonth()">
             <img src="assets/images/left-arrow.svg" alt="left-arrow">
         </div>
@@ -11,7 +11,7 @@
 
     <div class="window">
         <div class="table">
-            <div *ngFor="let week of monthTable" class="row">
+            <div *ngFor="let week of monthData.monthTable" class="row">
                 <div *ngFor="let dayOfWeek of week" class="cell" [danceFloor]="isDisco">
                     <date-cell-component [dateModel]="dayOfWeek"
                                          (taskClickedEvent)="onTaskClicked($event)"

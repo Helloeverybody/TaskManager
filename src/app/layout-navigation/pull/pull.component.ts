@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ListCreationComponent } from './components/list-creation/list-creation.component';
 import { DialogService } from '../../global-services/dialog.service';
-import { HandleList } from './models/handleList.model';
 import { Task } from '../../core/task.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ListsService } from '../services/lists.service';
-import { IList } from './interfaces/list.interface';
 import { TasksService } from '../services/tasks.service';
-import { count, map, Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Component({
     selector: 'pull-component',
@@ -52,7 +50,7 @@ export class PullComponent implements OnInit{
     }
 
     public getTasksCount(id: number) : Observable<number> {
-        return this.tasksService.tasksPull
+        return this.tasksService.getTasksPull()
             .pipe(
                 map((tasks: Task[]) => {
                     const uncompleted : Task[] = tasks.filter((task : Task) => task.listId === id && !task.isCompleted) ?? new Array<Task>();

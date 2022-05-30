@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MonthDatesService } from '../../services/month-dates.service';
-import { DateModel } from './models/date-model';
 
 @Component({
     selector: 'month-view-component',
@@ -8,16 +7,14 @@ import { DateModel } from './models/date-model';
     styleUrls: ['./month-view.component.css'],
 })
 export class MonthViewComponent {
-    public currentMonth : Date = this._monthData.currentMonth;
-
-    public monthTable : DateModel[][] = this._monthData.monthTable;
+    public currentMonth : Date = this.monthData.currentMonth;
 
     public selectedTaskId : number | null = null;
 
     public isDisco : boolean = false;
     private _currentWord : string = '';
 
-    constructor(private _monthData: MonthDatesService) {
+    constructor(public monthData: MonthDatesService) {
         document.addEventListener('keydown', (event: KeyboardEvent) => {
             if (event.code === 'KeyC' && this._currentWord === '') {
                 this._currentWord = 'С';
@@ -40,14 +37,12 @@ export class MonthViewComponent {
     }
 
     public toNextMonth() : void {
-        this._monthData.toNextMonth();
-        this.currentMonth = this._monthData.currentMonth;
-        this.monthTable = this._monthData.monthTable;
+        this.monthData.toNextMonth();
+        this.currentMonth = this.monthData.currentMonth;
     }
 
     public toPreviousMonth() : void {
-        this._monthData.toPreviousMonth();
-        this.currentMonth = this._monthData.currentMonth;
-        this.monthTable = this._monthData.monthTable;
+        this.monthData.toPreviousMonth();
+        this.currentMonth = this.monthData.currentMonth;
     }
 }

@@ -1,5 +1,11 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChildren } from '@angular/core';
-import { DataLoaderService } from '../../../services/data-loader.service';
+import {
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    Output,
+    ViewChildren
+} from '@angular/core';
 import { HandleList } from '../../models/handleList.model';
 import { DialogService } from '../../../../global-services/dialog.service';
 import { Task } from '../../../../core/task.model';
@@ -16,15 +22,6 @@ import { IList } from '../../interfaces/list.interface';
     styleUrls: ['./handle-list.component.css'],
 })
 export class HandleListComponent {
-    public get list() : Observable<HandleList> {
-        return this._listsService.listsPull
-            .pipe(
-                map((lists: IList[]) => {
-                    return lists.find((item : HandleList) => item.id === this._listId) ?? new HandleList();
-                })
-            );
-    }
-
     public selectedTaskId : number | null = null;
 
     @ViewChildren('draggable')
@@ -33,39 +30,50 @@ export class HandleListComponent {
     @Output()
     public taskSelected : EventEmitter<number | null> = new EventEmitter<number | null>();
 
-    public get completedTasks() : Observable<Task[]> {
-        let list : HandleList;
-        this.list.subscribe((l: HandleList) => list = l);
+    public list!: HandleList;
 
-        return this._tasksService.tasksPull
-            .pipe(
-                map((tasks: Task[]) => {
-                    return tasks.filter((task : Task) => task.listId === list.id && task.isCompleted) ?? new Array<Task>();
-                })
-            );
-    }
+    public completedTasks!: Task[];
 
-    public get uncompletedTasks() : Observable<Task[]> {
-        let list : HandleList;
-        this.list.subscribe((l: HandleList) => list = l);
-
-        return this._tasksService.tasksPull
-            .pipe(
-                map((tasks: Task[]) => {
-                    return tasks.filter((task : Task) => task.listId === list.id && !task.isCompleted) ?? new Array<Task>();
-                })
-            );
-    }
+    public uncompletedTasks!: Task[];
 
     @Input()
     public set listId(id: number | null) {
         this.selectedTaskId = 0;
         this._listId = id;
+        this.getList();
+        this.getCompletedTasks();
     }
 
     private _listId: number | null = null;
 
-    constructor(private _listsService: ListsService, private _tasksService: TasksService, private _overlay: DialogService) { }
+    constructor(private _listsService: ListsService, private _tasksService: TasksService, private _overlay: DialogService) {
+        this.getList();
+    }
+
+    public getList() : void {
+        this._listsService.getListsPull()
+            .subscribe((lists: IList[]) => {
+                this.list = lists.find((item : HandleList) => item.id === this._listId) ?? new HandleList();
+            });
+    }
+
+    public getCompletedTasks() : Observable<Task[]> {
+        return this._tasksService.getTasksPull()
+            .pipe(
+                map((tasks: Task[]) => {
+                    return this.uncompletedTasks = tasks.filter((task : Task) => task.listId === this.list?.id && task.isCompleted) ?? new Array<Task>();
+                })
+            );
+    }
+
+    public getUncompletedTasks() : Observable<Task[]> {
+        return this._tasksService.getTasksPull()
+            .pipe(
+                map((tasks: Task[]) => {
+                    return this.uncompletedTasks = tasks.filter((task : Task) => task.listId === this.list?.id && !task.isCompleted) ?? new Array<Task>();
+                })
+            );
+    }
 
     public createNewTask() : void {
         this._overlay.open(TaskCreationComponent, this._listId);
@@ -77,7 +85,7 @@ export class HandleListComponent {
     }
 
     public makeCompleted(id: number) : void {
-        this._tasksService.tasksPull
+        this._tasksService.getTasksPull()
             .subscribe((tasks: Task[]) => {
                 const task : Task | undefined = tasks.find((item : Task) => item.id === id);
                 if (task) {
@@ -87,7 +95,7 @@ export class HandleListComponent {
     }
 
     public makeUncompleted(id: number) : void {
-        this._tasksService.tasksPull
+        this._tasksService.getTasksPull()
             .subscribe((tasks: Task[]) => {
                 const task : Task | undefined = tasks.find((item : Task) => item.id === id);
                 if (task) {

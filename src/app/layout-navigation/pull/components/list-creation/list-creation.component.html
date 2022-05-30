@@ -65,7 +65,7 @@
                 <label for="listId" class="inner-field"></label>
                 <select id="listId" name="listId" class="selection-box" formControlName="listId">
                   <option value="none" [defaultSelected]="true" disabled hidden>выберите список</option>
-                  <option *ngFor="let list of listService.handleLists | async" value="{{list.id}}">{{list.title}}</option>
+                  <option *ngFor="let list of listService.handleLists" value="{{list.id}}">{{list.title}}</option>
                 </select>
               </div>
             </ng-template>

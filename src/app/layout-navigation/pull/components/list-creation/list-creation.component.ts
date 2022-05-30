@@ -1,6 +1,5 @@
 import { Component, TemplateRef, ViewChild, } from '@angular/core';
 import { DialogInjection } from '../../../../global-services/dialogInjection';
-import { DataLoaderService } from '../../../services/data-loader.service';
 import { ListCreationViewModel } from '../../view-models/list-creation.view-model';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ListsService } from '../../../services/lists.service';
@@ -75,9 +74,10 @@ export class ListCreationComponent {
     }
 
     public addList() : void {
-        this.listService.listsPull.subscribe((lists: IList[]) => {
-            this.listService.addList(this.viewModel.toModel(lists.length));
-        });
+        this.listService.getListsPull()
+            .subscribe((lists: IList[]) => {
+                this.listService.addList(this.viewModel.toModel(lists.length));
+            });
 
         this._closer.close();
     }

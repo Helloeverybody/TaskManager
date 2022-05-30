@@ -1,11 +1,11 @@
 <div class="content" *ngIf="taskId !== null">
   <div class="header">
-    <div class="checkbox" (click)="changeCompleted()">
-        <img src="../../../../assets/images/gray-check.svg" alt="check-mark" *ngIf="(task | async)?.isCompleted">
+    <div class="checkbox" (click)="changeCompleteness()">
+        <img src="../../../../assets/images/gray-check.svg" alt="check-mark" *ngIf="getTask()?.isCompleted">
     </div>
-    <input type="text" class="task-title" value="{{(task | async)?.title}}">
+    <input type="text" class="task-title" value="{{getTask()?.title}}">
   </div>
-  <div class="datetime">{{ (task | async)?.startDateTime | date : 'dd MMMM yyyy, HH:mm'}}</div>
-  <div class="datetime">{{ (task | async)?.repeat }}</div>
-  <textarea class="description description-box" rows="10" placeholder="Описание" value="{{(task | async)?.description}}"></textarea>
+  <div class="datetime">{{ getTask()?.startDateTime | date : 'dd MMMM yyyy, HH:mm'}}</div>
+  <div class="datetime">{{ getTask()?.repeat | repeat }}</div>
+  <textarea class="description description-box" rows="10" placeholder="Описание" value="{{getTask()?.description}}"></textarea>
 </div>

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { DateModel } from '../components/calendar/models/date-model';
 import { TasksService } from '../../services/tasks.service';
 import { Task } from '../../../core/task.model';
-import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class MonthDatesService {
@@ -20,13 +19,7 @@ export class MonthDatesService {
 
     public prevLastDayOfMonth: number = 30;
 
-    private _monthTable: DateModel[][] = [];
-
-    public get monthTable(): DateModel[][] {
-        this.recalculateTable();
-
-        return this._monthTable;
-    }
+    public monthTable: DateModel[][] = [];
 
     constructor(private _tasksService: TasksService) {
         this.recalculateDates();
@@ -48,55 +41,58 @@ export class MonthDatesService {
         this.recalculateDates();
     }
 
-    private recalculateDates() : void {
+    public recalculateDates() : void {
         this.firstDayOfMonth = this.currentMonth.getDay();
+
         this.lastDayOfMonth = 33 - new Date(
             this.currentMonth.getFullYear(),
             this.currentMonth.getMonth(),
             33,
         ).getDate();
+
         this.prevLastDayOfMonth = 33 - new Date(
             this.currentMonth.getFullYear(),
             this.currentMonth.getMonth() - 1,
             33,
         ).getDate();
 
-        this.recalculateTable();
+        this._tasksService.getTasksPull()
+            .subscribe((tasks: Task[]) => {
+                this.recalculateTable(tasks);
+            });
     }
 
-    private recalculateTable() : void {
-        this._tasksService.tasksPull.subscribe((tasks: Task[]) => {
-            this._monthTable = [];
+    private recalculateTable(tasks: Task[]) : void {
+        this.monthTable = [];
 
-            let startDay : number = -this.currentMonth.getDay() + 2;
+        let startDay : number = -this.currentMonth.getDay() + 2;
 
-            // getDay() возвращает число, соответствующее дню недели, в диапазоне [1, 2, 3, 4, 5, 6, 0]
-            // поэтому при 0 необходимо отнять 7 еще для правильных расчетов
-            if (this.currentMonth.getDay() === 0) {
-                startDay -= 7;
+        // getDay() возвращает число, соответствующее дню недели, в диапазоне [1, 2, 3, 4, 5, 6, 0]
+        // поэтому при 0 необходимо отнять 7 еще для правильных расчетов
+        if (this.currentMonth.getDay() === 0) {
+            startDay -= 7;
+        }
+
+        for (let i: number = 0; i <= 5; i++) {
+            const line: DateModel[] = [];
+            for (let j: number = 1; j <= 7; j++) {
+                const date : Date = new Date(
+                    this.currentMonth.getFullYear(),
+                    this.currentMonth.getMonth(),
+                    startDay
+                );
+                const isThisMonth : boolean = date.getMonth() === this.currentMonth.getMonth();
+                const dateModel : DateModel = new DateModel(
+                    date,
+                    isThisMonth,
+                    DateModel.areDatesEqual(date, new Date()),
+                    tasks
+                );
+                startDay += 1;
+                line.push(dateModel);
             }
-
-            for (let i: number = 0; i <= 5; i++) {
-                const line: DateModel[] = [];
-                for (let j: number = 1; j <= 7; j++) {
-                    const date : Date = new Date(
-                        this.currentMonth.getFullYear(),
-                        this.currentMonth.getMonth(),
-                        startDay
-                    );
-                    const isThisMonth : boolean = date.getMonth() === this.currentMonth.getMonth();
-                    const dateModel : DateModel = new DateModel(
-                        date,
-                        isThisMonth,
-                        DateModel.areDatesEqual(date, new Date()),
-                        tasks
-                    );
-                    startDay += 1;
-                    line.push(dateModel);
-                }
-                this._monthTable.push(line);
-            }
-        });
-
+            this.monthTable.push(line);
+        }
+        console.log(this.monthTable);
     }
 }
