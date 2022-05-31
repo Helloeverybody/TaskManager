@@ -13,11 +13,13 @@ import { TasksService } from '../../services/tasks.service';
 export class SettingsComponent {
     public chapter : string = 'general';
 
-    constructor (private _closer: DialogInjection,
+    constructor (
+        private _closer: DialogInjection,
         private _auth: AuthorizationService,
         private _router: Router,
         private _listsService: ListsService,
-        private _tasksService: TasksService) { }
+        private _tasksService: TasksService
+    ) { }
 
     public closeOverlay() : void {
         this._closer.close();

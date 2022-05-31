@@ -1,14 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Task } from '../../core/task.model';
 import { map, Observable, Subscriber } from 'rxjs';
 import { DataLoaderService } from './data-loader.service';
+import { IDataLoader } from './dataLoaderInterface';
 
 @Injectable()
 export class TasksService {
 
     private _tasks: Task[] = [];
 
-    constructor(private _dataLoader : DataLoaderService) { }
+    constructor(
+        @Inject('DataLoaderService')
+        private _dataLoader: IDataLoader
+    ) { }
 
     public getTasksPull() : Observable<Task[]> {
         if (this._dataLoader.areTasksLoaded) {
@@ -26,7 +30,6 @@ export class TasksService {
                             this._tasks.push(...tasks);
                             this._dataLoader.areTasksLoaded = true;
                         }
-                        console.log(this._tasks);
 
                         return this._tasks;
                     })

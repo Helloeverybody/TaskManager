@@ -12,7 +12,10 @@ import { TasksService } from '../../../layout-navigation/services/tasks.service'
 export class TaskCreationComponent {
     public viewModel : TaskCreationViewModel = new TaskCreationViewModel(this._dialog.parameter);
 
-    constructor(private _dialog: DialogInjection, private _tasksService: TasksService) { }
+    constructor(
+        private _dialog: DialogInjection,
+        private _tasksService: TasksService
+    ) { }
 
     public closeForm() : void {
         this._dialog.close();

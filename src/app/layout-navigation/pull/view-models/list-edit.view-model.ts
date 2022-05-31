@@ -7,8 +7,7 @@ export class ListEditViewModel{
         color: ['#ffffff'],
     });
 
-    constructor (private _fb : FormBuilder) {
-    }
+    constructor (private _fb : FormBuilder) { }
 
     public toModel(list : HandleList) : HandleList {
         list.title = this.form.value.title;

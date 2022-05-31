@@ -21,7 +21,15 @@ export class Task {
 
     public geoPosition?: string;
 
-    constructor(id?: number, title?: string, description?: string, listId?: number, startDateTime?: Date, endDateTime?: Date, repeat?: RepeatMode) {
+    constructor(
+        id?: number,
+        title?: string,
+        description?: string,
+        listId?: number,
+        startDateTime?: Date,
+        endDateTime?: Date,
+        repeat?: RepeatMode
+    ) {
         this.id = id ?? 0;
         this.title = title ?? '';
         this.description = description ?? '';

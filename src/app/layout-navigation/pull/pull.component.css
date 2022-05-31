@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: end;
+  align-items: stretch;
   width: 250px;
   box-shadow: 4px 0 4px 0 rgba(0, 0, 0, 0.25);
   padding-top: 30px;
@@ -30,6 +30,7 @@ a.list-button{
   text-decoration: none;
   user-select: none;
   cursor: pointer;
+  width: auto;
 }
 
 a.list-button:hover{
@@ -52,6 +53,7 @@ a.list-button:active{
   margin-bottom: 20px;
   padding: 0;
   cursor: pointer;
+  align-self: end;
 }
 
 .list-creation-button:hover{

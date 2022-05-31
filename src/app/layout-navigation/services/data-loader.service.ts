@@ -13,11 +13,24 @@ export class DataLoaderService {
     public areListsLoaded : boolean = false;
     public areTasksLoaded : boolean = false;
 
-    constructor(private _auth: AuthorizationService, private _http: HttpClient) { }
+    constructor(
+        private _auth: AuthorizationService,
+        private _http: HttpClient
+    ) { }
 
     public loadListsData() : Observable<IList[]> {
+        let url : string = '';
+
+        if (this._auth.token === 'eyJsb2dpbiI6ImFkZXB0dXNfY3Jpbmd1cyIsImVtYWlsIjoic2V2YS5ib2NoYXJvdkBtYWlsLnJ1In0=') {
+            url = 'http://localhost:3000/sevaLists';
+        } else if (this._auth.token === 'eyJsb2dpbiI6IkVybW9sYWV2SUQiLCJlbWFpbCI6IkVybW9sYWV2LklEQHlhbmRleC5ydSJ9') {
+            url = 'http://localhost:3000/ilyaLists';
+        } else {
+            url = 'http://localhost:3000/customLists';
+        }
+
         if (this._auth.token !== null) {
-            return this._http.get('http://localhost:3000/sevaLists')
+            return this._http.get(url)
                 .pipe(
                     map((data: any) => {
                         if (data) {
@@ -41,8 +54,18 @@ export class DataLoaderService {
     }
 
     public loadTasksData() : Observable<Task[]> {
+        let url : string = 'http://localhost:3000/sevaTasks';
+
+        if (this._auth.token === 'eyJsb2dpbiI6ImFkZXB0dXNfY3Jpbmd1cyIsImVtYWlsIjoic2V2YS5ib2NoYXJvdkBtYWlsLnJ1In0=') {
+            url = 'http://localhost:3000/sevaTasks';
+        } else if (this._auth.token === 'eyJsb2dpbiI6IkVybW9sYWV2SUQiLCJlbWFpbCI6IkVybW9sYWV2LklEQHlhbmRleC5ydSJ9') {
+            url = 'http://localhost:3000/ilyaTasks';
+        } else {
+            url = 'http://localhost:3000/customTasks';
+        }
+
         if (this._auth.token !== null) {
-            return this._http.get('http://localhost:3000/sevaTasks')
+            return this._http.get(url)
                 .pipe(
                     map((data : any) => {
                         if (data) {

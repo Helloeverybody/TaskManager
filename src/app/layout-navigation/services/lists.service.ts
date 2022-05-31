@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { IList } from '../pull/interfaces/list.interface';
 import { map, Observable, Subscriber } from 'rxjs';
 import { HandleList } from '../pull/models/handleList.model';
 import { DataLoaderService } from './data-loader.service';
+import { IDataLoader } from './dataLoaderInterface';
 
 @Injectable()
 export class ListsService {
@@ -10,9 +11,10 @@ export class ListsService {
 
     private _lists : IList[] = [];
 
-    constructor(private _dataLoader : DataLoaderService) {
-        this.getListsPull();
-    }
+    constructor(
+        @Inject('DataLoaderService')
+        private _dataLoader: IDataLoader
+    ) { }
 
     public getListsPull() : Observable<IList[]> {
         if (this._dataLoader.areListsLoaded) {
@@ -30,7 +32,6 @@ export class ListsService {
                             this._lists.push(...lists);
                             this._dataLoader.areListsLoaded = true;
                         }
-                        console.log(this._lists);
 
                         return lists;
                     })

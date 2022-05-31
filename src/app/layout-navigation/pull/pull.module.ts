@@ -8,7 +8,6 @@ import { PullComponent } from './pull.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ListEditComponent } from './components/list-edit/list-edit.component';
 import { TemplateRendererDirective } from './directives/template-renderer.directive';
-import { DragAndDropDirective } from './directives/drag-n-drop.directive';
 
 const routes: Routes = [
     { path: '', component: PullComponent },
@@ -18,11 +17,9 @@ const routes: Routes = [
     declarations: [
         PullComponent,
         HandleListComponent,
-        // AutomaticListComponent,
         ListEditComponent,
         ListCreationComponent,
         TemplateRendererDirective,
-        DragAndDropDirective,
     ],
     imports: [
         RouterModule.forChild(routes),

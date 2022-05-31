@@ -21,7 +21,8 @@ export class PullComponent implements OnInit{
         public tasksService: TasksService,
         private _overlay: DialogService,
         private _router: Router,
-        private _route: ActivatedRoute) { }
+        private _route: ActivatedRoute
+    ) { }
 
     public ngOnInit (): void {
         this._route.queryParams.subscribe((params: Params) => {
@@ -38,7 +39,7 @@ export class PullComponent implements OnInit{
         this._overlay.open(ListCreationComponent);
     }
 
-    public setCurrentList(listId: number) : void {
+    public onListSelected(listId: number) : void {
         this.currentTaskId = null;
         this.currentListId = listId;
         this.setNewPath();

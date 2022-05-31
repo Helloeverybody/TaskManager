@@ -42,7 +42,11 @@ export class ListCreationComponent {
 
     public inputTemplates : Array<TemplateRef<any> | undefined> = [];
 
-    constructor(public listService: ListsService, private _closer: DialogInjection, private _fb : FormBuilder) {}
+    constructor(
+        public listService: ListsService,
+        private _closer: DialogInjection,
+        private _fb : FormBuilder
+    ) { }
 
     public setTemplate(id: number) : void {
         const type : string = this.viewModel.filters.controls[id].get('filterType')?.value;

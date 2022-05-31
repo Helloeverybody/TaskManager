@@ -11,7 +11,10 @@ export class HintDirective implements OnInit{
 
     private _hint: string = '';
 
-    constructor(private _element: ElementRef, private _renderer: Renderer2){
+    constructor(
+        private _element: ElementRef,
+        private _renderer: Renderer2
+    ){
         this._div = this._renderer.createElement('div');
         this._renderer.addClass(this._div, 'hint');
         this._renderer.setStyle(this._element.nativeElement, 'filter', 'grayscale(0%)');

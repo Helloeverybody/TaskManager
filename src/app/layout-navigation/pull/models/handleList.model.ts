@@ -9,7 +9,12 @@ export class HandleList implements IList{
 
     public isEditable: boolean;
 
-    constructor(title?: string, id?: number, color?: string, isDeletable?: boolean) {
+    constructor(
+        title?: string,
+        id?: number,
+        color?: string,
+        isDeletable?: boolean
+    ) {
         this.title = title ?? '';
         this.id = id ?? 0;
         this.color = color ?? '#ffffff';

@@ -17,7 +17,11 @@ export class ListEditComponent {
 
     public list!: IList;
 
-    constructor(private _listsService: ListsService, private _closer: DialogInjection, private _fb : FormBuilder) {
+    constructor(
+        private _listsService: ListsService,
+        private _closer: DialogInjection,
+        private _fb : FormBuilder
+    ) {
         this.getList();
         this.viewModel.fromModel(this.list);
     }

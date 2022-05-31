@@ -1,10 +1,8 @@
 import {
     Component,
-    ElementRef,
     EventEmitter,
     Input,
     Output,
-    ViewChildren
 } from '@angular/core';
 import { HandleList } from '../../models/handleList.model';
 import { DialogService } from '../../../../global-services/dialog.service';
@@ -24,17 +22,10 @@ import { IList } from '../../interfaces/list.interface';
 export class HandleListComponent {
     public selectedTaskId : number | null = null;
 
-    @ViewChildren('draggable')
-    public listElements : ElementRef[] = [];
-
     @Output()
     public taskSelected : EventEmitter<number | null> = new EventEmitter<number | null>();
 
     public list!: HandleList;
-
-    public completedTasks!: Task[];
-
-    public uncompletedTasks!: Task[];
 
     @Input()
     public set listId(id: number | null) {
@@ -46,8 +37,36 @@ export class HandleListComponent {
 
     private _listId: number | null = null;
 
-    constructor(private _listsService: ListsService, private _tasksService: TasksService, private _overlay: DialogService) {
+    constructor(
+        private _listsService: ListsService,
+        private _tasksService: TasksService,
+        private _overlay: DialogService
+    ) {
         this.getList();
+    }
+
+    public onDragstart(event: DragEvent, id: number) : void {
+        if (event.dataTransfer) {
+            event.dataTransfer.setData('text/plain', id.toString());
+        }
+    }
+
+    public onDragover(event: DragEvent) : void {
+        event.preventDefault();
+        if (event.dataTransfer) {
+            event.dataTransfer.dropEffect = 'move';
+        }
+    }
+
+    public onDrop(event: DragEvent, targetId: number) : void {
+        event.preventDefault();
+        if (event.dataTransfer) {
+            const startId : number = Number(event.dataTransfer.getData('text/plain'));
+            const endId : number = targetId;
+            if (startId !== endId) {
+                this.changeOrder(startId, endId);
+            }
+        }
     }
 
     public getList() : void {
@@ -61,7 +80,10 @@ export class HandleListComponent {
         return this._tasksService.getTasksPull()
             .pipe(
                 map((tasks: Task[]) => {
-                    return this.uncompletedTasks = tasks.filter((task : Task) => task.listId === this.list?.id && task.isCompleted) ?? new Array<Task>();
+                    return tasks
+                        .filter((task : Task) => task.listId === this.list?.id && task.isCompleted)
+                        .sort((task1: Task, task2: Task) => task1.id - task2.id)
+                        ?? new Array<Task>();
                 })
             );
     }
@@ -70,14 +92,16 @@ export class HandleListComponent {
         return this._tasksService.getTasksPull()
             .pipe(
                 map((tasks: Task[]) => {
-                    return this.uncompletedTasks = tasks.filter((task : Task) => task.listId === this.list?.id && !task.isCompleted) ?? new Array<Task>();
+                    return tasks
+                        .filter((task : Task) => task.listId === this.list?.id && !task.isCompleted)
+                        .sort((task1: Task, task2: Task) => task1.id - task2.id)
+                            ?? new Array<Task>();
                 })
             );
     }
 
     public createNewTask() : void {
         this._overlay.open(TaskCreationComponent, this._listId);
-        console.log(this.listElements);
     }
 
     public editList() : void {
@@ -107,5 +131,29 @@ export class HandleListComponent {
     public selectTask(id: number | null) : void {
         this.selectedTaskId = id;
         this.taskSelected.emit(id);
+    }
+
+    private changeOrder(startId: number, endId: number) : void {
+        this.getUncompletedTasks().subscribe((tasks : Task[]) => {
+            let lastId : number = startId;
+            const startIndex : number = tasks.indexOf(tasks.find((task: Task) => task.id === startId) ?? new Task());
+            const endIndex : number = tasks.indexOf(tasks.find((task: Task) => task.id === endId) ?? new Task());
+
+            if (startIndex < endIndex) {
+                for (let index : number = startIndex + 1; index < endIndex + 1; index++) {
+                    const mId: number = tasks[index].id;
+                    tasks[index].id = lastId;
+                    lastId = mId;
+                }
+                tasks[startIndex].id = lastId;
+            } else {
+                tasks[startIndex].id = endId;
+                for (let index : number = startIndex - 1; index >= endIndex; index--) {
+                    const mId: number = tasks[index].id;
+                    tasks[index].id = lastId;
+                    lastId = mId;
+                }
+            }
+        });
     }
 }

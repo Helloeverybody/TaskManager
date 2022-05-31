@@ -13,17 +13,10 @@
             "isEditable": false
         },
         {
-            "title": "Севин списочек",
+            "title": "Тестовый список",
             "id": 3,
             "color": "#2f6b2f",
-            "isEditable": false
-        },
-        {
-            "title": "Автоматический списочек",
-            "id": 4,
-            "color": "#676c38",
-            "isEditable": false,
-            "filters": []
+            "isEditable": true
         }
     ],
 
@@ -41,24 +34,32 @@
             "isEditable": false
         },
         {
-            "title": "Илюшин списочек",
+            "title": "Тестовый список",
             "id": 3,
             "color": "#2f6b2f",
-            "isEditable": false
-        },
-        {
-            "title": "Автоматический списочек",
-            "id": 4,
-            "color": "#676c38",
-            "isEditable": false,
-            "filters": []
+            "isEditable": true
         }
     ],
+
+    "customLists": [
+            {
+                "title": "Мой день",
+                "id": 1,
+                "color": "#d54040",
+                "isEditable": false
+            },
+            {
+                "title": "Входящие",
+                "id": 2,
+                "color": "#4e73ea",
+                "isEditable": false
+            }
+        ],
 
     "sevaTasks": [
         {
             "id": 1,
-            "title": "Севина задача-задаченька",
+            "title": "Тестовая таска пользователя 1",
             "description": "самое лучшее описание в мире",
             "listId": 2,
             "startDateTime": "2022-05-25T17:26:08.101Z",
@@ -71,7 +72,7 @@
     "ilyaTasks": [
         {
             "id": 1,
-            "title": "Илюшина задача-задаченька",
+            "title": "Тестовая таска пользователя 2",
             "description": "самое лучшее описание в мире",
             "listId": 2,
             "startDateTime": "2022-05-25T17:26:08.101Z",
@@ -79,5 +80,7 @@
             "repeat": 0,
             "isCompleted": false
         }
-    ]
+    ],
+
+    "customTasks": [ ]
 }

@@ -25,5 +25,8 @@ export class DanceFloorDirective {
         'rgba(255,0,221,0.38)',
     ];
 
-    constructor(private _element: ElementRef, private _renderer: Renderer2){ }
+    constructor(
+        private _element: ElementRef,
+        private _renderer: Renderer2
+    ){ }
 }

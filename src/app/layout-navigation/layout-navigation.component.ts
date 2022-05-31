@@ -8,8 +8,7 @@ import { SettingsComponent } from './components/settings/settings.component';
     styleUrls: ['./layout-navigation.component.css'],
 })
 export class LayoutNavigationComponent {
-    constructor (private _overlay: DialogService) {
-    }
+    constructor (private _overlay: DialogService) { }
 
     public openSettings() : void {
         this._overlay.open(SettingsComponent);

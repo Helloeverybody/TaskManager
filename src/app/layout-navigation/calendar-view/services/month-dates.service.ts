@@ -93,6 +93,5 @@ export class MonthDatesService {
             }
             this.monthTable.push(line);
         }
-        console.log(this.monthTable);
     }
 }

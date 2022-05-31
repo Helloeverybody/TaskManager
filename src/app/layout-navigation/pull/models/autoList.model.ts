@@ -12,7 +12,13 @@ export class AutoList implements IList{
 
     public filters : ITag[];
 
-    constructor(title?: string, id?: number, color?: string, isDeletable?: boolean, filters?: ITag[]) {
+    constructor(
+        title?: string,
+        id?: number,
+        color?: string,
+        isDeletable?: boolean,
+        filters?: ITag[]
+    ) {
         this.title = title ?? '';
         this.id = id ?? 0;
         this.color = color ?? '#ffffff';

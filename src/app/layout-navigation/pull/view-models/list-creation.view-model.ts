@@ -35,8 +35,6 @@ export class ListCreationViewModel {
 
         const filtersControl : FormArray = this.filters;
         filtersControl.push(newFilter);
-        console.log('Все фильтры после добавления фильтра');
-        console.log(filtersControl);
     }
 
     public addTimePeriodControls(formBuilder: FormBuilder, filterControls: FormArray) : Function {
@@ -50,8 +48,6 @@ export class ListCreationViewModel {
 
             const filterGroup: FormGroup = filterControls.controls[id] as FormGroup;
             filterGroup.addControl('inputData', inputData);
-            console.log('Контролы фильтра с айди после добавления инпут контрола:', id);
-            console.log(filterGroup);
         };
     }
 
@@ -63,8 +59,6 @@ export class ListCreationViewModel {
 
             const filterGroup: FormGroup = filterControls.controls[id] as FormGroup;
             filterGroup.addControl('inputData', inputData);
-            console.log('Контролы фильтра с айди после добавления инпут контрола:', id);
-            console.log(filterGroup);
         };
     }
 
@@ -76,8 +70,6 @@ export class ListCreationViewModel {
 
             const filterGroup: FormGroup = filterControls.controls[id] as FormGroup;
             filterGroup.addControl('inputData', inputData);
-            console.log('Контролы фильтра с айди после добавления инпут контрола:', id);
-            console.log(filterGroup);
         };
     }
 
@@ -89,29 +81,21 @@ export class ListCreationViewModel {
 
             const filterGroup: FormGroup = filterControls.controls[id] as FormGroup;
             filterGroup.addControl('inputData', inputData);
-            console.log('Контролы фильтра с айди после добавления инпут контрола:', id);
-            console.log(filterGroup);
         };
     }
 
     public clearInputControl(id : number) : void {
         const filterGroup : FormGroup = this.filters.controls[id] as FormGroup;
         filterGroup.removeControl('inputData');
-        console.log('Контролы фильтра с айди после очистки инпут контрола:', id);
-        console.log(filterGroup);
     }
 
     public removeFilter(id : number) : void {
         this.filters.removeAt(id);
-        console.log('Все фильтры после удаления фильтра');
-        console.log(this.filters);
     }
 
     public toModel(id: number) : IList {
         const isAuto : boolean = this.form.value.isAuto === 'true';
         const creator : IListCreator = isAuto ? new AutoListCreator() : new HandleListCreator();
-
-        console.log(this.form);
 
         return creator.listFromForm(this.form, id);
     }

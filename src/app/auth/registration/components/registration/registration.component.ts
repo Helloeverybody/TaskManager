@@ -14,7 +14,11 @@ export class RegistrationComponent {
     public viewModel : RegistrationViewModel = new RegistrationViewModel(this._fb);
     public submitTouched : boolean = false;
 
-    constructor (private _router : Router, private _authService : AuthService, private _fb : FormBuilder) { }
+    constructor (
+        private _router : Router,
+        private _authService : AuthService,
+        private _fb : FormBuilder
+    ) { }
 
     public toAuthentication() : void {
         this._router.navigate(['/auth/authentication']);

@@ -14,7 +14,11 @@ export class AuthenticationComponent {
     public viewModel : AuthenticationViewModel = new AuthenticationViewModel(this._fb);
     public formValid : boolean = true;
 
-    constructor (private _router : Router, private _authService : AuthService, private _fb : FormBuilder) { }
+    constructor (
+        private _router : Router,
+        private _authService : AuthService,
+        private _fb : FormBuilder
+    ) { }
 
     public toRegistration() : void {
         this._router.navigate(['/auth/registration']);

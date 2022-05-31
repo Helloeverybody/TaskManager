@@ -31,7 +31,7 @@ const appRoutes: Routes = [
     providers: [
         DatePipe,
         DialogService,
-        DataLoaderService,
+        { provide: 'DataLoaderService', useClass: DataLoaderService },
         ListsService,
         TasksService,
         AsyncPipe

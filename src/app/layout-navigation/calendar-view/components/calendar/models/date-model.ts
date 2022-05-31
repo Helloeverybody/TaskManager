@@ -19,7 +19,12 @@ export class DateModel {
 
     private _allTasks : Task[] = [];
 
-    constructor(date: Date, isThisMonth: boolean, isToday: boolean, allTasksLink: Task[]) {
+    constructor(
+        date: Date,
+        isThisMonth: boolean,
+        isToday: boolean,
+        allTasksLink: Task[]
+    ) {
         this.date = date;
         this.isThisMonth = isThisMonth;
         this.isToday = isToday;

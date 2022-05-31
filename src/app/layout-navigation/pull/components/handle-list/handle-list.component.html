@@ -8,7 +8,13 @@
 
   <div class="no-tasks-placeholder" *ngIf="(getUncompletedTasks() | async)?.length === 0">Нет задач в списке.</div>
   <ul class="tasks-list">
-    <li class="task" *ngFor="let task of (getUncompletedTasks() | async)" #draggable (click)="selectTask(task.id)" [ngClass]="{ selected: selectedTaskId === task.id }">
+    <li class="task" *ngFor="let task of (getUncompletedTasks() | async)"
+        draggable="true"
+        (dragstart)="onDragstart($event, task.id)"
+        (drop)="onDrop($event, task.id)"
+        (dragover)="onDragover($event)"
+        (click)="selectTask(task.id)"
+        [ngClass]="{ selected: selectedTaskId === task.id }">
       <div class="marker" (click)="makeCompleted(task.id)"></div>
       {{ task.title }}
     </li>

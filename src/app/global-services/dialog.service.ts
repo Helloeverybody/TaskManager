@@ -7,7 +7,10 @@ import { DialogInjection } from './dialogInjection';
 
 @Injectable()
 export class DialogService {
-    constructor(private _overlay: Overlay, private _injector: Injector) { }
+    constructor(
+        private _overlay: Overlay,
+        private _injector: Injector
+    ) { }
 
     public open<T>(component: ComponentType<T>, parameters?: any) : void {
         const positionStrategy : GlobalPositionStrategy = this._overlay
