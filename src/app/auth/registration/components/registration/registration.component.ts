@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { RegistrationViewModel } from '../../../view-models/registration.view-model';
 import { RegistrationDataModel } from '../../../models/registration-data.model';
 import { AuthService } from '../../../services/auth.service';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'registration-component',
@@ -17,7 +17,7 @@ export class RegistrationComponent {
     constructor (
         private _router : Router,
         private _authService : AuthService,
-        private _fb : FormBuilder
+        private _fb : UntypedFormBuilder
     ) { }
 
     public toAuthentication() : void {

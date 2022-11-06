@@ -3,7 +3,7 @@ import { HandleList } from '../../models/handleList.model';
 import { DialogInjection } from '../../../../global-services/dialogInjection';
 import { ListEditViewModel } from '../../view-models/list-edit.view-model';
 import { IList } from '../../interfaces/list.interface';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { ListsService } from '../../../services/lists.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class ListEditComponent {
     constructor(
         private _listsService: ListsService,
         private _closer: DialogInjection,
-        private _fb : FormBuilder
+        private _fb : UntypedFormBuilder
     ) {
         this.getList();
         this.viewModel.fromModel(this.list);

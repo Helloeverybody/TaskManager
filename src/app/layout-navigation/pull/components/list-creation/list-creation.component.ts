@@ -1,7 +1,7 @@
 import { Component, TemplateRef, ViewChild, } from '@angular/core';
 import { DialogInjection } from '../../../../global-services/dialogInjection';
 import { ListCreationViewModel } from '../../view-models/list-creation.view-model';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { ListsService } from '../../../services/lists.service';
 import { IList } from '../../interfaces/list.interface';
 
@@ -45,7 +45,7 @@ export class ListCreationComponent {
     constructor(
         public listService: ListsService,
         private _closer: DialogInjection,
-        private _fb : FormBuilder
+        private _fb : UntypedFormBuilder
     ) { }
 
     public setTemplate(id: number) : void {
@@ -68,8 +68,8 @@ export class ListCreationComponent {
         return controls.find((control: AbstractControl) => control.get('filterType')?.value === name) !== undefined;
     }
 
-    public getForm(id: number) : FormGroup {
-        return this.viewModel.filters.controls[id] as FormGroup;
+    public getForm(id: number) : UntypedFormGroup {
+        return this.viewModel.filters.controls[id] as UntypedFormGroup;
     }
 
     public removeFilter(id : number) : void {

@@ -1,5 +1,5 @@
 import { IListCreator } from '../interfaces/listCreator.interface';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { AutoList } from './autoList.model';
 
 export class AutoListCreator implements IListCreator{
@@ -11,7 +11,7 @@ export class AutoListCreator implements IListCreator{
             dataObject.hasOwnProperty('filters');
     }
 
-    public listFromForm (form : FormGroup, id : number) : AutoList {
+    public listFromForm (form : UntypedFormGroup, id : number) : AutoList {
         return {
             title: form.value.title,
             id: id,

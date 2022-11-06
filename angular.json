@@ -103,6 +103,5 @@
         }
       }
     }
-  },
-  "defaultProject": "angular-task-manager"
+  }
 }

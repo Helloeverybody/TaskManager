@@ -76,12 +76,12 @@ form {
 .error-3 {
     grid-area: E3;
     align-self: end;
-    justify-self: start;
+    justify-self: flex-start;
 }
 
 .error-4 {
     grid-area: E4;
-    justify-self: start;
+    justify-self: flex-start;
     align-self: start;
 }
 

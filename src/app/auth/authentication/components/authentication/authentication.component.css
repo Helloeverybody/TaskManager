@@ -55,7 +55,7 @@ form {
 .error-1 {
     grid-area: E1;
     align-self: start;
-    justify-self: start;
+    justify-self: flex-start;
 }
 
 .error-window {

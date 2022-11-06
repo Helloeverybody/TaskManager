@@ -1,13 +1,13 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { HandleList } from '../models/handleList.model';
 
 export class ListEditViewModel{
-    public form: FormGroup = this._fb.group({
+    public form: UntypedFormGroup = this._fb.group({
         title: ['', Validators.required],
         color: ['#ffffff'],
     });
 
-    constructor (private _fb : FormBuilder) { }
+    constructor (private _fb : UntypedFormBuilder) { }
 
     public toModel(list : HandleList) : HandleList {
         list.title = this.form.value.title;

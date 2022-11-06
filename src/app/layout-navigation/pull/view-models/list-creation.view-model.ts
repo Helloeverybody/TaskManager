@@ -1,11 +1,11 @@
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { IList } from '../interfaces/list.interface';
 import { AutoListCreator } from '../models/autoListCreator.model';
 import { HandleListCreator } from '../models/handleListCreator.model';
 import { IListCreator } from '../interfaces/listCreator.interface';
 
 export class ListCreationViewModel {
-    public form: FormGroup = this._fb.group({
+    public form: UntypedFormGroup = this._fb.group({
         title: ['', Validators.required],
         isAuto: ['false', Validators.required],
         color: ['#ffffff'],
@@ -22,70 +22,70 @@ export class ListCreationViewModel {
         };
     }
 
-    constructor (private _fb : FormBuilder) { }
+    constructor (private _fb : UntypedFormBuilder) { }
 
-    public get filters() : FormArray  {
-        return this.form.get('filters') as FormArray;
+    public get filters() : UntypedFormArray  {
+        return this.form.get('filters') as UntypedFormArray;
     }
 
     public addFilter() : void {
-        const newFilter : FormGroup = this._fb.group({
+        const newFilter : UntypedFormGroup = this._fb.group({
             filterType : ['none']
         });
 
-        const filtersControl : FormArray = this.filters;
+        const filtersControl : UntypedFormArray = this.filters;
         filtersControl.push(newFilter);
     }
 
-    public addTimePeriodControls(formBuilder: FormBuilder, filterControls: FormArray) : Function {
+    public addTimePeriodControls(formBuilder: UntypedFormBuilder, filterControls: UntypedFormArray) : Function {
         return function (id : number) {
-            const inputData : FormGroup = formBuilder.group({
+            const inputData : UntypedFormGroup = formBuilder.group({
                 startDate: [],
                 startTime: [],
                 endDate: [],
                 endTime: [],
             });
 
-            const filterGroup: FormGroup = filterControls.controls[id] as FormGroup;
+            const filterGroup: UntypedFormGroup = filterControls.controls[id] as UntypedFormGroup;
             filterGroup.addControl('inputData', inputData);
         };
     }
 
-    public addPriorityControls(formBuilder: FormBuilder, filterControls: FormArray) : Function {
+    public addPriorityControls(formBuilder: UntypedFormBuilder, filterControls: UntypedFormArray) : Function {
         return function (id : number) {
-            const inputData : FormGroup = formBuilder.group({
+            const inputData : UntypedFormGroup = formBuilder.group({
                 degrees: [],
             });
 
-            const filterGroup: FormGroup = filterControls.controls[id] as FormGroup;
+            const filterGroup: UntypedFormGroup = filterControls.controls[id] as UntypedFormGroup;
             filterGroup.addControl('inputData', inputData);
         };
     }
 
-    public addListAffiliationControls(formBuilder: FormBuilder, filterControls: FormArray) : Function {
+    public addListAffiliationControls(formBuilder: UntypedFormBuilder, filterControls: UntypedFormArray) : Function {
         return function (id : number) {
-            const inputData : FormGroup = formBuilder.group({
+            const inputData : UntypedFormGroup = formBuilder.group({
                 listId: [],
             });
 
-            const filterGroup: FormGroup = filterControls.controls[id] as FormGroup;
+            const filterGroup: UntypedFormGroup = filterControls.controls[id] as UntypedFormGroup;
             filterGroup.addControl('inputData', inputData);
         };
     }
 
-    public addCompletenessControls(formBuilder: FormBuilder, filterControls: FormArray) : Function {
+    public addCompletenessControls(formBuilder: UntypedFormBuilder, filterControls: UntypedFormArray) : Function {
         return function (id : number) {
-            const inputData : FormGroup = formBuilder.group({
+            const inputData : UntypedFormGroup = formBuilder.group({
                 isCompleted: [],
             });
 
-            const filterGroup: FormGroup = filterControls.controls[id] as FormGroup;
+            const filterGroup: UntypedFormGroup = filterControls.controls[id] as UntypedFormGroup;
             filterGroup.addControl('inputData', inputData);
         };
     }
 
     public clearInputControl(id : number) : void {
-        const filterGroup : FormGroup = this.filters.controls[id] as FormGroup;
+        const filterGroup : UntypedFormGroup = this.filters.controls[id] as UntypedFormGroup;
         filterGroup.removeControl('inputData');
     }
 

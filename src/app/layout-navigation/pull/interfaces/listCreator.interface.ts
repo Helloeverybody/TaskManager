@@ -1,7 +1,7 @@
 import { IList } from './list.interface';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 
 export interface IListCreator {
-    listFromForm (form : FormGroup, id : number) : IList
+    listFromForm (form : UntypedFormGroup, id : number) : IList
     listFromData (listObject : any) : IList
 }

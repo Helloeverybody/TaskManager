@@ -1,13 +1,13 @@
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Task } from '../../core/task.model';
 
 export class TaskCreationViewModel {
-    public form: FormGroup = new FormGroup({
-        title: new FormControl('', Validators.required),
-        description: new FormControl(''),
-        date: new FormControl(this.starDateValue()),
-        time: new FormControl({ value: '00:00', disabled: true }),
-        repeat: new FormControl('0'),
+    public form: UntypedFormGroup = new UntypedFormGroup({
+        title: new UntypedFormControl('', Validators.required),
+        description: new UntypedFormControl(''),
+        date: new UntypedFormControl(this.starDateValue()),
+        time: new UntypedFormControl({ value: '00:00', disabled: true }),
+        repeat: new UntypedFormControl('0'),
     });
 
     constructor(private _startValue: number | Date) {

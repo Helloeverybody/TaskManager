@@ -1,5 +1,5 @@
 import { IListCreator } from '../interfaces/listCreator.interface';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { HandleList } from './handleList.model';
 
 export class HandleListCreator implements IListCreator{
@@ -10,7 +10,7 @@ export class HandleListCreator implements IListCreator{
             dataObject.hasOwnProperty('isEditable');
     }
 
-    public listFromForm (form : FormGroup, id : number) : HandleList {
+    public listFromForm (form : UntypedFormGroup, id : number) : HandleList {
         return {
             title: form.value.title,
             id: id,

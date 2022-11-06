@@ -1,9 +1,9 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { RegistrationDataModel } from '../models/registration-data.model';
 import { passwordConfirmValidator } from '../validators/password-confirm.validator';
 
 export class RegistrationViewModel {
-    public form: FormGroup = this._fb.group({
+    public form: UntypedFormGroup = this._fb.group({
         login: ['', [
             Validators.required,
             Validators.pattern(/^\w+$/),
@@ -21,7 +21,7 @@ export class RegistrationViewModel {
         passwordConfirmation: ['', Validators.required],
     },{ validators : passwordConfirmValidator });
 
-    constructor (private _fb : FormBuilder) { }
+    constructor (private _fb : UntypedFormBuilder) { }
 
     public toModel() : RegistrationDataModel {
         return {
