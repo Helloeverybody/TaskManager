@@ -64,13 +64,13 @@ form {
 .error-1 {
     grid-area: E1;
     align-self: end;
-    justify-self: end;
+    justify-self: flex-end;
 }
 
 .error-2 {
     grid-area: E2;
     align-self: start;
-    justify-self: end;
+    justify-self: flex-end;
 }
 
 .error-3 {

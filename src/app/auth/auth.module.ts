@@ -22,7 +22,8 @@ const routes: Routes = [
             },
             {
                 path: '',
-                redirectTo: '/auth/authentication'
+                redirectTo: '/auth/authentication',
+                pathMatch: 'full'
             }
         ],
     },
@@ -30,15 +31,15 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [
-        AuthComponent
+    AuthComponent
     ],
     imports: [
-        RouterModule.forChild(routes),
+    RouterModule.forChild(routes),
     ],
     providers: [
-        AuthService,
-        AuthServerService,
-        AuthRedirectGuard
+    AuthService,
+    AuthServerService,
+    AuthRedirectGuard
     ],
-})
+    })
 export class AuthModule { }

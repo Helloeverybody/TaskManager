@@ -35,18 +35,18 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [
-        AppComponent,
+    AppComponent,
     ],
     imports: [
-        BrowserModule,
-        RouterModule.forRoot(routes),
-        CommonModule,
-        HttpClientModule,
-        OverlayModule,
-        FormsModule,
-        ReactiveFormsModule
+    BrowserModule,
+    RouterModule.forRoot(routes),
+    CommonModule,
+    HttpClientModule,
+    OverlayModule,
+    FormsModule,
+    ReactiveFormsModule
     ],
     providers: [AuthGuard],
     bootstrap: [AppComponent],
-})
+    })
 export class AppModule { }
