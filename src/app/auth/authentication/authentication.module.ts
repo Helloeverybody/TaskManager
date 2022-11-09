@@ -3,6 +3,7 @@ import { AuthenticationComponent } from './components/authentication/authenticat
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ControlsModule } from '../../controls/controls.module';
 
 const routes: Routes = [
     { path: '', component: AuthenticationComponent },
@@ -10,13 +11,14 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [
-        AuthenticationComponent
+    AuthenticationComponent
     ],
     imports: [
-        ReactiveFormsModule,
-        CommonModule,
-        RouterModule.forChild(routes),
+    ReactiveFormsModule,
+    CommonModule,
+    RouterModule.forChild(routes),
+    ControlsModule,
     ],
     providers: [],
-})
+    })
 export class AuthenticationModule { }

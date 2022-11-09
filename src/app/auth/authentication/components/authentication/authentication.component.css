@@ -23,7 +23,7 @@ span {
     text-decoration: underline;
 }
 
-form {
+.form {
     display: grid;
     grid-template-rows: 20px auto auto auto;
     grid-template-columns: 300px auto 300px;

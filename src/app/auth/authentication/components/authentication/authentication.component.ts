@@ -9,7 +9,7 @@ import { UntypedFormBuilder } from '@angular/forms';
     selector: 'authentication-component',
     templateUrl: './authentication.component.html',
     styleUrls: ['./authentication.component.css'],
-})
+    })
 export class AuthenticationComponent {
     public viewModel : AuthenticationViewModel = new AuthenticationViewModel(this._fb);
     public formValid : boolean = true;
@@ -26,7 +26,7 @@ export class AuthenticationComponent {
 
     public submit() : void {
         this.formValid = true;
-        if (this.viewModel.form.valid){
+        if (this.viewModel.formModel.valid){
             const model: AuthenticationDataModel = this.viewModel.toModel();
             const isAuthorised : boolean = this._authService.authoriseUser(model);
             if (isAuthorised) {

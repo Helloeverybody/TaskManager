@@ -1,18 +1,24 @@
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { AuthenticationDataModel } from '../models/authentication-data.model';
+import { InputControlViewModel } from '../../controls/view-models/input-control.view-model';
+import { FormGroupViewModel } from '../../controls/form-group/form-group.view-model';
 
 export class AuthenticationViewModel {
-    public form: UntypedFormGroup = this._fb.group({
-        login: ['', [Validators.required]],
-        password: ['', [Validators.required]],
-    });
-
-    constructor (private _fb : UntypedFormBuilder) { }
+    public formModel: FormGroupViewModel = new FormGroupViewModel([
+        new InputControlViewModel('login', {
+            inputType: 'email',
+            placeholder: 'Логин'
+        }),
+        new InputControlViewModel('password', {
+            inputType: 'password',
+            placeholder: 'Пароль'
+        })
+    ]);
 
     public toModel() : AuthenticationDataModel {
         return {
-            login: this.form.get('login')?.value,
-            password: this.form.get('password')?.value,
+            login: this.formModel.getControl('login')?.formControl.value,
+            password: this.formModel.getControl('password')?.formControl.value,
         };
     }
 }

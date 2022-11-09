@@ -1,10 +1,14 @@
 <div class="content">
     <div class="logo">Task Manager</div>
-    <form [formGroup]="viewModel.form">
+    <div class="form">
         <div class="auth-link" (click)="toRegistration()">Первый раз? <span>Создать аккаунт</span></div>
         <div class="field-1">
             <label for="login"></label>
-            <input id="login" class="big-input-field" type="email" formControlName="login" placeholder="Логин">
+            <input-control
+                    id="login"
+                    customCssClass="big-input-field"
+                    [model]="viewModel.formModel.getControl('login')">
+            </input-control>
         </div>
 
         <div class="error-1">
@@ -15,12 +19,16 @@
 
         <div class="field-2">
             <label for="password"></label>
-            <input id="password" class="big-input-field" type="password" formControlName="password" placeholder="Пароль">
+            <input-control
+                    id="password"
+                    customCssClass="big-input-field"
+                    [model]="viewModel.formModel.getControl('password')">
+            </input-control>
         </div>
 
         <div class="field-3">
             <label for="submit-button"></label>
             <input id="submit-button" type="submit" value="Войти" class="square-button" (click)="submit()">
         </div>
-    </form>
+    </div>
 </div>

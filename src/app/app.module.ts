@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ControlsModule } from './controls/controls.module';
 
 const routes: Routes = [
     {
@@ -44,7 +45,8 @@ const routes: Routes = [
     HttpClientModule,
     OverlayModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ControlsModule
     ],
     providers: [AuthGuard],
     bootstrap: [AppComponent],
