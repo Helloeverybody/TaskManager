@@ -7,10 +7,13 @@ export class DateModel {
             && date1.getFullYear() === date2.getFullYear();
     }
 
+    /** Дата */
     public date: Date;
 
+    /** В этом ли месяце эта дата */
     public isThisMonth: boolean;
 
+    /** Сегодняшняя ли это дата */
     public isToday: boolean;
 
     public get tasks(): Task[] {
